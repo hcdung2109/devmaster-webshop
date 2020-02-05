@@ -2,7 +2,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Sửa Danh Mục Sản Phẩm
+            Sửa Danh Mục <a href="{{route('admin.category.index')}}" class="btn btn-success pull-right"><i class="fa fa-list"></i> Danh Sách</a>
         </h1>
     </section>
     <section class="content">

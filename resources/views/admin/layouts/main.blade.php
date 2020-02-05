@@ -66,7 +66,13 @@
 <!-- AdminLTE for demo purposes -->
 <script src="/backend/dist/js/demo.js"></script>
 
+<script src="/backend/bower_components/ckeditor/ckeditor.js"></script>
+
+<!-- Thêm File JS ở đây -->
 <script src="/backend/js/main.js"></script>
+
+<!-- Vị trí dùng để chèn code Javascript -->
+@yield('my_javascript')
 
 </body>
 </html>

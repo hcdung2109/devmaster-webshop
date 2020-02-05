@@ -13,12 +13,14 @@
 
 Route::get('/', 'ShopController@index');
 
-
-
-
-
 Route::group(['prefix' => 'admin','as' => 'admin.'], function(){
     Route::get('/', 'AdminController@index')->name('dashboard');
     Route::resource('category', 'CategoryController');
     Route::resource('product', 'ProductController');
+    // QL Banner
+    Route::resource('banner', 'BannerController');
+    // QL Thương Hiệu
+    Route::resource('brand', 'BrandController');
+    // QL Nhà Cung Cấp
+    Route::resource('vendor', 'VendorController');
 });

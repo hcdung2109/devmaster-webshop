@@ -144,9 +144,11 @@ class CategoryController extends Controller
         $category->is_active = $is_active;
 
         if ($request->hasFile('new_image')) {
-            // get file
+            // xóa file cũ
+            unlink(public_path($category->image));
+            // get file mới
             $file = $request->file('new_image');
-            // get ten
+            // get tên
             $filename = time().'_'.$file->getClientOriginalName();
             // duong dan upload
             $path_upload = 'uploads/category/';
