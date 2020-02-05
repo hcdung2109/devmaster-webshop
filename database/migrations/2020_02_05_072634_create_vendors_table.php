@@ -21,7 +21,7 @@ class CreateVendorsTable extends Migration
             $table->string('phone',255)->nullable()->default(null);
             $table->string('image',255)->nullable()->default(null);
             $table->string('website',255)->nullable()->default(null);
-            $table->text('address')->collation('utf8_unicode_ci')->nullable()->default(null); // mô tả
+            $table->text('address')->collation('utf8_unicode_ci')->nullable()->default(null); // địa chỉ
             $table->integer('position')->unsigned()->default(0); // Vị trí hiển thị
             $table->integer('is_active')->unsigned()->default(1); // Trạng thái có hiển thị hay không
             $table->timestamps();

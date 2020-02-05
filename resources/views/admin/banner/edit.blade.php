@@ -9,7 +9,7 @@
     <section class="content">
         <div class="row">
             <!-- left column -->
-            <div class="col-md-6">
+            <div class="col-md-9">
                 <!-- general form elements -->
 
                 <div class="box box-primary">
@@ -88,7 +88,7 @@
 
             // setup textarea sử dụng plugin CKeditor
             var _ckeditor = CKEDITOR.replace('editor1');
-            _ckeditor.config.height = 500; // thiết lập chiều cao
+            _ckeditor.config.height = 450; // thiết lập chiều cao
         })
     </script>
 @endsection

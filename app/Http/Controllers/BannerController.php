@@ -29,9 +29,7 @@ class BannerController extends Controller
     public function create()
     {
         // gọi đến view create
-        return view('admin.banner.create', [
-            //'data' => $data
-        ]);
+        return view('admin.banner.create');
     }
 
     /**
@@ -59,7 +57,7 @@ class BannerController extends Controller
             // đặt tên cho file image
             $filename = time().'_'.$file->getClientOriginalName(); // $file->getClientOriginalName() == tên ban đầu của image
             // Định nghĩa đường dẫn sẽ upload lên
-            $path_upload = 'uploads/category/';
+            $path_upload = 'uploads/category/'; // uploads/brand ; uploads/vendor
             // Thực hiện upload file
             $request->file('image')->move($path_upload,$filename);
 
@@ -73,7 +71,6 @@ class BannerController extends Controller
         // Loại
         $banner->type = $request->input('type');
         // Trạng thái
-
         if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
             $banner->is_active = $request->input('is_active');
         }
@@ -164,7 +161,7 @@ class BannerController extends Controller
         $banner->type = $request->input('type');
         // Trạng thái
 
-        if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
+        if ($request->has('is_active')) {//kiem tra is_active co ton tai khong?
             $banner->is_active = $request->input('is_active');
         }
         // Vị trí

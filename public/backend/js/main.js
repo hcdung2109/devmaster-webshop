@@ -37,7 +37,7 @@ function destroyBanner(id) {
             url: base_url + '/admin/banner/'+id, // base_url được khai báo ở đầu page == http://webshop.local
             type: 'DELETE',
             data: {}, // dữ liệu truyền sang nếu có
-            dataType: "json", // kiểu dữ liệu trả về
+            dataType: "json", // kiểu dữ liệu nhận về
             success: function (response) { // success : kết quả trả về sau khi gửi request ajax
                 // dữ liệu trả về là một object nên để gọi đến status chúng ta sẽ gọi như bên dưới
                 if (response.status != 'undefined' && response.status == true) {

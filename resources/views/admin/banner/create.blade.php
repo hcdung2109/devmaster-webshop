@@ -9,7 +9,7 @@
     <section class="content">
         <div class="row">
             <!-- left column -->
-            <div class="col-md-6">
+            <div class="col-md-9">
                 <!-- general form elements -->
 
                 <div class="box box-primary">
@@ -55,11 +55,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Vị trí</label>
-                                <input type="number" class="form-control" id="position" name="position" placeholder="Nhập tên vị trí" value="0">
+                                <input type="number" class="form-control" id="position" name="position" value="0">
                             </div>
                             <div class="form-group">
                                 <label>Mô tả</label>
-                                <textarea id="editor1" name="description" class="form-control" rows="15" placeholder="Enter ..."></textarea>
+                                <textarea id="editor1" name="description" class="form-control" rows="10" placeholder="Enter ..."></textarea>
                             </div>
                         </div>
                         <!-- /.box-body -->

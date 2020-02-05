@@ -33,7 +33,6 @@
                                 <th>Vị trí</th>
                                 <th>Trạng thái</th>
                                 <th class="text-center">Hành động</th>
-
                             </tr>
                             </tbody>
                             <!-- Lặp một mảng dữ liệu pass sang view để hiển thị -->
@@ -53,7 +52,7 @@
                                         <a href="{{route('admin.banner.show', ['id'=> $item->id ])}}" class="btn btn-default">Xem</a>
                                         <a href="{{route('admin.banner.edit', ['id'=> $item->id])}}" class="btn btn-info">Sửa</a>
                                         <!-- Thêm sự kiện onlick cho nút xóa -->
-                                        <a type="button" class="btn btn-danger" onclick="destroyBanner({{ $item->id }})" >Xóa</a>
+                                        <a href="javascript:void(0)" class="btn btn-danger" onclick="destroyBanner({{ $item->id }})" >Xóa</a>
                                     </td>
                                 </tr>
                             @endforeach

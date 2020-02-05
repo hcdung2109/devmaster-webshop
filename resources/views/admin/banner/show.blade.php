@@ -1,13 +1,14 @@
 @extends('admin.layouts.main')
 @section('content')
+    <section class="content-header">
+        <h1>
+            Chi Tiết Banner <a href="{{route('admin.banner.index')}}" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Danh sách Banner</a>
+        </h1>
+    </section>
     <section class="content">
         <div class="row">
             <!-- left column -->
             <div class="col-md-6">
-                <!-- general form elements -->
-                <h1>
-                    Thông tin chi tiết Banner
-                </h1>
                 <div class="box box-primary">
                     <!-- form start -->
                     <div class="box-body">
