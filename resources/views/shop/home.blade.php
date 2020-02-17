@@ -10,136 +10,34 @@
                     <div class="left-category-menu">
                         <div class="left-product-cat">
                             <div class="category-heading">
-                                <h2>category</h2>
+                                <h2>Danh Mục</h2>
                             </div>
                             <!-- CATEGORY-MENU-LIST START -->
                             <div class="category-menu-list">
                                 <ul>
-                                    <li><a href="shop-gird.html"><span class="cat-thumb hidden-md hidden-sm hidden-xs"><img src="shop/img/layout2/1.png" alt="" /></span>Women<i class="fa fa-angle-right"></i></a>
-                                        <!-- CAT-LEFT MEGA MENU START -->
-                                        <div class="cat-left-drop-menu">
-                                            <div class="cat-left-drop-menu-left">
-                                                <a class="menu-item-heading" href="shop-gird.html">Tops</a>
-                                                <ul>
-                                                    <li><a href="shop-gird.html">Blouse</a></li>
-                                                    <li><a href="shop-gird.html">T-shirts</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="cat-left-drop-menu-left">
-                                                <a class="menu-item-heading" href="shop-gird.html">Dresses</a>
-                                                <ul>
-                                                    <li><a href="shop-gird.html">Summer Dresses</a></li>
-                                                    <li><a href="shop-gird.html">Casual Dresses</a></li>
-                                                    <li><a href="shop-gird.html">Enening Dresses</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- CAT-LEFT MEGA MENU END -->
-                                    </li>
-                                    <li><a href="shop-gird.html"><span class="cat-thumb hidden-md hidden-sm hidden-xs"><img src="shop/img/layout2/2.png" alt="" /></span>men<i class="fa fa-angle-right"></i></a>
-                                        <!-- CAT-LEFT MEGA MENU START -->
-                                        <div class="cat-left-drop-menu">
-                                            <div class="cat-left-drop-menu-left">
-                                                <a class="menu-item-heading" href="shop-gird.html">Tops</a>
-                                                <ul>
-                                                    <li><a href="shop-gird.html">Evening</a></li>
-                                                    <li><a href="shop-gird.html">Day</a></li>
-                                                    <li><a href="shop-gird.html">Sports</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="cat-left-drop-menu-left">
-                                                <a class="menu-item-heading" href="shop-gird.html">Blouse</a>
-                                                <ul>
-                                                    <li><a href="shop-gird.html">Houseware</a></li>
-                                                    <li><a href="shop-gird.html">Headphone</a></li>
-                                                    <li><a href="shop-gird.html">Handbags</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="cat-left-drop-menu-left">
-                                                <a class="menu-item-heading" href="shop-gird.html">Accsosorice</a>
-                                                <ul>
-                                                    <li><a href="shop-gird.html">Healht % Beuty</a></li>
-                                                    <li><a href="shop-gird.html">Home</a></li>
-                                                    <li><a href="shop-gird.html">Houseware</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- CAT-LEFT MEGA MENU END -->
-                                    </li>
-                                    <li><a href="shop-gird.html"><span class="cat-thumb hidden-md hidden-sm hidden-xs"><img src="shop/img/layout2/3.png" alt="" /></span>Accessories<i class="fa fa-angle-right"></i></a>
-                                        <!-- CAT-LEFT MEGA MENU START -->
-                                        <div class="cat-left-drop-menu">
-                                            <div class="cat-left-drop-menu-left">
-                                                <a class="menu-item-heading" href="shop-gird.html">Headphone</a>
-                                                <ul>
-                                                    <li><a href="shop-gird.html">Evening</a></li>
-                                                    <li><a href="shop-gird.html">Day</a></li>
-                                                    <li><a href="shop-gird.html">Sports</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="cat-left-drop-menu-left">
-                                                <a class="menu-item-heading" href="#">Blouse</a>
-                                                <ul>
-                                                    <li><a href="shop-gird.html">Houseware</a></li>
-                                                    <li><a href="shop-gird.html">Headphone</a></li>
-                                                    <li><a href="shop-gird.html">Handbags</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="cat-left-drop-menu-left">
-                                                <a class="menu-item-heading" href="shop-gird.html">Sports</a>
-                                                <ul>
-                                                    <li><a href="shop-gird.html">Healht % Beuty</a></li>
-                                                    <li><a href="shop-gird.html">Home</a></li>
-                                                    <li><a href="shop-gird.html">Houseware</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="cat-left-drop-menu-left">
-                                                <a class="menu-item-heading" href="shop-gird.html">Dresses</a>
-                                                <ul>
-                                                    <li><a href="shop-gird.html">Summer Dresses</a></li>
-                                                    <li><a href="shop-gird.html">Casual Dresses</a></li>
-                                                    <li><a href="shop-gird.html">Enening Dresses</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- CAT-LEFT MEGA MENU END -->
-                                    </li>
-                                    <li><a href="shop-gird.html"><span class="cat-thumb hidden-md hidden-sm hidden-xs"><img src="shop/img/layout2/4.png" alt="" /></span>Blouse<i class="fa fa-angle-right"></i></a>
-                                        <!-- CAT-LEFT MEGA MENU START -->
-                                        <div class="cat-left-drop-menu-single">
-                                            <ul>
-                                                <li><a href="shop-gird.html">Healht % Beuty</a></li>
-                                                <li><a href="shop-gird.html">Home</a></li>
-                                                <li><a href="shop-gird.html">Houseware</a></li>
-                                            </ul>
-                                        </div>
-                                        <!-- CAT-LEFT MEGA MENU END -->
-                                    </li>
-                                    <li><a href="shop-gird.html"><span class="cat-thumb hidden-md hidden-sm hidden-xs"><img src="shop/img/layout2/5.png" alt="" /></span>Tops<i class="fa fa-angle-right"></i></a>
-                                        <!-- CAT-LEFT MEGA MENU START -->
-                                        <div class="cat-left-drop-menu-single">
-                                            <ul>
-                                                <li><a href="shop-gird.html">Blouse</a></li>
-                                                <li><a href="shop-gird.html">T-shirts</a></li>
-                                            </ul>
-                                        </div>
-                                        <!-- CAT-LEFT MEGA MENU END -->
-                                    </li>
-                                    <li><a href="shop-gird.html"><span class="cat-thumb hidden-md hidden-sm hidden-xs"><img src="shop/img/layout2/6.png" alt="" /></span>dresses<i class="fa fa-angle-right"></i></a>
-                                        <!-- CAT-LEFT MEGA MENU START -->
-                                        <div class="cat-left-drop-menu-single">
-                                            <ul>
-                                                <li><a href="shop-gird.html">Summer Dresses</a></li>
-                                                <li><a href="shop-gird.html">Casual Dresses</a></li>
-                                                <li><a href="shop-gird.html">Enening Dresses</a></li>
-                                            </ul>
-                                        </div>
-                                        <!-- CAT-LEFT MEGA MENU END -->
-                                    </li>
-                                    <li><a href="shop-gird.html"><span class="cat-thumb hidden-md hidden-sm hidden-xs"><img src="shop/img/layout2/4.png" alt="" /></span>Clothing</a>
-                                    </li>
-                                    <li><a href="shop-gird.html"><span class="cat-thumb hidden-md hidden-sm hidden-xs"><img src="shop/img/layout2/7.png" alt="" /></span>kids</a>
-                                    </li>
+                                    @if(!empty($categories))
+                                        @foreach($categories as $categorie)
+                                            <li>
+                                                <!-- Bước 1 :  Hiển thị danh mục cha -->
+                                                @if($categorie->parent_id == 0)
+                                                <a href="shop-gird.html">
+                                                    {{ $categorie->name }}<i class="fa fa-angle-right"></i>
+                                                </a>
+
+                                                <!-- Bước 2 : Hiển thị danh mục con -->
+                                                <div class="cat-left-drop-menu-single">
+                                                    <ul>
+                                                        @foreach($categories as $child)
+                                                            @if($categorie->id == $child->parent_id)
+                                                                <li><a href="shop-gird.html">{{ $child->name }}</a></li>
+                                                            @endif
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                                @endif
+                                            </li>
+                                        @endforeach
+                                    @endif
                                 </ul>
                             </div>
                             <!-- CATEGORY-MENU-LIST END -->
@@ -152,32 +50,16 @@
                     <div class="main-slider-area">
                         <div class="slider-area">
                             <div id="wrapper">
+                                <!-- Kiểm tra nếu có dữ liệu banners thì mới hiển thị -->
+                                @if(!empty($banners))
                                 <div class="slider-wrapper">
                                     <div id="mainSlider" class="nivoSlider">
-                                        <img src="shop/img/slider/homepage2/3.jpg" alt="main slider" title="#htmlcaption"/>
-                                        <img src="shop/img/slider/homepage2/4.jpg" alt="main slider" title="#htmlcaption2"/>
-                                    </div>
-                                    <div id="htmlcaption" class="nivo-html-caption slider-caption">
-                                        <div class="slider-progress"></div>
-                                        <div class="slider-cap-text slider-text1">
-                                            <div class="d-table-cell">
-                                                <h2 class="animated bounceInDown">BEST THEMES</h2>
-                                                <p class="animated bounceInUp">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod ut laoreet dolore magna aliquam erat volutpat.</p>
-                                                <a class="wow zoomInDown" data-wow-duration="1s" data-wow-delay="1s" href="#">Read More <i class="fa fa-caret-right"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="htmlcaption2" class="nivo-html-caption">
-                                        <div class="slider-progress"></div>
-                                        <div class="slider-cap-text slider-text2">
-                                            <div class="d-table-cell">
-                                                <h2 class="animated bounceInDown">BEST THEMES</h2>
-                                                <p class="animated bounceInUp">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod ut laoreet dolore magna aliquam erat volutpat.</p>
-                                                <a class="wow zoomInDown" data-wow-duration="1s" data-wow-delay="1s" href="#">Read More <i class="fa fa-caret-right"></i></a>
-                                            </div>
-                                        </div>
+                                        @foreach($banners as $banner)
+                                            <a href="#"><img src="{{ asset($banner->image) }}" alt="{{ $banner->title }}"/></a>
+                                        @endforeach
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
