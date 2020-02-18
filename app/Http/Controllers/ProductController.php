@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Brand;
+use App\Product;
+use App\Category;
+use App\Vendor;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -13,7 +17,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.product.index');
+        $data = Product::latest()->paginate(10);
+        return view('admin.product.index', [
+               'data' => $data
+        ]);
     }
 
     /**
@@ -23,7 +30,15 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.product.create');
+        $categories = Category::all();
+        $brands = Brand::all();
+        $vendors = Vendor::all();
+
+        return view('admin.product.create', [
+            'categories' => $categories,
+            'brands' => $brands,
+            'vendors' => $vendors
+        ]);
     }
 
     /**
@@ -34,7 +49,57 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+         ]);
+
+        $product = new Product(); // khởi tạo model
+        $product->name = $request->input('name');
+        $product->slug = str_slug($request->input('name'));
+
+        // Upload file
+        if ($request->hasFile('image')) { // dòng này Kiểm tra xem có image có được chọn
+            // get file
+            $file = $request->file('image');
+            // đặt tên cho file image
+            $filename = time().'_'.$file->getClientOriginalName(); // $file->getClientOriginalName() == tên ban đầu của image
+            // Định nghĩa đường dẫn sẽ upload lên
+            $path_upload = 'uploads/product/';
+            // Thực hiện upload file
+            $request->file('image')->move($path_upload,$filename); // upload lên thư mục public/uploads/product
+
+            $product->image = $path_upload.$filename;
+        }
+
+        $product->stock = $request->input('stock'); // số lượng
+        $product->price = $request->input('price');
+        $product->sale = $request->input('sale');
+        $product->category_id = $request->input('category_id');
+        $product->brand_id = $request->input('brand_id');
+        $product->vendor_id = $request->input('vendor_id');
+        $product->sku = $request->input('sku');
+        $product->position = $request->input('position');
+        $product->url = $request->input('url');
+
+        // Trạng thái
+        if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
+            $product->is_active = $request->input('is_active');
+        }
+
+        // Sản phẩm Hot
+        if ($request->has('is_hot')){
+            $product->is_hot = $request->input('is_active');
+        }
+
+        $product->summary = $request->input('summary');
+        $product->description = $request->input('description');
+        $product->meta_title = $request->input('meta_title');
+        $product->meta_description = $request->input('meta_description');
+        $product->save();
+
+        // chuyển hướng đến trang
+        return redirect()->route('admin.product.index');
     }
 
     /**
@@ -45,7 +110,14 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        // get data from db
+        $data = Product::findorFail($id);
+        $category_name = Category::where('id', $data->category_id)->first();
+
+        return view('admin.product.show', [
+            'data' => $data,
+            'category_name' => $category_name
+        ]);
     }
 
     /**
@@ -56,7 +128,14 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::findorFail($id);
+        $category_name = Category::where('id', $product->category_id)->first();
+        return view('admin.product.edit', [
+            'product'=>$product,
+            'category_name' => $category_name
+
+        ]);
+
     }
 
     /**
@@ -68,7 +147,49 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //validate
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+        ]);
+
+        $is_active = 0;
+        if ($request->has('is_active')){//kiem tra is_active co ton tai khong?
+            $is_active = $request->input('is_active');
+        }
+        $is_hot = 0; // sét trạng thái mặc đinh là không hot
+        if ($request->has('is_hot')) {
+            $is_hot = $request->input('is_hot');
+        }
+
+        $product = Product::findorFail($id);
+        $product->name = $request->input('name');
+        $product->slug = str_slug($request->input('name'));
+        if ($request->hasFile('image')) { // dòng này Kiểm tra xem có image có được chọn
+            // get file
+            $file = $request->file('image');
+            // đặt tên cho file image
+            $filename = time().'_'.$file->getClientOriginalName(); // $file->getClientOriginalName() == tên ban đầu của image
+            // Định nghĩa đường dẫn sẽ upload lên
+            $path_upload = 'uploads/product/'; // uploads/brand ; uploads/vendor
+            // Thực hiện upload file
+            $request->file('image')->move($path_upload,$filename);
+
+            $product->image = $path_upload.$filename;
+        }
+        $product->summary = $request->input('summary');
+        $product->description = $request->input('description');
+        $product->price = $request->input('price');
+        $product->sale = $request->input('sale');
+        $product->position = $request->input('position');
+        $product->is_active = $is_active;
+        $product->is_hot = $is_hot;
+        $product->views = $request->input('views');
+        $product->category_id = $request->input('category_id');
+        $product->save();
+
+        // chuyển hướng đến trang
+        return redirect()->route('admin.product.index');
     }
 
     /**
@@ -79,6 +200,12 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+         // gọi tới hàm destroy của laravel để xóa 1 object
+        Product::destroy($id);
+
+        // Trả về dữ liệu json và trạng thái kèm theo thành công là 200
+        return response()->json([
+            'status' => true
+        ], 200);
     }
 }

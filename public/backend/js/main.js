@@ -51,3 +51,75 @@ function destroyBanner(id) {
         });
     }
 }
+
+/* Xóa một row - Vendor */
+function destroyVendor(id) {
+
+    var result = confirm("Bạn có chắc chắn muốn xóa Vendor ?");
+    if (result) { // neu nhấn == ok , sẽ send request ajax
+        $.ajax({
+            url: base_url + '/admin/vendor/'+id, // base_url được khai báo ở đầu page == http://webshop.local
+            type: 'DELETE',
+            data: {}, // dữ liệu truyền sang nếu có
+            dataType: "json", // kiểu dữ liệu nhận về
+            success: function (response) { // success : kết quả trả về sau khi gửi request ajax
+                // dữ liệu trả về là một object nên để gọi đến status chúng ta sẽ gọi như bên dưới
+                if (response.status != 'undefined' && response.status == true) {
+                    // xóa dòng vừa được click delete
+                    $('.item-'+id).closest('tr').remove(); // class .item- ở trong class của thẻ td đã khai báo trong file index
+                }
+            },
+            error: function (e) { // lỗi nếu có
+                console.log(e.message);
+            }
+        });
+    }
+}
+
+/* Xóa một row - brand */
+function destroyBrand(id) {
+
+    var result = confirm("Bạn có chắc chắn muốn xóa Brand ?");
+    if (result) { // neu nhấn == ok , sẽ send request ajax
+        $.ajax({
+            url: base_url + '/admin/brand/'+id, // base_url được khai báo ở đầu page == http://webshop.local
+            type: 'DELETE',
+            data: {}, // dữ liệu truyền sang nếu có
+            dataType: "json", // kiểu dữ liệu nhận về
+            success: function (response) { // success : kết quả trả về sau khi gửi request ajax
+                // dữ liệu trả về là một object nên để gọi đến status chúng ta sẽ gọi như bên dưới
+                if (response.status != 'undefined' && response.status == true) {
+                    // xóa dòng vừa được click delete
+                    $('.item-'+id).closest('tr').remove(); // class .item- ở trong class của thẻ td đã khai báo trong file index
+                }
+            },
+            error: function (e) { // lỗi nếu có
+                console.log(e.message);
+            }
+        });
+    }
+}
+
+/* Xóa một row - product */
+function destroyProduct(id) {
+    var result = confirm("Bạn có chắc chắn muốn xóa Sản phẩm ?");
+    if (result) { // neu nhấn == ok , sẽ send request ajax
+        $.ajax({
+            url: base_url + '/admin/product/'+id, // base_url được khai báo ở đầu page == http://webshop.local
+            type: 'DELETE',
+            data: {}, // dữ liệu truyền sang nếu có
+            dataType: "json", // kiểu dữ liệu trả về
+            success: function (response) { // success : kết quả trả về sau khi gửi request ajax
+                // dữ liệu trả về là một object nên để gọi đến status chúng ta sẽ gọi như bên dưới
+                if (response.status != 'undefined' && response.status == true) {
+                    // xóa dòng vừa được click delete
+                    $('.item-'+id).closest('tr').remove(); // class .item- ở trong class của thẻ td đã khai báo trong file index
+                }
+            },
+            error: function (e) { // lỗi nếu có
+                console.log(e.message);
+            }
+        });
+    }
+}
+

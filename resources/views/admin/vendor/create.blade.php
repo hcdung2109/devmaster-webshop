@@ -18,7 +18,7 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" action="{{route('admin.banner.store')}}" method="post" enctype="multipart/form-data">
+                    <form role="form" action="{{route('admin.vendor.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="box-body">
                             <div class="form-group">
@@ -39,15 +39,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Website</label>
-                                <input type="text" class="form-control" id="website" name="website" placeholder="Url">
+                                <input type="text" class="form-control" id="website" name="website">
                             </div>
                             <div class="form-group">
                                 <label>Địa chỉ</label>
-                                <textarea name="address" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                <textarea name="address" class="form-control" rows="3" ></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Vị trí</label>
-                                <input type="number" class="form-control" id="position" name="position" >
+                                <input type="number" class="form-control" id="position" name="position" value="0">
                             </div>
                             <div class="checkbox">
                                 <label>

@@ -32,7 +32,7 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>Danh mục sản phẩm</span>
+                    <i class="fa fa-dashboard"></i> <span>QL Danh mục</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -44,7 +44,7 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>Sản phẩm </span>
+                    <i class="fa fa-dashboard"></i> <span>QL Sản phẩm </span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>

@@ -1,0 +1,5 @@
+php artisan make:migration add_brand_id_to_products_table --table=products
+php artisan make:migration add_vendor_id_to_products_table --table=products
+php artisan make:migration add_sku_to_products_table --table=products
+php artisan make:migration add_stock_to_products_table --table=products
+php artisan make:migration add_url_to_products_table --table=products
