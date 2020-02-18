@@ -20,8 +20,7 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" action="{{route('admin.product.store')}}" method="post"
-                          enctype="multipart/form-data">
+                    <form role="form" action="{{route('admin.product.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="box-body">
                             <div class="form-group">
@@ -126,6 +125,7 @@
                         <!-- /.box-body -->
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Tạo</button>
+                            <input type="reset" class="btn btn-default pull-right" value="Reset">
                         </div>
                     </form>
                 </div>
