@@ -2,7 +2,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Danh Sách Sản Phẩm <a href="{{route('admin.product.create')}}" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Thêm Sản Phẩm</a>
+            Danh Sách Banner <a href="{{route('admin.product.create')}}" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Thêm Banner</a>
         </h1>
     </section>
     <section class="content">
@@ -26,50 +26,43 @@
                         <table class="table table-hover">
                             <tbody>
                             <tr>
-                                <th>Tên Sản Phẩm</th>
+                                <th>Tên SP</th>
                                 <th>Hình ảnh</th>
-                                <th>Gía gốc</th>
-                                <th>Gía sale</th>
+                                <th>Số lượng</th>
+                                <th>Giá KM</th>
+                                <th>Giá Gốc</th>
+                                <th>Sản phẩm Hot</th>
                                 <th>Vị trí</th>
                                 <th>Trạng thái</th>
-                                <th>Sản phẩm hot</th>
-                                <th>Lượt người xem</th>
-                                <th>Danh mục</th>
                                 <th class="text-center">Hành động</th>
-
                             </tr>
                             </tbody>
                             <!-- Lặp một mảng dữ liệu pass sang view để hiển thị -->
                             @foreach($data as $key => $item)
-                                <tr class="item-{{ $item->id }}">
+                                <tr class="item-{{ $item->id }}"> <!-- Thêm Class Cho Dòng -->
                                     <td>{{ $item->name }}</td>
                                     <td>
-                                        @if ($item->image)
-                                            <img src="{{asset($item->image)}}" width="50" height="50">
+                                    @if ($item->image) <!-- Kiểm tra hình ảnh tồn tại -->
+                                        <img src="{{asset($item->image)}}" width="50" height="50">
                                         @endif
                                     </td>
-                                    <td>{{ number_format($item->price) }}</td>
-                                    <td>{{ number_format($item->sale) }}</td>
+                                    <td>{{ $item->stock }}</td>
+                                    <td>{{ $item->sale }}</td>
+                                    <td>{{ $item->price }}</td>
+                                    <td>{{ ($item->is_hot == 1) ? 'Có' : 'Không' }}</td>
                                     <td>{{ $item->position }}</td>
-                                    <td>{{ $item->is_active }}</td>
-                                    <td>{{ $item->is_hot }}</td>
-                                    <td>{{ $item->views }}</td>
-                                    <td>{{ $item->category_id }}</td>
+                                    <td>{{ ($item->is_active == 1) ? 'Hiển thị' : 'Ẩn' }}</td>
                                     <td class="text-center">
                                         <a href="{{route('admin.product.show', ['id'=> $item->id ])}}" class="btn btn-default">Xem</a>
                                         <a href="{{route('admin.product.edit', ['id'=> $item->id])}}" class="btn btn-info">Sửa</a>
-                                        <a type="button" class="btn btn-danger" onclick="destroyProduct({{ $item->id }})" >Xóa</a>
+                                        <!-- Thêm sự kiện onlick cho nút xóa -->
+                                        <a href="javascript:void(0)" class="btn btn-danger" onclick="destroyProduct({{ $item->id }})" >Xóa</a>
                                     </td>
                                 </tr>
                             @endforeach
                         </table>
                     </div>
                     <!-- /.box-body -->
-                    <div class="box-footer clearfix">
-                        <ul class="pagination pagination-sm no-margin">
-                            {{ $data->links() }}
-                        </ul>
-                    </div>
                 </div>
                 <!-- /.box -->
             </div>

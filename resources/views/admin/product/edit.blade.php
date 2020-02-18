@@ -1,15 +1,19 @@
 @extends('admin.layouts.main')
 @section('content')
+    <style>.w-50 { width: 50% }</style>
     <section class="content-header">
         <h1>
-            Sửa Sản phẩm <a href="{{route('admin.product.index')}}" class="btn btn-success pull-right"><i class="fa fa-list"></i> Danh Sách Sản phẩm</a>
+            Chỉnh sửa thông tin sản phẩm <a href="{{route('admin.product.index')}}" class="btn btn-success pull-right"><i
+                    class="fa fa-list"></i> Danh Sách SP</a>
         </h1>
     </section>
+
     <section class="content">
         <div class="row">
             <!-- left column -->
             <div class="col-md-6">
                 <!-- general form elements -->
+
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">Thông tin sản phẩm</h3>
@@ -22,72 +26,116 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên sản phẩm</label>
-                                <input value="{{ $product->name }}" type="text" class="form-control" id="name" name="name" placeholder="Nhập tên sản phẩm">
+                                <input value="{{ $product->name }}" type="text" class="form-control" id="name" name="name">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputFile">Ảnh sản phẩm</label>
+                                <label for="exampleInputFile">Thay đổi ảnh sản phẩm</label>
                                 <input type="file" id="new_image" name="new_image"><br>
+                                @if ($product->image)
                                     <img src="{{asset($product->image)}}" width="200">
- 
+                                @endif
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Gía gốc</label>
-                                <input value="{{ $product->price }}" type="text" class="form-control" id="price" name="price" placeholder="Nhập giá gốc">
+                                <label for="exampleInputFile">Số lượng</label>
+                                <input type="number" class="form-control w-50" id="stock" name="stock" value="{{ $product->stock }}">
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Gía sale</label>
-                                <input value="{{ $product->sale }}" type="text" class="form-control" id="sale" name="sale" placeholder="Nhập giá sale">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Vị trí</label>
-                                <input value="{{ $product->position }}" type="text" class="form-control" id="position"
-                                       name="position" placeholder="Nhập tên vị trí">
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input {{ ($product->is_active) ? 'checked':'' }} type="checkbox" value="1"
-                                           name="is_active"> Trạng thái
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input {{ ($product->is_hot) ? 'checked':'' }} type="checkbox" value="1"
-                                           name="is_hot"> Sản phẩm hot
-                                </label>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Lượng view</label>
-                                <input value="{{ $product->views }}" type="text" class="form-control" id="views" name="views" placeholder="Nhập views">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Giá gốc (vnđ)</label>
+                                        <input type="number" class="form-control" id="price" name="price" value="{{ $product->price }}">
+                                    </div>
+                                </div>
+                                <!-- /.col-lg-6 -->
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Giá khuyến mại (vnđ)</label>
+                                        <input type="number" class="form-control" id="sale" name="sale" value="{{ $product->sale }}">
+                                    </div>
+                                </div>
+                                <!-- /.col-lg-6 -->
                             </div>
                             <div class="form-group">
                                 <label>Danh mục sản phẩm</label>
-                                <select class="form-control" name="parent_id">
-                                    <option value="0">-- Chọn --</option>
-                                        <option {{ ($category_name->id == $product->category_id ? 'selected':'') }} value="{{ $product->category_id }}">{{ $product -> category_id }}</option>
+                                <select class="form-control w-50" name="category_id">
+                                    <option value="0">-- chọn Danh Mục --</option>
+                                    @foreach($categories as $category)
+                                        <option {{ ($product->category_id == $category->id ? 'selected':'') }} value="{{ $category -> id }}">{{ $category -> name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Sơ lược sản phẩm</label>
-                                <textarea id="editor2" name="summary" class="form-control" rows="10" placeholder="Enter ...">{{$product->summary}}</textarea>
+                                <label>Thương hiệu</label>
+                                <select class="form-control w-50" name="brand_id">
+                                    <option value="0">-- chọn Thương Hiệu--</option>
+                                    @foreach($brands as $brand)
+                                        <option {{ ($product->brand_id == $brand->id ? 'selected':'') }} value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Nhà cung cấp</label>
+                                <select class="form-control w-50" name="vendor_id">
+                                    <option value="0">-- chọn NCC --</option>
+                                    @foreach($vendors as $vendor)
+                                        <option {{ ($product->vendor_id == $vendor->id ? 'selected':'') }} value="{{ $vendor->id }}">{{ $vendor->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Mã hàng (SKU)</label>
+                                <input  value="{{ $product->sku }}" type="text" class="form-control w-50" id="sku" name="sku" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Vị trí</label>
+                                <input type="number" class="form-control w-50" id="position" name="position" value="{{ $product->position }}">
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        <input {{ ($product->is_active) ? 'checked':'' }} type="checkbox" value="1" name="is_active"> <b>Trạng thái</b>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        <input {{ ($product->is_hot) ? 'checked':'' }} type="checkbox" value="1" name="is_hot"> <b>Sản phẩm Hot</b>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Liên kết (url) tùy chỉnh</label>
+                                <input type="text" class="form-control" id="url" name="url" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label>Tóm tắt</label>
+                                <textarea id="editor2" name="summary" class="form-control" rows="10" >{{ $product->summary }}</textarea>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Mô tả sản phẩm</label>
-                                <textarea id="editor1" name="description" class="form-control" rows="10" placeholder="Enter ...">{{$product->description}}</textarea>
+                                <label>Mô tả</label>
+                                <textarea id="editor1" name="description" class="form-control" rows="10" >{{ $product->description }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Meta Title</label>
+                                <input type="text" class="form-control" id="meta_title" name="meta_title" value="{{ $product->meta_title }}" >
+                            </div>
+                            <div class="form-group">
+                                <label>Meta Description</label>
+                                <textarea name="meta_description" id="meta_description" class="form-control" rows="3" >{{ $product->meta_description }}</textarea>
                             </div>
                         </div>
                         <!-- /.box-body -->
-
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Lưu</button>
+                            <button type="submit" class="btn btn-primary">Cập Nhật</button>
+                            <input type="reset" class="btn btn-default pull-right" value="Reset">
                         </div>
                     </form>
                 </div>
                 <!-- /.box -->
-
-
             </div>
-            <!--/.col (right) -->
+            </form>
         </div>
         <!-- /.row -->
     </section>

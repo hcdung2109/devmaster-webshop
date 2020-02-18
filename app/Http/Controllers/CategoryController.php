@@ -145,7 +145,7 @@ class CategoryController extends Controller
 
         if ($request->hasFile('new_image')) {
             // xóa file cũ
-            unlink(public_path($category->image));
+            @unlink(public_path($category->image));
             // get file mới
             $file = $request->file('new_image');
             // get tên
