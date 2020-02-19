@@ -157,7 +157,7 @@ class ProductController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
         ]);
 
-        $product = new Product(); // khởi tạo model
+        $product = Product::findorFail($id);; // khởi tạo model
         $product->name = $request->input('name');
         $product->slug = str_slug($request->input('name'));
 

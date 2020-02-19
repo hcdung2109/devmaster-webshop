@@ -30,18 +30,7 @@
                     <i class="fa fa-calendar"></i> <span>Bảng điều khiển</span>
                 </a>
             </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>QL Danh mục</span>
-                    <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{route('admin.category.create')}}"><i class="fa fa-circle-o"></i> Thêm danh mục</a></li>
-                    <li><a href="{{route('admin.category.index')}}"><i class="fa fa-circle-o"></i> Danh sách</a></li>
-                </ul>
-            </li>
+            <li><a href="{{ route('admin.category.index') }}"><i class="fa fa-dashboard"></i> <span>QL Danh mục</span></a></li>
             <li><a href="{{ route('admin.product.index') }}"><i class="fa fa-database"></i> <span>QL Sản Phẩm</span></a></li>
             <li><a href="{{ route('admin.banner.index') }}"><i class="fa fa-photo"></i> <span>QL Banner</span></a></li>
             <li><a href="{{ route('admin.vendor.index') }}"><i class="fa fa-cube"></i> <span>QL Nhà Cung Cấp</span></a></li>
