@@ -11,7 +11,10 @@
 |
 */
 
+// Trang chủ
 Route::get('/', 'ShopController@index');
+// Liên Hệ
+Route::resource('contact', 'ContactController');
 
 Route::group(['prefix' => 'admin','as' => 'admin.'], function(){
     Route::get('/', 'AdminController@index')->name('dashboard');
