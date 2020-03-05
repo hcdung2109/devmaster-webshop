@@ -22,7 +22,8 @@
                     <div class="contact-us-form">
                         <div class="contact-form-center">
                             <!-- CONTACT-FORM START -->
-                            <form class="contact-form" id="contactForm" method="post" action="#">
+                            <form class="contact-form" id="contactForm" method="post" action="{{route('contact.store')}}">
+                                @csrf
                                 <div class="row">
                                     <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                                         <div class="form-group primary-form-group">
