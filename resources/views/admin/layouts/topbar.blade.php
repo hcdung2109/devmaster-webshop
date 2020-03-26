@@ -1,8 +1,8 @@
 <aside id="left-panel">
 
-    <!-- User info -->
+    <!-- user info -->
     <div class="login-info">
-				<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
+				<span> <!-- user image size is adjusted inside CSS, it should stay as it -->
 
 					<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
 						<img src="public/admin/img/avatars/sunny.png" alt="me" class="online">

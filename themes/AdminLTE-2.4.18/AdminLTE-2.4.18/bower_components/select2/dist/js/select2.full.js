@@ -1610,11 +1610,11 @@ S2.define('select2/selection/single',[
     });
 
     this.$selection.on('focus', function (evt) {
-      // User focuses on the container
+      // user focuses on the container
     });
 
     this.$selection.on('blur', function (evt) {
-      // User exits the container
+      // user exits the container
     });
 
     container.on('focus', function (evt) {
@@ -1920,7 +1920,7 @@ S2.define('select2/selection/allowClear',[
       return;
     }
 
-    var removeAll = this.options.get('translations').get('removeAllItems');   
+    var removeAll = this.options.get('translations').get('removeAllItems');
 
     var $remove = $(
       '<span class="select2-selection__clear" title="' + removeAll() +'">' +
