@@ -91,56 +91,48 @@
         </div>
     </section>
 
-    <!-- MAIN-CONTENT-SECTION START -->
     <section class="main-content-section-full-column">
         <div class="container">
-
             @foreach ($list as $item)
-            <div class="row">
-                <div class="col-xs-12">
-                    <!-- FEATURED-PRODUCTS-AREA START -->
-                    <div class="featured-products-area">
-                        <div class="left-title-area">
-                            <h2 class="left-title">{{ $item['category']->name }}</h2>
-                        </div>
-                        <div class="row">
-                            <!-- FEARTURED-CAROUSEL START -->
-                            <div class="feartured-carousel">
-                                <!-- SINGLE ITEM START -->
-                                @foreach($item['products'] as $product)
-                                <div class="item">
-                                    <!-- SINGLE-PRODUCT-ITEM START -->
-                                    <div class="single-product-item">
-                                        <div class="product-image">
-                                            <a href="#">
-                                                <img width="180" height="180" src="{{ asset($product->image)  }}" alt="product-image" />
-                                            </a>
-                                            <div class="overlay-content">
-                                                <ul>
-                                                    <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                    <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                    <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                    <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-info">
-                                            <a href="">{{ $product->name }}</a>
-                                            <div class="price-box">
-                                                <span class="price">{{ number_format($product->sale,0,",",".") }}đ<span class="p-price">{{ number_format($product->price,0,",",".") }}đ</span></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- SINGLE-PRODUCT-ITEM END -->
-                                </div>
-                                @endforeach
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- FEATURED-PRODUCTS-AREA START -->
+                        <div class="featured-products-area">
+                            <div class="left-title-area">
+                                <h2 class="left-title">{{ $item['category']->name }}</h2>
                             </div>
-                            <!-- FEARTURED-CAROUSEL END -->
+                            <div class="row">
+                                <div class="feartured-carousel">
+                                    @foreach ($item['products'] as $product)
+                                        <div class="item">
+                                            <div class="single-product-item">
+                                                <div class="product-image">
+                                                    <a href="#"><img width="180" height="180" src="{{ asset($product->image) }}" alt="{{ $product->name }}" /></a>
+                                                    <div class="overlay-content">
+                                                        <ul>
+                                                            <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
+                                                            <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
+                                                            <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
+                                                            <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="product-info">
+                                                    <a href="">{{ $product->name }}</a>
+                                                    <div class="price-box">
+                                                        <span class="price">{{ number_format($product->sale,0,",",".") }}đ <span class="p-price">({{ number_format($product->price,0,",",".") }}đ1)</span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <!-- FEARTURED-CAROUSEL END -->
+                            </div>
                         </div>
+                        <!-- FEATURED-PRODUCTS-AREA END -->
                     </div>
-                    <!-- FEATURED-PRODUCTS-AREA END -->
                 </div>
-            </div>
             @endforeach
 
             <div class="row">

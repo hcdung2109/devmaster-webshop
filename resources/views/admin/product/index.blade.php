@@ -1,5 +1,6 @@
 @extends('admin.layouts.main')
 @section('content')
+    <style>tr td:first-child {max-width: 250px}</style>
     <section class="content-header">
         <h1>
             Danh Sách Sản Phẩm <a href="{{route('admin.product.create')}}" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Thêm SP</a>
@@ -26,7 +27,7 @@
                         <table class="table table-hover">
                             <tbody>
                             <tr>
-                                <th>Tên SP</th>
+                                <th style="max-with:200px">Tên SP</th>
                                 <th>Hình ảnh</th>
                                 <th>Số lượng</th>
                                 <th>Giá KM</th>

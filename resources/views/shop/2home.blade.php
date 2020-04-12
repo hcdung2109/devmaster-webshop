@@ -94,27 +94,22 @@
     <!-- MAIN-CONTENT-SECTION START -->
     <section class="main-content-section-full-column">
         <div class="container">
-
-            @foreach ($list as $item)
             <div class="row">
                 <div class="col-xs-12">
                     <!-- FEATURED-PRODUCTS-AREA START -->
                     <div class="featured-products-area">
                         <div class="left-title-area">
-                            <h2 class="left-title">{{ $item['category']->name }}</h2>
+                            <h2 class="left-title">Featured Products</h2>
                         </div>
                         <div class="row">
                             <!-- FEARTURED-CAROUSEL START -->
                             <div class="feartured-carousel">
                                 <!-- SINGLE ITEM START -->
-                                @foreach($item['products'] as $product)
                                 <div class="item">
                                     <!-- SINGLE-PRODUCT-ITEM START -->
                                     <div class="single-product-item">
                                         <div class="product-image">
-                                            <a href="#">
-                                                <img width="180" height="180" src="{{ asset($product->image)  }}" alt="product-image" />
-                                            </a>
+                                            <a href="#"><img width="180" height="180" src="shop/img/product/sale/3.jpg" alt="product-image" /></a>
                                             <div class="overlay-content">
                                                 <ul>
                                                     <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
@@ -125,15 +120,15 @@
                                             </div>
                                         </div>
                                         <div class="product-info">
-                                            <a href="">{{ $product->name }}</a>
+                                            <a href="single-product.html">Faded Short Sleeves T-shirt</a>
                                             <div class="price-box">
-                                                <span class="price">{{ number_format($product->sale,0,",",".") }}đ<span class="p-price">{{ number_format($product->price,0,",",".") }}đ</span></span>
+                                                <span class="price">16.51đ<span class="p-price">20000đ</span></span>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- SINGLE-PRODUCT-ITEM END -->
                                 </div>
-                                @endforeach
+                                <!-- SINGLE ITEM END -->
                             </div>
                             <!-- FEARTURED-CAROUSEL END -->
                         </div>
@@ -141,8 +136,6 @@
                     <!-- FEATURED-PRODUCTS-AREA END -->
                 </div>
             </div>
-            @endforeach
-
             <div class="row">
                 <!-- IMAGE-ADD-AREA START -->
                 <div class="image-add-area">
