@@ -27,13 +27,13 @@
                         <table class="table table-hover">
                             <tbody>
                             <tr>
+                                <th>TT</th>
                                 <th style="max-with:200px">Tên SP</th>
                                 <th>Hình ảnh</th>
                                 <th>Số lượng</th>
                                 <th>Giá KM</th>
                                 <th>Giá Gốc</th>
                                 <th>Sản phẩm Hot</th>
-                                <th>Vị trí</th>
                                 <th>Trạng thái</th>
                                 <th class="text-center">Hành động</th>
                             </tr>
@@ -41,7 +41,8 @@
                             <!-- Lặp một mảng dữ liệu pass sang view để hiển thị -->
                             @foreach($data as $key => $item)
                                 <tr class="item-{{ $item->id }}"> <!-- Thêm Class Cho Dòng -->
-                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $key }}</td>
+                                    <td>{{ substr($item->name, 0, 50) }}</td>
                                     <td>
                                     @if ($item->image) <!-- Kiểm tra hình ảnh tồn tại -->
                                         <img src="{{asset($item->image)}}" width="50" height="50">
@@ -51,7 +52,6 @@
                                     <td>{{ $item->sale }}</td>
                                     <td>{{ $item->price }}</td>
                                     <td>{{ ($item->is_hot == 1) ? 'Có' : 'Không' }}</td>
-                                    <td>{{ $item->position }}</td>
                                     <td>{{ ($item->is_active == 1) ? 'Hiển thị' : 'Ẩn' }}</td>
                                     <td class="text-center">
                                         <a href="{{route('admin.product.show', ['id'=> $item->id ])}}" class="btn btn-default">Xem</a>
@@ -64,8 +64,10 @@
                         </table>
                     </div>
                     <!-- /.box-body -->
+
                 </div>
                 <!-- /.box -->
+                {{ $data->links() }}
             </div>
         </div>
         <!-- /.row -->

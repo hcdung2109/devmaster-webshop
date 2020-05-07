@@ -12,7 +12,7 @@
     <title>Home</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <base href="{{asset('')}}">
     <!-- Favicon
     ============================================ -->
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
@@ -99,6 +99,7 @@
 <!-- MAIN-MENU-AREA START -->
 @include('shop.layouts.menu')
 <!-- MAIN-MENU-AREA END -->
+@include('shop.layouts.main-menu')
 <!-- MAIN-CONTENT -->
 @yield('content')
 <!-- BRAND-CLIENT-AREA START -->

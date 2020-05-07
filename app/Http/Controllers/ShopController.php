@@ -4,18 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Banner;
 use App\Category; // cần thêm dòng này nếu chưa có
+use App\Product;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
-    // trang chủ
-    public function index()
+    private $categories;
+
+    public function __construct()
     {
         // 1. Lấy dữ liệu - Danh mục sản phẩm
         $categories = Category::where('is_active' ,1)->get();
-
         // 2. Lấy dữ liệu - Banner
         $banners = Banner::where('is_active' , 1)->get();
+
+        $this->categories = $categories;
+
+        view()->share(['categories' => $categories, 'banners' => $banners]);
+    }
+
+    // trang chủ
+    public function index()
+    {
+        $categories = $this->categories;
 
         // 3. Lấy danh sách phẩm theo thể loại
         $list = []; // chứa danh sách sản phẩm  theo thể loại
@@ -39,10 +50,24 @@ class ShopController extends Controller
         }
 
         return view('shop.home',[
-            // truyền dữ liệu sang view
-            'categories' => $categories,
-            'banners' => $banners,
             'list' => $list
+        ]);
+    }
+
+    // Get san phan theo the loai
+    public function getProductsByCategory($slug)
+    {
+        // step 1 : lấy chi tiết thể loại
+        $category = Category::where(['slug' => $slug])->first();
+
+        // step 2 : lấy list sản phẩm theo thể loại
+        $products = Product::where(['is_active' => 1, 'is_hot' => 0, 'category_id' => $category->id ])
+                             ->limit(10)
+                             ->orderBy('id', 'desc')->paginate(10);
+
+        return view('shop.products-by-category',[
+            'category' => $category,
+            'products' => $products
         ]);
     }
 }

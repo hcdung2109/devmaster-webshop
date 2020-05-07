@@ -66,7 +66,7 @@
                                 @foreach($categories as $category)
                                     @if($category->parent_id == 0)
                                         <li>
-                                            <a href="">{{ $category->name }}</a>
+                                            <a href="{{ route('shop.category', ['slug' => $category->slug]) }}">{{ $category->name }}</a>
                                             <!-- DRODOWN-MEGA-MENU START -->
                                             <div class="drodown-mega-menu">
                                                 <div class="left-mega col-xs-6">
@@ -74,7 +74,7 @@
                                                         <ul>
                                                             @foreach($categories as $child)
                                                                 @if($category->id == $child->parent_id)
-                                                                    <li><a href="">{{ $child->name }}</a></li>
+                                                                    <li><a href="{{ route('shop.category', ['slug' => $child->slug]) }}">{{ $child->name }}</a></li>
                                                                 @endif
                                                             @endforeach
                                                         </ul>

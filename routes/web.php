@@ -13,6 +13,11 @@
 
 // Trang chủ
 Route::get('/', 'ShopController@index');
+
+Route::get('category/{id}', 'ShopController@getProductsByCategory')->name('shop.getProductsByCategory');
+
+Route::get('/{slug}', 'ShopController@getProductsByCategory')->name('shop.category');
+
 // Liên Hệ
 Route::resource('contact', 'ContactController');
 
