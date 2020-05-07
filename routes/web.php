@@ -18,6 +18,9 @@ Route::get('category/{id}', 'ShopController@getProductsByCategory')->name('shop.
 
 Route::get('/{slug}', 'ShopController@getProductsByCategory')->name('shop.category');
 
+// Chi tiet sản phẩn
+Route::get('/{category}/{slug}_{id}', 'ShopController@getProduct')->name('shop.product');
+
 // Liên Hệ
 Route::resource('contact', 'ContactController');
 

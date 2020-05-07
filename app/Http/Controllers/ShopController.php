@@ -62,12 +62,32 @@ class ShopController extends Controller
 
         // step 2 : lấy list sản phẩm theo thể loại
         $products = Product::where(['is_active' => 1, 'is_hot' => 0, 'category_id' => $category->id ])
-                             ->limit(10)
                              ->orderBy('id', 'desc')->paginate(10);
 
         return view('shop.products-by-category',[
             'category' => $category,
             'products' => $products
+        ]);
+    }
+
+    public function getProduct($category , $slug , $id)
+    {
+        // step 1 : lấy chi tiết thể loại
+        $category = Category::where(['slug' => $category])->first();
+        // get chi tiet sp
+        $product = Product::find($id);
+
+        // step 2 : lấy list SP liên quan
+        $relatedProducts = Product::where([
+                                ['is_active' , '=', 1],
+                                ['category_id', '=' , $category->id ],
+                                ['id', '<>' , $id]
+                            ])->orderBy('id', 'desc')->paginate(10);
+
+        return view('shop.product',[
+            'category' => $category,
+            'product' => $product,
+            'relatedProducts' => $relatedProducts
         ]);
     }
 }
