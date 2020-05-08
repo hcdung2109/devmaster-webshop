@@ -16,13 +16,16 @@ Route::get('/', 'ShopController@index');
 
 Route::get('category/{id}', 'ShopController@getProductsByCategory')->name('shop.getProductsByCategory');
 
-Route::get('/{slug}', 'ShopController@getProductsByCategory')->name('shop.category');
-
 // Chi tiet sản phẩn
 Route::get('/{category}/{slug}_{id}', 'ShopController@getProduct')->name('shop.product');
 
 // Liên Hệ
 Route::resource('contact', 'ContactController');
+
+// Đăng nhập
+Route::get('/admin/login', 'AdminController@login')->name('admin.login');
+
+Route::post('/admin/postLogin', 'AdminController@postLogin')->name('admin.postLogin');
 
 Route::group(['prefix' => 'admin','as' => 'admin.'], function(){
     Route::get('/', 'AdminController@index')->name('dashboard');
@@ -37,3 +40,5 @@ Route::group(['prefix' => 'admin','as' => 'admin.'], function(){
     // Ql Người dùng
     Route::resource('user', 'UserController');
 });
+
+Route::get('/{slug}', 'ShopController@getProductsByCategory')->name('shop.category');
