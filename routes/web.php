@@ -24,10 +24,12 @@ Route::resource('contact', 'ContactController');
 
 // Đăng nhập
 Route::get('/admin/login', 'AdminController@login')->name('admin.login');
+// Đăng xuất
+Route::get('/admin/logout', 'AdminController@logout')->name('admin.logout');
 
 Route::post('/admin/postLogin', 'AdminController@postLogin')->name('admin.postLogin');
 
-Route::group(['prefix' => 'admin','as' => 'admin.'], function(){
+Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => 'checkLogin'], function(){
     Route::get('/', 'AdminController@index')->name('dashboard');
     Route::resource('category', 'CategoryController');
     Route::resource('product', 'ProductController');
@@ -40,5 +42,7 @@ Route::group(['prefix' => 'admin','as' => 'admin.'], function(){
     // Ql Người dùng
     Route::resource('user', 'UserController');
 });
+
+Auth::routes();
 
 Route::get('/{slug}', 'ShopController@getProductsByCategory')->name('shop.category');
