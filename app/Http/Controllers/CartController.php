@@ -9,7 +9,7 @@ use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ShopController extends GeneralController
+class CartController extends GeneralController
 {
 
     public function __construct()
@@ -128,5 +128,36 @@ class ShopController extends GeneralController
             'products' => $products,
             'totalResult' => $totalResult,
             'keyword' => $keyword]);
+    }
+
+    // Thêm sản phẩm vào giỏ hàng
+    public function addToCart(Request $request, $id)
+    {
+        $product = Product::find($id);
+
+        if (!$product) {
+            return $this->notfound();
+        }
+
+        $_cart = session('cart') ? session('cart') : '';
+        // Khởi tạo giỏ hàng
+        $cart = new Cart($_cart);
+        // Thêm sản phẩm vào giỏ
+        $cart->add($product, $id);
+
+        $request->session()->put('cart', $cart);
+
+        return redirect()->route('shop.cart');
+    }
+
+    public function getCart(Request $request)
+    {
+        $cart = $request->session()->get('cart');
+
+        return view('shop.cart',[
+            'products' => $cart->products,
+            'totalPrice' => $cart->totalPrice,
+            'totalQty' => $cart->totalQty
+        ]);
     }
 }
