@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Banner;
+use App\Cart;
 use App\Category; // cần thêm dòng này nếu chưa có
 use App\Product;
 use Illuminate\Http\Request;
@@ -96,6 +97,7 @@ class ShopController extends GeneralController
         ]);
     }
 
+
     public function search(Request $request)
     {
         $keyword = $request->input('tu-khoa');
@@ -109,23 +111,52 @@ class ShopController extends GeneralController
         //    $keyword, $slug , $keyword
         //]);
 
-        $products =  Product::where([
-                ['name', 'like', '%'.$keyword.'%'],
-                ['is_active' , '=', 1]
-            ])->orWhere([
-                ['slug', 'like', '%'.str_slug($keyword).'%'],
-                ['is_active' , '=', 1]
-            ])->orWhere([
-                ['summary', 'like', '%'.$keyword.'%'],
-                ['is_active' , '=', 1]
-            ])->paginate(20);
+        $products = Product::where([
+            ['name', 'like', '%' . $keyword . '%'],
+            ['is_active', '=', 1]
+        ])->orWhere([
+            ['slug', 'like', '%' . str_slug($keyword) . '%'],
+            ['is_active', '=', 1]
+        ])->orWhere([
+            ['summary', 'like', '%' . $keyword . '%'],
+            ['is_active', '=', 1]
+        ])->paginate(20);
 
-        $totalResult =  $products->total();
+        $totalResult = $products->total();
 
-        return view('shop.search',[
+        return view('shop.search', [
             'products' => $products,
             'totalResult' => $totalResult,
-            'keyword' => $keyword
+            'keyword' => $keyword]);
+    }
+    // Thêm sản phẩm vào giỏ hàng
+    public function addToCart(Request $request, $id)
+    {
+        $product = Product::find($id);
+
+        if (!$product) {
+            return $this->notfound();
+        }
+
+        $_cart = session('cart') ? session('cart') : '';
+        // Khởi tạo giỏ hàng
+        $cart = new Cart($_cart);
+        // Thêm sản phẩm vào giỏ
+        $cart->add($product, $id);
+
+        $request->session()->put('cart', $cart);
+
+        return redirect()->route('shop.cart');
+    }
+
+    public function getCart(Request $request)
+    {
+        $cart = $request->session()->get('cart');
+
+        return view('shop.cart',[
+            'products' => $cart->products,
+            'totalPrice' => $cart->totalPrice,
+            'totalQty' => $cart->totalQty
         ]);
     }
 }

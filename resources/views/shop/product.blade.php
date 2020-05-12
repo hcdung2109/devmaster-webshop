@@ -111,10 +111,10 @@
                                     <a href="#"><i class="fa fa-heart"></i></a>
                                 </div>
                                 <div class="single-product-quantity">
-                                    <p class="small-title">Quantity</p>
+                                    <p class="small-title">Số lượng</p>
                                     <div class="cart-quantity">
                                         <div class="cart-plus-minus-button single-qty-btn">
-                                            <input class="cart-plus-minus sing-pro-qty" type="text" name="qtybutton" value="0">
+                                            <input class="cart-plus-minus sing-pro-qty" type="text" name="qty" value="0">
                                         </div>
                                     </div>
                                 </div>
@@ -132,7 +132,7 @@
                                     <a class="color-blue" href="#"><span></span></a>
                                 </div>
                                 <div class="single-product-add-cart">
-                                    <a class="add-cart-text" title="Add to cart" href="#">Mua Hàng</a>
+                                    <a class="add-cart-text" title="Add to cart" href="{{ route('shop.add-to-cart', ['id' => $product->id]) }}">Mua Hàng</a>
                                 </div>
                             </div>
                         </div>

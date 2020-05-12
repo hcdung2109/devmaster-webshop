@@ -41,16 +41,26 @@
             <div class="form-group has-feedback">
                 <input name="email" type="email" class="form-control" placeholder="Email">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                @if ($errors->has('email'))
+                    <span class="invalid-feedback" role="alert" style="color:red;">{{ $errors->first('email') }}</span>
+                @endif
             </div>
             <div class="form-group has-feedback">
                 <input  name="password" type="password" class="form-control" placeholder="Password">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                @if ($errors->has('password'))
+                    <span class="invalid-feedback" role="alert" style="color:red;">{{ $errors->first('password') }}</span>
+                @endif
             </div>
+            @if (session('msg'))
+                <div class="form-group has-feedback"><a href="#" style="color: red">{{ session('msg') }}</a></div>
+            @endif
+
             <div class="row">
                 <div class="col-xs-8">
                     <div class="checkbox icheck">
                         <label>
-                            <input type="checkbox"> Ghi nhớ
+                            <input type="checkbox" name="remember" id="remember"> Ghi nhớ
                         </label>
                     </div>
                 </div>

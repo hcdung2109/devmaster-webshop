@@ -56,7 +56,7 @@ class UserController extends Controller
         $user = new User();
         $user->name = $request->input('name'); // họ tên
         $user->email = $request->input('email'); // email
-        $user->password = $request->input('password'); // mật khẩu
+        $user->password = bcrypt($request->input('password')); // mật khẩu
         $user->role_id = $request->input('role_id'); // phần quyền
 
         if ($request->hasFile('avatar')) {
@@ -135,7 +135,7 @@ class UserController extends Controller
         $user->role_id = $request->input('role_id'); // phần quyền
 
         if ($request->input('new_password')) {
-            $user->password = $request->input('new_password'); // mật khẩu mới
+            $user->password = bcrypt($request->input('new_password')); // mật khẩu mới
         }
 
         if ($request->hasFile('new_avatar')) {
