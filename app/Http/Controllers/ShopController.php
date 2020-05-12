@@ -36,10 +36,11 @@ class ShopController extends GeneralController
                 } // ids = [1,7,8,9,..]
 
                 $list[$key]['category'] = $category;
-                $list[$key]['products'] = $category->products()->where(['is_active' => 1, 'is_hot' => 0])
-                                                                ->whereIn('category_id' , $ids)
-                                                                ->limit(10)->orderBy('id', 'desc')
-                                                                ->get();
+
+                $list[$key]['products'] = Product::where(['is_active' => 1, 'is_hot' => 0])
+                                                        ->whereIn('category_id' , $ids)
+                                                        ->limit(10)->orderBy('id', 'desc')
+                                                        ->get();
             }
         }
 
@@ -52,12 +53,29 @@ class ShopController extends GeneralController
     public function getProductsByCategory($slug)
     {
         // step 1 : lấy chi tiết thể loại
-        $category = Category::where(['slug' => $slug])->first();
+        $cate = Category::where(['slug' => $slug])->first();
 
-        if ($category) {
+        if ($cate) {
+            $categories = $this->categories;
+            // step 1.1 Check danh mục cha -> lấy toàn bộ danh mục con để where In
+            $ids = [];
+            foreach($categories as $key => $category) {
+                if($category->id == $cate->id) {
+                    $ids[] = $cate->id;
+
+                    foreach ($categories as $child) {
+                        if ($child->parent_id == $cate->id) {
+                            $ids[] = $child->id; // thêm phần tử vào mảng
+                        }
+                    }
+                }
+            }
+
             // step 2 : lấy list sản phẩm theo thể loại
-            $products = Product::where(['is_active' => 1, 'is_hot' => 0, 'category_id' => $category->id ])
-                ->orderBy('id', 'desc')->paginate(10);
+            $products = Product::where(['is_active' => 1, 'is_hot' => 0])
+                                    ->whereIn('category_id' , $ids)
+                                    ->limit(10)->orderBy('id', 'desc')
+                                    ->get();
 
             return view('shop.products-by-category',[
                 'category' => $category,

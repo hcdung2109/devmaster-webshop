@@ -26,7 +26,7 @@ Route::get('/admin/logout', 'AdminController@logout')->name('admin.logout');
 
 Route::post('/admin/postLogin', 'AdminController@postLogin')->name('admin.postLogin');
 
-Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => 'checkLogin'], function() {
+Route::group(['prefix' => 'admin','as' => 'admin.'], function() {
 
     Route::get('/', 'AdminController@index')->name('dashboard');
     Route::resource('category', 'CategoryController');
