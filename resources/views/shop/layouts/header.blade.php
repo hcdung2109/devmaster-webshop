@@ -45,7 +45,7 @@
                 <!-- HEADER-RIGHT-CALLUS END -->
                 <!-- CATEGORYS-PRODUCT-SEARCH START -->
                 <div class="categorys-product-search">
-                    <form action="#" method="get" class="search-form-cat">
+                    <form action="{{ route('shop.search') }}" method="get" class="search-form-cat">
                         <div class="search-product form-group">
                             <select name="catsearch" class="cat-search">
                                 <option value="">Categories</option>
@@ -78,10 +78,8 @@
                                 <option value="66">--phone</option>
                                 <option value="27">---house</option>
                             </select>
-                            <input type="text" class="form-control search-form" name="s" placeholder="Enter your search key ... " />
-                            <button class="search-button" value="Search" name="s" type="submit">
-                                <i class="fa fa-search"></i>
-                            </button>
+                            <input value="{{ request()->input('tu-khoa') }}" type="text" class="form-control search-form" name="tu-khoa" placeholder="Enter your search key ... " />
+                            <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
                         </div>
                     </form>
                 </div>
