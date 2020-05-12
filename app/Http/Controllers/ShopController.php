@@ -6,6 +6,7 @@ use App\Banner;
 use App\Category; // cần thêm dòng này nếu chưa có
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ShopController extends GeneralController
 {
@@ -92,6 +93,39 @@ class ShopController extends GeneralController
             'category' => $category,
             'product' => $product,
             'relatedProducts' => $relatedProducts
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->input('tu-khoa');
+        $slug = str_slug($keyword);
+        $totalResult = 0;
+
+        $products = [];
+
+        //$sql = "SELECT * FROM products WHERE is_active = 1 AND (name like '%?%' OR slug like '%?%' OR summary like '%?%')";
+        //$results = DB::select($sql, [
+        //    $keyword, $slug , $keyword
+        //]);
+
+        $products =  Product::where([
+                ['name', 'like', '%'.$keyword.'%'],
+                ['is_active' , '=', 1]
+            ])->orWhere([
+                ['slug', 'like', '%'.str_slug($keyword).'%'],
+                ['is_active' , '=', 1]
+            ])->orWhere([
+                ['summary', 'like', '%'.$keyword.'%'],
+                ['is_active' , '=', 1]
+            ])->paginate(20);
+
+        $totalResult =  $products->total();
+
+        return view('shop.search',[
+            'products' => $products,
+            'totalResult' => $totalResult,
+            'keyword' => $keyword
         ]);
     }
 }
