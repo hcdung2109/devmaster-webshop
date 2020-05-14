@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Banner;
 use App\Cart;
 use App\Category; // cần thêm dòng này nếu chưa có
+use App\Order;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,117 +18,9 @@ class CartController extends GeneralController
         parent::__construct();
     }
 
-    // trang chủ
-    public function index()
+    public function index(Request $request)
     {
-        $categories = $this->categories;
-
-        // 3. Lấy danh sách phẩm theo thể loại
-        $list = []; // chứa danh sách sản phẩm  theo thể loại
-
-        foreach($categories as $key => $category) {
-            if($category->parent_id == 0) { // check danh mục cha
-                $ids = [$category->id]; // $ids = array($category->id);
-
-                foreach($categories as $child) {
-                    if ($child->parent_id == $category->id) {
-                        $ids[] = $child->id; // thêm phần tử vào mảng
-                    }
-                } // ids = [1,7,8,9,..]
-
-                $list[$key]['category'] = $category;
-                $list[$key]['products'] = $category->products()->where(['is_active' => 1, 'is_hot' => 0])
-                                                                ->whereIn('category_id' , $ids)
-                                                                ->limit(10)->orderBy('id', 'desc')
-                                                                ->get();
-            }
-        }
-
-        return view('shop.home',[
-            'list' => $list
-        ]);
-    }
-
-    // Get san phan theo the loai
-    public function getProductsByCategory($slug)
-    {
-        // step 1 : lấy chi tiết thể loại
-        $category = Category::where(['slug' => $slug])->first();
-
-        if ($category) {
-            // step 2 : lấy list sản phẩm theo thể loại
-            $products = Product::where(['is_active' => 1, 'is_hot' => 0, 'category_id' => $category->id ])
-                ->orderBy('id', 'desc')->paginate(10);
-
-            return view('shop.products-by-category',[
-                'category' => $category,
-                'products' => $products
-            ]);
-        } else {
-            return $this->notfound();
-        }
-    }
-
-    public function getProduct($category , $slug , $id)
-    {
-        // step 1 : lấy chi tiết thể loại
-        $category = Category::where(['slug' => $category])->first();
-
-        if (!$category) {
-            return $this->notfound();
-        }
-        // get chi tiet sp
-        $product = Product::find($id);
-        if (!$product) {
-            return $this->notfound();
-        }
-
-
-        // step 2 : lấy list SP liên quan
-        $relatedProducts = Product::where([
-                                ['is_active' , '=', 1],
-                                ['category_id', '=' , $category->id ],
-                                ['id', '<>' , $id]
-                            ])->orderBy('id', 'desc')->paginate(10);
-
-        return view('shop.product',[
-            'category' => $category,
-            'product' => $product,
-            'relatedProducts' => $relatedProducts
-        ]);
-    }
-
-
-    public function search(Request $request)
-    {
-        $keyword = $request->input('tu-khoa');
-        $slug = str_slug($keyword);
-        $totalResult = 0;
-
-        $products = [];
-
-        //$sql = "SELECT * FROM products WHERE is_active = 1 AND (name like '%?%' OR slug like '%?%' OR summary like '%?%')";
-        //$results = DB::select($sql, [
-        //    $keyword, $slug , $keyword
-        //]);
-
-        $products = Product::where([
-            ['name', 'like', '%' . $keyword . '%'],
-            ['is_active', '=', 1]
-        ])->orWhere([
-            ['slug', 'like', '%' . str_slug($keyword) . '%'],
-            ['is_active', '=', 1]
-        ])->orWhere([
-            ['summary', 'like', '%' . $keyword . '%'],
-            ['is_active', '=', 1]
-        ])->paginate(20);
-
-        $totalResult = $products->total();
-
-        return view('shop.search', [
-            'products' => $products,
-            'totalResult' => $totalResult,
-            'keyword' => $keyword]);
+        return view('shop.cart');
     }
 
     // Thêm sản phẩm vào giỏ hàng
@@ -138,26 +31,86 @@ class CartController extends GeneralController
         if (!$product) {
             return $this->notfound();
         }
-
+        // Kiểm tra tồn tại giỏ hàng cũ
         $_cart = session('cart') ? session('cart') : '';
         // Khởi tạo giỏ hàng
         $cart = new Cart($_cart);
         // Thêm sản phẩm vào giỏ
         $cart->add($product, $id);
-
+        // Lưu thông tin vào session
         $request->session()->put('cart', $cart);
 
         return redirect()->route('shop.cart');
     }
 
-    public function getCart(Request $request)
+    // Xóa sp khỏi giỏ hàng
+    public function removeToCart(Request $request, $id)
     {
-        $cart = $request->session()->get('cart');
+        // Kiểm tra tồn tại giỏ hàng cũ
+        $_cart = session('cart') ? session('cart') : '';
+        // Khởi tạo giỏ hàng
+        $cart = new Cart($_cart);
+        $cart->remove($id);
 
-        return view('shop.cart',[
-            'products' => $cart->products,
-            'totalPrice' => $cart->totalPrice,
-            'totalQty' => $cart->totalQty
-        ]);
+        if (count($cart->products) > 0) {
+            // Lưu thông tin vào session
+            $request->session()->put('cart', $cart);
+        } else {
+            $request->session()->forget('cart');
+        }
+
+        return view('shop.components.cart');
+    }
+
+    // Cập nhật lại giỏ hàng
+    public function updateToCart(Request $request)
+    {
+        $id = $request->input('id');
+        $qty = $request->input('qty');
+
+        // Kiểm tra tồn tại giỏ hàng cũ
+        $_cart = session('cart') ? session('cart') : '';
+        // Khởi tạo giỏ hàng
+        $cart = new Cart($_cart);
+        $cart->update($id, $qty);
+
+        if (count($cart->products) > 0) {
+            // Lưu thông tin vào session
+            $request->session()->put('cart', $cart);
+        } else {
+            $request->session()->forget('cart');
+        }
+
+        return view('shop.components.cart');
+
+    }
+
+    public function postCheckout(Request $request)
+    {
+        if (!session('cart')) {
+            return redirect('/');
+        }
+
+        $order = new Order();
+        $order->name = $request->input('name');
+        $order->phone = $request->input('phone');
+        $order->email = $request->input('email');
+        $order->address = $request->input('address');
+        $order->note = $request->input('note');
+        $order->payment_id = $request->input('payment_id');
+        $order->save();
+
+        // Lưu vào bảng chỉ tiết đơn đặt hàng
+
+
+        // Xóa thông tin giỏ hàng
+        $request->session()->forget('cart');
+
+        return redirect()->route('shop.cart')->with('msg', 'Bạn đã đặt hàng thành công');
+    }
+
+    public function checkout()
+    {
+
     }
 }

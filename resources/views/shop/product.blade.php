@@ -93,17 +93,17 @@
                             <div class="single-product-descirption">
                                 <h2>{{ $product->name }}</h2>
                                 <div class="single-product-condition">
-                                    <p>Reference: <span>demo_1</span></p>
-                                    <p>Condition: <span>New product</span></p>
+                                    <p>Tình trạng:
+                                        @if ($product->stock > 0)
+                                            <span style="color: green">CÒN HÀNG</span>
+                                        @endif
+                                    </p>
                                 </div>
                                 <div class="single-product-price">
                                     <h2>{{ number_format($product->sale,0,",",".") }} <span style="text-transform: lowercase">đ</span></h2>
                                 </div>
                                 <div class="single-product-desc">
                                     <p>Faded short sleeves t-shirt with high neckline. Soft and stretchy material for a comfortable fit. Accessorize with a straw hat and you're ready for summer!</p>
-                                    <div class="product-in-stock">
-                                        <p>300 Items<span>In stock</span></p>
-                                    </div>
                                 </div>
                                 <div class="single-product-info">
                                     <a href="#"><i class="fa fa-envelope"></i></a>
@@ -132,7 +132,7 @@
                                     <a class="color-blue" href="#"><span></span></a>
                                 </div>
                                 <div class="single-product-add-cart">
-                                    <a class="add-cart-text" title="Add to cart" href="{{ route('shop.add-to-cart', ['id' => $product->id]) }}">Mua Hàng</a>
+                                    <a class="add-cart-text" title="Add to cart" href="{{ route('shop.cart.add-to-cart', ['id' => $product->id]) }}">Mua Hàng</a>
                                 </div>
                             </div>
                         </div>

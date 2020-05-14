@@ -9,47 +9,16 @@
             <!-- SHOPPING-CART START -->
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 pull-right shopingcartarea">
                 <div class="shopping-cart-out pull-right">
-                    @if(session('cart'))
-                        <div class="shopping-cart">
-                            <a class="shop-link" href="cart.html" title="View my shopping cart">
-                                <i class="fa fa-shopping-cart cart-icon" style="margin-right: 0px"></i>
-                                <span class="" style="margin: 5px">( 2 )</span>
-                            </a>
-                            <div class="shipping-cart-overly">
-                                <div class="shipping-item">
-                                    <span class="cross-icon"><i class="fa fa-times-circle"></i></span>
-                                    <div class="shipping-item-image">
-                                        <a href="#"><img src="shop/img/shopping-image.jpg" alt="shopping image" /></a>
-                                    </div>
-                                    <div class="shipping-item-text">
-                                        <span>2 <span class="pro-quan-x">x</span> <a href="#" class="pro-cat">Watch</a></span>
-                                        <span class="pro-quality"><a href="#">S,Black</a></span>
-                                        <p>$22.95</p>
-                                    </div>
-                                </div>
-                                <div class="shipping-item">
-                                    <span class="cross-icon"><i class="fa fa-times-circle"></i></span>
-                                    <div class="shipping-item-image">
-                                        <a href="#"><img src="shop/img/shopping-image2.jpg" alt="shopping image" /></a>
-                                    </div>
-                                    <div class="shipping-item-text">
-                                        <span>2 <span class="pro-quan-x">x</span> <a href="#" class="pro-cat">Women Bag</a></span>
-                                        <span class="pro-quality"><a href="#">S,Gary</a></span>
-                                        <p>$19.95</p>
-                                    </div>
-                                </div>
-                                <div class="shipping-total-bill">
-                                    <div class="total-shipping-prices">
-                                        <span class="shipping-total">$24.95</span>
-                                        <span>Tổng</span>
-                                    </div>
-                                </div>
-                                <div class="shipping-checkout-btn">
-                                    <a href="checkout.html">Thanh toán</a>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
+                    <div class="shopping-cart">
+                        <a class="shop-link" href="{{ route('shop.cart') }}" title="Gio Hàng">
+                            <i class="fa fa-shopping-cart cart-icon" style="margin-right: 0px"></i>
+                            @if(session('cart'))
+                              <span id="total-qty" class="" style="margin: 5px">( {{session('cart')->totalQty }} )</span>
+                            @else
+                                <span id="total-qty" class="" style="margin: 5px">( 0 )</span>
+                            @endif
+                        </a>
+                    </div>
                 </div>
             </div>
             <!-- SHOPPING-CART END -->

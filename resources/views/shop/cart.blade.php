@@ -1,15 +1,16 @@
 @extends('shop.layouts.main')
 
 @section('content')
-    <<section class="main-content-section">
+    <style>#cart-summary tbody td.cart-product img { border: 0px }</style>
+    <section class="main-content-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <!-- BSTORE-BREADCRUMB START -->
                     <div class="bstore-breadcrumb">
-                        <a href="index.html">HOMe</a>
-                        <span><i class="fa fa-caret-right	"></i></span>
-                        <span>Your shopping cart</span>
+                        <a href="/">Trang chủ</a>
+                        <span><i class="fa fa-caret-right"></i></span>
+                        <span>Giỏ Hàng</span>
                     </div>
                     <!-- BSTORE-BREADCRUMB END -->
                 </div>
@@ -17,156 +18,71 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <!-- SHOPPING-CART SUMMARY START -->
-                    <h2 class="page-title">Shopping-cart summary <span class="shop-pro-item">Your shopping cart contains: 2 products</span></h2>
+                    <h2 class="page-title">Thông tin giỏ hàng</h2>
                     <!-- SHOPPING-CART SUMMARY END -->
                 </div>
 
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <!-- SHOPING-CART-MENU START -->
-                    <div class="shoping-cart-menu">
-                        <ul class="step">
-                            <li class="step-current first">
-                                <span>01. Summary</span>
-                            </li>
-                            <li class="step-todo second">
-                                <span>02. Sign in</span>
-                            </li>
-                            <li class="step-todo third">
-                                <span>03. Address</span>
-                            </li>
-                            <li class="step-todo four">
-                                <span>04. Shipping</span>
-                            </li>
-                            <li class="step-todo last" id="step_end">
-                                <span>05. Payment</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- SHOPING-CART-MENU END -->
-                    <!-- CART TABLE_BLOCK START -->
-                    <div class="table-responsive">
-                        <!-- TABLE START -->
-                        <table class="table table-bordered" id="cart-summary">
-                            <!-- TABLE HEADER START -->
-                            <thead>
-                            <tr>
-                                <th class="cart-product">Product</th>
-                                <th class="cart-description">Description</th>
-                                <th class="cart-avail text-center">Availability</th>
-                                <th class="cart-unit text-right">Unit price</th>
-                                <th class="cart_quantity text-center">Qty</th>
-                                <th class="cart-delete">&nbsp;</th>
-                                <th class="cart-total text-right">Total</th>
-                            </tr>
-                            </thead>
-                            <!-- TABLE HEADER END -->
-                            <!-- TABLE BODY START -->
-                            <tbody>
-                            @foreach($products as $product)
-                                <tr>
-                                    <td class="cart-product">
-                                        <a href="#"><img  src="{{ asset($product['item']->image) }}" alt="{{ $product['item']->name }}"></a>
-                                    </td>
-                                    <td class="cart-description">
-                                        <p class="product-name"><a href="#">{{ $product['item']->name }}</a></p>
-                                        <small>SKU : demo_5</small>
-                                        <small><a href="#">Size : M, Color : Blue</a></small>
-                                    </td>
-                                    <td class="cart-avail"><span class="label label-success">Còn hàng</span></td>
-                                    <td class="cart-unit">
-                                        <ul class="price text-right">
-                                            <li class="price special-price">$30.45</li>
-                                            <li class="price-percent-reduction small">&nbsp;-7.05%&nbsp;</li>
-                                            <li class="old-price">$37.50</li>
-                                        </ul>
-                                    </td>
-                                    <td class="cart_quantity text-center">
-                                        <div class="cart-plus-minus-button">
-                                            <input class="cart-plus-minus" type="text" name="qtybutton" value="0">
-                                        </div>
-                                    </td>
-                                    <td class="cart-delete text-center">
-                                        <a href="#" class="cart_quantity_delete" title="Delete"><i class="fa fa-trash-o"></i></a>
-                                    </td>
-                                    <td class="cart-total">
-                                        <span class="price">$30.45</span>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            <!-- SINGLE CART_ITEM END -->
-                            </tbody>
-                            <!-- TABLE BODY END -->
-                            <!-- TABLE FOOTER START -->
-                            <tfoot>
-                            <tr class="cart-total-price">
-                                <td class="cart_voucher" colspan="3" rowspan="4"></td>
-                                <td class="text-right" colspan="3">Total products (tax excl.)</td>
-                                <td id="total_product" class="price" colspan="1">$76.46</td>
-                            </tr>
-                            <tr>
-                                <td class="text-right" colspan="3">Total shipping</td>
-                                <td id="total_shipping" class="price" colspan="1">$5.00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-right" colspan="3">Total vouchers (tax excl.)</td>
-                                <td class="price" colspan="1">$0.00</td>
-                            </tr>
-                            <tr>
-                                <td class="total-price-container text-right" colspan="3">
-                                    <span>Total</span>
-                                </td>
-                                <td id="total-price-container" class="price" colspan="1">
-                                    <span id="total-price">$76.46</span>
-                                </td>
-                            </tr>
-                            </tfoot>
-                            <!-- TABLE FOOTER END -->
-                        </table>
-                        <!-- TABLE END -->
+                    <div id="my-cart" class="table-responsive">
+                        @include('shop.components.cart', [])
                     </div>
                     <!-- CART TABLE_BLOCK END -->
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="first_item primari-box mycartaddress-info">
-                        <!-- SINGLE ADDRESS START -->
-                        <ul class="address">
-                            <li>
-                                <h3 class="page-subheading box-subheading">
-                                    Delivery address (BootExperts Office)
-                                </h3>
-                            </li>
-                            <li><span class="address_name">BootExperts</span></li>
-                            <li><span class="address_company">Web development Company</span></li>
-                            <li><span class="address_address1">Bonossri</span></li>
-                            <li><span class="address_address2">D-Block</span></li>
-                            <li><span class="">Rampura</span></li>
-                            <li><span class="">Dhaka</span></li>
-                            <li><span class="address_phone">+880 1735161598</span></li>
-                            <li><span class="address_phone_mobile">+880 1975161598</span></li>
-                        </ul>
-                        <!-- SINGLE ADDRESS END -->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <!-- CONTACT-US-FORM START -->
+                    <div class="contact-us-form">
+                        <div class="contact-form-center">
+                            <h3 class="contact-subheading">Thông Tin Cá Nhân</h3>
+                            <!-- CONTACT-FORM START -->
+                            <form class="contact-form" id="contactForm" method="post" action="#">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                                        <div class="form-group primary-form-group">
+                                            <label>Subject Heading</label>
+                                            <div class="con-form-select">
+                                                <select id="conForm" name="conform">
+                                                    <option value="">Customar Service</option>
+                                                    <option value="">Webmaster</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group primary-form-group">
+                                            <label>Email address</label>
+                                            <input type="text" class="form-control input-feild" id="contactEmail" name="contactemail" value="">
+                                        </div>
+                                        <div class="form-group primary-form-group">
+                                            <label>Order reference</label>
+                                            <div class="con-form-select">
+                                                <select id="orderRef" name="orderref">
+                                                    <option value="">Bootexpert</option>
+                                                    <option value="">Ohter</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group primary-form-group">
+                                            <div class="file-uploader">
+                                                <label>Attach File</label>
+                                                <input type="file" class="form-control" name="fileUpload">
+                                                <span class="filename">No file selected</span>
+                                                <span class="action">Choose File</span>
+                                            </div>
+                                        </div>
+                                        <button type="submit" name="submit" id="sendMessage" class="send-message main-btn">Send <i class="fa fa-chevron-right"></i></button>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+                                        <div class="type-of-text">
+                                            <div class="form-group primary-form-group">
+                                                <label>Message</label>
+                                                <textarea class="contact-text" name="ContactMessage"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- CONTACT-FORM END -->
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="second_item primari-box mycartaddress-info">
-                        <!-- SINGLE ADDRESS START -->
-                        <ul class="address">
-                            <li>
-                                <h3 class="page-subheading box-subheading">
-                                    Invoice address (BootExperts Home)
-                                </h3>
-                            </li>
-                            <li><span class="address_name">BootExperts</span></li>
-                            <li><span class="address_company">Web development Company</span></li>
-                            <li><span class="address_address1">Dhaka</span></li>
-                            <li><span class="address_address2">Bonossri</span></li>
-                            <li><span class="">Dhaka-1205</span></li>
-                            <li><span class="">Rampura</span></li>
-                            <li><span class="address_phone">+880 1735161598</span></li>
-                            <li><span class="address_phone_mobile">+880 1975161598</span></li>
-                        </ul>
-                        <!-- SINGLE ADDRESS END -->
-                    </div>
+                    <!-- CONTACT-US-FORM END -->
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <!-- RETURNE-CONTINUE-SHOP START -->
@@ -179,4 +95,55 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('my_javascript')
+    <script type="text/javascript">
+        $(function () {
+            // xóa sản phẩm khỏi giỏ hàng
+            $(document).on("click", '.remove-to-cart', function () {
+            //$('.remove-to-cart').click(function () {
+                var product_id = $(this).attr('data-id');
+
+                $.ajax({
+                    url: '/dat-hang/xoa-sp-gio-hang/'+product_id,
+                    type: 'get',
+                    data: {
+                        id : product_id
+                    }, // dữ liệu truyền sang nếu có
+                    dataType: "HTML", // kiểu dữ liệu trả về
+                    success: function (response) {
+
+                        $('#my-cart').html(response);
+                    },
+                    error: function (e) { // lỗi nếu có
+                        console.log(e.message);
+                    }
+                });
+            });
+
+            // cập nhật số lượng giỏ hàng
+            //$('.item-qty').change(function () {
+            $(document).on("change", '.item-qty', function () {
+                var product_id = $(this).attr('data-id');
+                var qty = $(this).val();
+
+                $.ajax({
+                    url: '/dat-hang/cap-nhat-gio-hang',
+                    type: 'get',
+                    data: {
+                        id : product_id,
+                        qty : qty
+                    }, // dữ liệu truyền sang nếu có
+                    dataType: "HTML", // kiểu dữ liệu trả về
+                    success: function (response) {
+                        $('#my-cart').html(response);
+                    },
+                    error: function (e) { // lỗi nếu có
+                        console.log(e.message);
+                    }
+                });
+            });
+        })
+    </script>
 @endsection

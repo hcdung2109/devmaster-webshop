@@ -11,10 +11,21 @@ Route::get('/{category}/{slug}_{id}', 'ShopController@getProduct')->name('shop.p
 Route::get('/tim-kiem', 'ShopController@search')->name('shop.search');
 
 // Gio hang
-Route::get('/dat-hang', 'ShopController@getCart')->name('shop.cart');
+Route::get('/dat-hang', 'CartController@index')->name('shop.cart');
 
 // Thêm sản phẩm vào giỏ hàng
-Route::get('/dat-hang/cap-nhat-gio-hang/{id}', 'ShopController@addToCart')->name('shop.add-to-cart');
+Route::get('/dat-hang/them-sp-vao-gio-hang/{id}', 'CartController@addToCart')->name('shop.cart.add-to-cart');
+
+// Xóa SP khỏi giỏ hàng
+Route::get('/dat-hang/xoa-sp-gio-hang/{id}', 'CartController@removeToCart')->name('shop.cart.remove-to-cart');
+
+// Cập nhật giỏ hàng
+Route::get('/dat-hang/cap-nhat-gio-hang', 'CartController@updateToCart')->name('shop.cart.update-to-cart');
+
+// Thanh toán
+Route::get('/thanh-toan', 'CartController@checkout')->name('shop.cart.checkout');
+
+Route::post('/thanh-toan', 'CartController@postCheckout')->name('shop.cart.checkout');
 
 // Liên Hệ
 Route::resource('contact', 'ContactController');

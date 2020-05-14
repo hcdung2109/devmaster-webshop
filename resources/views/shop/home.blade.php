@@ -22,8 +22,8 @@
                                     <!-- SINGLE-PRODUCT-ITEM START -->
                                     <div class="single-product-item">
                                         <div class="product-image">
-                                            <a href="#">
-                                                <img width="180" height="180" src="{{ asset($product->image)  }}" alt="product-image" />
+                                            <a href="{{ route('shop.product', ['category' => $item['category']->slug , 'slug' => $product->slug , 'id' => $product->id]) }}" title="{{ $product->name }}" >
+                                                <img width="180" height="180" src="{{ asset($product->image) }}" alt="{{ $product->name }}">
                                             </a>
                                             <div class="overlay-content">
                                                 <ul>
@@ -35,7 +35,7 @@
                                             </div>
                                         </div>
                                         <div class="product-info">
-                                            <a href="">{{ $product->name }}</a>
+                                            <a href="{{ route('shop.product', ['category' => $item['category']->slug , 'slug' => $product->slug , 'id' => $product->id]) }}">{{ $product->name }}</a>
                                             <div class="price-box">
                                                 <span class="price">{{ number_format($product->sale,0,",",".") }}đ<span class="p-price">{{ number_format($product->price,0,",",".") }}đ</span></span>
                                             </div>

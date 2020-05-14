@@ -173,6 +173,10 @@
 </script>
 <!-- main js -->
 <script src="shop/js/main.js"></script>
+
+<!-- Vị trí dùng để chèn code Javascript -->
+@yield('my_javascript')
+
 </body>
 
 </html>
