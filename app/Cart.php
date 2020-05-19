@@ -9,6 +9,7 @@ class Cart extends Model
     public $products;
     public $totalPrice = 0;
     public $totalQty = 0;
+    public $discount = 0;
 
     public function __construct($cart)
     {
@@ -52,7 +53,7 @@ class Cart extends Model
     }
 
     // Cập nhật giỏ hàng
-    public function update($id , $qty)
+    public function store($id , $qty)
     {
         // Xóa số lượng + giá của thằng hiện tại
         $this->totalQty -= $this->products[$id]['qty'];

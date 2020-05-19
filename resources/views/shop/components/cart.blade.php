@@ -27,9 +27,7 @@
                 </td>
                 <td class="cart-description">
                     <p class="product-name"><a href="#">{{ $product['item']->name }}</a></p>
-                    <small>SKU : demo_5</small>
-                    <small><a href="#">Size : M, Color : Blue</a></small>
-                    <button>Cập nhật</button>
+                    <small>SKU : {{ $product['item']->sku }}</small>
                 </td>
                 <td class="cart-unit">
                     <ul class="price text-right">
@@ -62,16 +60,16 @@
         <!-- TABLE BODY END -->
         <!-- TABLE FOOTER START -->
         <tfoot>
-        <tr class="cart-total-price">
-            <td class="cart_voucher" colspan="2" rowspan="4"></td>
-            <td class="text-right" colspan="2">Tổng tiền</td>
-            <td id="total_product" class="price" colspan="1"
-                style="color: red; font-weight: bold">{{ number_format($totalPrice ,0,",",".") }} đ
-            </td>
-        </tr>
+            <tr class="cart-total-price">
+                <td class="cart_voucher" colspan="2" rowspan="4"></td>
+                <td class="text-right" colspan="2">Tổng tiền</td>
+                <td id="total_product" class="price" colspan="1"
+                    style="font-weight: bold; color: red">{{ number_format($totalPrice ,0,",",".") }} đ
+                </td>
+            </tr>
         </tfoot>
         <!-- TABLE FOOTER END -->
     </table>
 @else
-    <h3>khong co sản pham nào trong giỏ hàng</h3>
+    <h3>Bạn chưa có sản phẩm nào trong giỏ hàng</h3>
 @endif

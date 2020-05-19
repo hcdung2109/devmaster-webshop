@@ -22,6 +22,12 @@ Route::get('/dat-hang/xoa-sp-gio-hang/{id}', 'CartController@removeToCart')->nam
 // Cập nhật giỏ hàng
 Route::get('/dat-hang/cap-nhat-gio-hang', 'CartController@updateToCart')->name('shop.cart.update-to-cart');
 
+// Áp dụng giảm giá
+Route::get('/dat-hang/ma-giam-gia', 'CartController@checkCoupon')->name('shop.cart.check-coupon');
+
+// Hủy đơn hàng
+Route::get('/dat-hang/huy-don-hang', 'CartController@destroy')->name('shop.cart.destroy');
+
 // Thanh toán
 Route::get('/thanh-toan', 'CartController@checkout')->name('shop.cart.checkout');
 
@@ -37,7 +43,7 @@ Route::get('/admin/logout', 'AdminController@logout')->name('admin.logout');
 
 Route::post('/admin/postLogin', 'AdminController@postLogin')->name('admin.postLogin');
 
-Route::group(['prefix' => 'admin','as' => 'admin.'], function() {
+Route::group(['prefix' => 'admin','as' => 'admin.' ], function() {
 
     Route::get('/', 'AdminController@index')->name('dashboard');
     Route::resource('category', 'CategoryController');
@@ -50,6 +56,9 @@ Route::group(['prefix' => 'admin','as' => 'admin.'], function() {
     Route::resource('vendor', 'VendorController');
     // Ql Người dùng
     Route::resource('user', 'UserController');
+
+    // Ql Đơn hàng
+    Route::resource('order', 'OrderController');
 });
 
 Auth::routes();
