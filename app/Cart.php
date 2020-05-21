@@ -10,6 +10,7 @@ class Cart extends Model
     public $totalPrice = 0;
     public $totalQty = 0;
     public $discount = 0;
+    public $coupon;
 
     public function __construct($cart)
     {
@@ -19,6 +20,8 @@ class Cart extends Model
             $this->products = $cart->products;
             $this->totalPrice = $cart->totalPrice;
             $this->totalQty = $cart->totalQty;
+            $this->discount = $cart->discount;
+            $this->coupon = $cart->coupon;
         }
     }
 
@@ -49,22 +52,21 @@ class Cart extends Model
 
         unset($this->products[$id]);
 
-
     }
 
     // Cập nhật giỏ hàng
     public function store($id , $qty)
     {
-        // Xóa số lượng + giá của thằng hiện tại
-        $this->totalQty -= $this->products[$id]['qty'];
-        $this->totalPrice -= $this->products[$id]['price'];
+        // Xóa số lượng + giá của thằng hiện tại để cập nhật lại
+        $this->totalQty = $this->totalQty - $this->products[$id]['qty'];
+        $this->totalPrice = $this->totalPrice - $this->products[$id]['price'];
 
-        // Cập nhật sl && giá
+        // Cập nhật số lượng && giá của sẩn phẩm
         $this->products[$id]['qty'] = $qty;
         $this->products[$id]['price'] = $qty * $this->products[$id]['item']->sale;
 
         // cập nhật lại giỏ hàng
-        $this->totalQty += $this->products[$id]['qty'];
-        $this->totalPrice += $this->products[$id]['price'];
+        $this->totalQty = $this->totalQty + $this->products[$id]['qty'];
+        $this->totalPrice = $this->totalPrice + $this->products[$id]['price'];
     }
 }

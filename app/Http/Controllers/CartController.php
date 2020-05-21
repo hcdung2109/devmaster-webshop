@@ -117,7 +117,7 @@ class CartController extends GeneralController
         $coupon = Coupon::where('code', $request->coupon_code)->first();
 
         if (!$coupon) {
-            return redirect()->route('shop.cart')->withErrors('msg', 'Mã giảm giá không tồn tại');
+            return redirect()->back()->withErrors('msg', 'Mã giảm giá không tồn tại');
         }
 
         // Kiểm tra tồn tại giỏ hàng cũ
@@ -132,20 +132,24 @@ class CartController extends GeneralController
         $discount = 0;
 
         // check default tính theo giá
-        if ($coupon->type = 1) {
+        if ($coupon->value) {
             $discount = $coupon->value;
         } else {
-            // tính theo %
-            $discount = ($coupon->percent * $_cart->totalPrice) * 100;
+            if ($coupon->percent) {
+                // tính theo %
+                $discount = ($coupon->percent * $_cart->totalPrice) / 100;
+            }
         }
-
-        $_cart->discount = $discount;
 
         // Khởi tạo giỏ hàng
         $cart = new Cart($_cart);
+        $cart->discount = $discount;
+        $cart->coupon = $coupon->code;
 
         // Lưu thông tin vào session
         $request->session()->put('cart', $cart);
+
+        return redirect()->back();
     }
 
     // Hủy đơn hàng
@@ -170,7 +174,7 @@ class CartController extends GeneralController
         }
 
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
+            'fullname' => 'required|max:255',
             'phone' => 'required',
             'email' => 'required|email',
             'address' => 'required',
@@ -181,29 +185,36 @@ class CartController extends GeneralController
 
         // Lưu vào bảng đơn đặt hàng - orders
         $order = new Order();
-        $order->name = $request->input('name');
+        $order->fullname = $request->input('fullname');
         $order->phone = $request->input('phone');
         $order->email = $request->input('email');
         $order->address = $request->input('address');
         $order->note = $request->input('note');
         $order->total = $_cart->totalPrice;
+        $order->discount = $_cart->discount;
+        $order->coupon = $_cart->coupon;
         $order->order_status_id = 1; // 1 = mới
-        $order->save();
         // Lưu vào bảng chỉ tiết đơn đặt hàng
 
-        foreach ($_cart->products as $product) {
-            //dd($product);
-            $_detail = new OrderDetail();
-            $_detail->order_id = $order->id;
-            $_detail->product_id = $product['item']->id;
-            $_detail->qty = $product['qty'];
-            $_detail->price = $product['price'];
-            $_detail->save();
+
+        if ($order->save()) {
+            // Tạo mã đơn hàng gửi tới khách hàng
+            $order->code = 'DH-'.$order->id.'-'.date('d').date('m').date('Y');
+            $order->save();
+
+            foreach ($_cart->products as $product) {
+                $_detail = new OrderDetail();
+                $_detail->order_id = $order->id;
+                $_detail->product_id = $product['item']->id;
+                $_detail->qty = $product['qty'];
+                $_detail->price = $product['price'];
+                $_detail->save();
+            }
+
+            // Xóa thông tin giỏ hàng Hiện tại
+            $request->session()->forget('cart');
+
+            return redirect()->route('shop.cart.checkout')->with('msg', 'Cảm ơn bạn đã đặt hàng. Mã đơn hàng của bạn : #'.$order->code);
         }
-
-        // Xóa thông tin giỏ hàng
-        $request->session()->forget('cart');
-
-        return redirect()->route('shop.cart.checkout')->with('msg', 'Bạn đã đặt hàng thành công');
     }
 }

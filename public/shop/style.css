@@ -75,13 +75,12 @@ Version: 1.0
 }
 body{
 	font-family: "arial",serif;
-	color:#6d6d6d;
+	color: #222;
 }	
 h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
     margin: 0;	
 	color:#3a3d42;
-	font-family: 'Bitter', serif;
 }
 a{
 	color:#777;

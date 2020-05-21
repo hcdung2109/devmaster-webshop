@@ -20,7 +20,7 @@
                     <i class="fa fa-calendar"></i> <span>Bảng điều khiển</span>
                 </a>
             </li>
-            <li><a href="{{ route('admin.user.index') }}"><i class="fa fa-cubes"></i> <span>QL Đơn đặt hàng</span></a></li>
+            <li><a href="{{ route('admin.order.index') }}"><i class="fa fa-cubes"></i> <span>QL Đơn đặt hàng</span></a></li>
             <li><a href="{{ route('admin.category.index') }}"><i class="fa fa-dashboard"></i> <span>QL Danh mục</span></a></li>
             <li><a href="{{ route('admin.product.index') }}"><i class="fa fa-database"></i> <span>QL Sản Phẩm</span></a></li>
             <li><a href="{{ route('admin.product.index') }}"><i class="fa fa-file-text"></i> <span>QL Tin tức</span></a></li>

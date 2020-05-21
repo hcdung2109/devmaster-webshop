@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -13,9 +14,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-
+        $orders = Order::latest()->paginate(20);
         return view('admin.order.index', [
-        //    'data' => $data
+            'data' => $orders
         ]);
     }
 

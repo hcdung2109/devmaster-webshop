@@ -38,29 +38,11 @@
                     <h2 class="page-title">Thông tin giỏ hàng</h2>
                     <!-- SHOPPING-CART SUMMARY END -->
                 </div>
-                <!-- Nhập mã khuyến mại -->
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="row" style="margin-bottom: 20px">
-                        <div class="col-lg-6"></div><!-- /.col-lg-6 -->
-                        <div class="col-lg-6">
-                        <!--<form action="{{ route('shop.cart.check-coupon') }}" method="get">
-                            <div class="input-group">
-                                <input name="coupon_code" style="width: 200px; float: right" type="text" class="form-control" placeholder="Nhập mã khuyến mại">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="submit">Áp dụng</button>
-                                </span>
-                            </div>
-                        </form>
-                        -->
-                        </div><!-- /.col-lg-6 -->
-                    </div><!-- /.row -->
+
+                <div id="my-cart">
+                    @include('shop.components.cart', [])
                 </div>
-                <!-- Danh sách sản phẩm -->
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div id="my-cart" class="table-responsive">
-                        @include('shop.components.cart', [])
-                    </div>
-                </div>
+
                 @if(session('cart'))
                 <!-- Thông Tin Cá Nhân -->
                 <form method="post" action="{{ route('shop.cart.checkout') }}">
@@ -76,9 +58,9 @@
                                     <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                                         <div class="form-group primary-form-group">
                                             <label>Họ và tên</label>
-                                            <input type="text" class="form-control input-feild" id="contactEmail" name="name" value="">
-                                            @if ($errors->has('name'))
-                                                <span class="invalid-feedback" role="alert" style="color:red;">{{ $errors->first('name') }}</span>
+                                            <input type="text" class="form-control input-feild" id="fullname" name="fullname" value="">
+                                            @if ($errors->has('fullname'))
+                                                <span class="invalid-feedback" role="alert" style="color:red;">{{ $errors->first('fullname') }}</span>
                                             @endif
                                         </div>
                                         <div class="form-group primary-form-group">
@@ -124,7 +106,7 @@
                         <!-- RETURNE-CONTINUE-SHOP START -->
                         <div class="returne-continue-shop">
                             <a href="{{ route('shop.cart.destroy') }}" class="continueshoping"><i class="fa fa-chevron-left"></i>Hủy đặt hàng</a>
-                            <button type="submit" class="procedtocheckout">Gửi đơn hàng<i class="fa fa-chevron-right"></i></button>
+                            <button type="submit" class="procedtocheckout">Gửi đơn hàng</button>
                         </div>
                     </div>
                 </form>
