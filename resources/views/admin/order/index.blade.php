@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 @section('content')
-    <style>tr td:first-child {max-width: 250px}</style>
+    <style>tr td:first-child {max-width: 250px} .price {color: red}</style>
     <section class="content-header">
         <h1>
             Danh Sách Đơn Hàng
@@ -31,39 +31,45 @@
                         <table class="table table-bordered">
                             <tbody>
                             <tr>
-                                <th>ID</th>
-                                <th style="max-with:200px">Tên SP</th>
-                                <th>Hình ảnh</th>
-                                <th>Số lượng</th>
-                                <th>Giá KM</th>
-                                <th>Giá Gốc</th>
-                                <th>Sản phẩm Hot</th>
-                                <th>Trạng thái</th>
-                                <th class="text-center">Hành động</th>
+                                <th class="text-center">TT</th>
+                                <th class="text-center">Ngày</th>
+                                <th class="text-center">Mã ĐH</th>
+                                <th style="max-with:200px">Trạng thái</th>
+                                <th>Họ tên</th>
+                                <th>ĐT</th>
+                                <th>Email</th>
+                                <th>Tổng tiền</th>
+                                <th class="text-center"></th>
                             </tr>
                             </tbody>
                             <!-- Lặp một mảng dữ liệu pass sang view để hiển thị -->
                             @foreach($data as $key => $item)
                                 <tr class="item-{{ $item->id }}"> <!-- Thêm Class Cho Dòng -->
-                                    <td>{{ $key }}</td>
-                                    <td>{{ substr($item->name, 0, 50) }}</td>
+                                    <td class="text-center">{{ $key }}</td>
+                                    <td class="text-center">{{ $item->created_at }}</td>
+                                    <td class="text-center">{{ $item->code }}</td>
                                     <td>
-                                    @if ($item->image) <!-- Kiểm tra hình ảnh tồn tại -->
-                                        <img src="{{asset($item->image)}}" width="50" height="50">
+                                        @if ($item->order_status_id === 1)
+                                            <span class="label label-info">Mới</span>
+                                        @elseif ($item->order_status_id === 2)
+                                            <span class="label label-warning">Đang XL</span>
+                                        @elseif ($item->order_status_id === 3)
+                                            <span class="label label-success">Hoàn thành</span>
+                                        @else
+                                            <span class="label label-danger">Hủy</span>
                                         @endif
                                     </td>
-                                    <td>{{ $item->stock }}</td>
-                                    <td>{{ $item->sale }}</td>
-                                    <td>{{ $item->price }}</td>
-                                    <td>{{ ($item->is_hot == 1) ? 'Có' : 'Không' }}</td>
-                                    <td>{{ ($item->is_active == 1) ? 'Hiển thị' : 'Ẩn' }}</td>
-                                    <td class="text-center">
-                                        <a href="{{route('admin.product.show', ['id'=> $item->id ])}}" class="btn btn-default">Xem</a>
-                                        <a href="{{route('admin.product.edit', ['id'=> $item->id])}}" class="btn btn-info">Sửa</a>
-                                        <!-- Thêm sự kiện onlick cho nút xóa -->
-                                        <a href="javascript:void(0)" class="btn btn-danger" onclick="destroyProduct({{ $item->id }})" >Xóa</a>
+                                    <td>
+                                        {{ $item->fullname }}
                                     </td>
-                                </tr>
+                                    <td>{{ $item->phone }}</td>
+                                    <td>{{ $item->email }}</td>
+                                    <td class="price">{{ number_format($item->total) }} đ</td>
+                                    <td>
+                                        <a href="{{route('admin.order.edit', ['id'=> $item->id ])}}">
+                                            <span title="Edit" type="button" class="btn btn-flat btn-primary">Chi tiết</span>
+                                        </a>&nbsp;
+                                    </td>
                             @endforeach
                         </table>
                     </div>

@@ -9,4 +9,9 @@ class OrderDetail extends Model
     protected $table = "order_detail"; // chi dinh ten CSDL
 
     public $timestamps = false;
+
+    public function order()
+    {
+        return $this->hasOne('App\OrderDetail', 'id', 'order_id');
+    }
 }

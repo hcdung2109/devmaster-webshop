@@ -32,6 +32,11 @@
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <style>
+        body {
+            font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+        }
+    </style>
     <script type="text/javascript">
         var base_url = '{{ url('/') }}';
     </script>

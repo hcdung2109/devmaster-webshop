@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\OrderStatus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class OrderController extends Controller
 {
@@ -49,7 +51,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -60,7 +62,13 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order = Order::find($id);
+        $order_status = OrderStatus::all();
+
+        return view('admin.order.edit', [
+            'order' => $order,
+            'order_status' => $order_status
+        ]);
     }
 
     /**
@@ -72,7 +80,17 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $address2 = $request->address2;
+        $note = $request->note;
+        $id_status = $request->order_status_id;
+
+        $order = Order::findorFail($id);
+        $order->address2 = $address2;
+        $order->note = $note;
+        $order->order_status_id = $id_status;
+        $order->save();
+
+        return redirect()->back()->with('msg', 'Cập nhật đơn hàng thành công');
     }
 
     /**
@@ -84,5 +102,16 @@ class OrderController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function removeToCart(Request $request)
+    {
+        $order_detail_id = $request->input('order_detail_id');
+        $order_id = $request->input('order_id');
+
+        return response()->json([
+            'status'  => true ,
+            'data' => 'Xóa sản phẩm thành công'
+        ]);
     }
 }

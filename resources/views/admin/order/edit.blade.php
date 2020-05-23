@@ -1,141 +1,160 @@
 @extends('admin.layouts.main')
 @section('content')
-    <style>.w-50 { width: 50% }</style>
+    <style>
+        #thongbao {
+            position: absolute;
+            margin-bottom: 0px;
+            width: 350px;
+            z-index: 1000;
+            float: right;
+            right: 22px;
+        }
+    </style>
     <section class="content-header">
         <h1>
-            Chỉnh sửa thông tin sản phẩm <a href="{{route('admin.product.index')}}" class="btn btn-success pull-right"><i
-                    class="fa fa-list"></i> Danh Sách SP</a>
+            <i class="fa fa-file-text-o" aria-hidden="true"></i> Chi Tiết Đơn Hàng
         </h1>
+        <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-dashboard"></i>Trang chủ</a></li>
+            <li><a href="{{route('admin.order.index')}}">DS Đơn Hàng</a></li>
+        </ol>
     </section>
+    @if (session('msg'))
+        <div class="pad margin no-print">
+            <div class="alert alert-success alert-dismissible" style="" id="thongbao">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> Thông báo !</h4>
+                {{ session('msg') }}
+            </div>
+        </div>
+    @endif
 
     <section class="content">
         <div class="row">
             <!-- left column -->
-            <div class="col-md-9">
-                <!-- general form elements -->
-
+            <div class="col-md-12">
                 <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Thông tin sản phẩm</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <!-- form start -->
-                    <form role="form" action="{{route('admin.product.update', ['id' => $product->id ])}}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.order.update', ['id' => $order->id]) }}" method="post">
                         @csrf
                         @method('PUT')
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Tên sản phẩm</label>
-                                <input value="{{ $product->name }}" type="text" class="form-control" id="name" name="name">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputFile">Thay đổi ảnh sản phẩm</label>
-                                <input type="file" id="new_image" name="new_image"><br>
-                                @if ($product->image)
-                                    <img src="{{asset($product->image)}}" width="200">
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputFile">Số lượng</label>
-                                <input type="number" class="form-control w-50" id="stock" name="stock" value="{{ $product->stock }}">
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="exampleInputFile">Giá gốc (vnđ)</label>
-                                        <input type="number" class="form-control" id="price" name="price" value="{{ $product->price }}">
-                                    </div>
-                                </div>
-                                <!-- /.col-lg-6 -->
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="exampleInputFile">Giá khuyến mại (vnđ)</label>
-                                        <input type="number" class="form-control" id="sale" name="sale" value="{{ $product->sale }}">
-                                    </div>
-                                </div>
-                                <!-- /.col-lg-6 -->
-                            </div>
-                            <div class="form-group">
-                                <label>Danh mục sản phẩm</label>
-                                <select class="form-control w-50" name="category_id">
-                                    <option value="0">-- chọn Danh Mục --</option>
-                                    @foreach($categories as $category)
-                                        <option {{ ($product->category_id == $category->id ? 'selected':'') }} value="{{ $category -> id }}">{{ $category -> name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Thương hiệu</label>
-                                <select class="form-control w-50" name="brand_id">
-                                    <option value="0">-- chọn Thương Hiệu--</option>
-                                    @foreach($brands as $brand)
-                                        <option {{ ($product->brand_id == $brand->id ? 'selected':'') }} value="{{ $brand->id }}">{{ $brand->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Nhà cung cấp</label>
-                                <select class="form-control w-50" name="vendor_id">
-                                    <option value="0">-- chọn NCC --</option>
-                                    @foreach($vendors as $vendor)
-                                        <option {{ ($product->vendor_id == $vendor->id ? 'selected':'') }} value="{{ $vendor->id }}">{{ $vendor->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Mã hàng (SKU)</label>
-                                <input  value="{{ $product->sku }}" type="text" class="form-control w-50" id="sku" name="sku" placeholder="">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Vị trí</label>
-                                <input type="number" class="form-control w-50" id="position" name="position" value="{{ $product->position }}">
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input {{ ($product->is_active) ? 'checked':'' }} type="checkbox" value="1" name="is_active"> <b>Trạng thái</b>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input {{ ($product->is_hot) ? 'checked':'' }} type="checkbox" value="1" name="is_hot"> <b>Sản phẩm Hot</b>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Liên kết (url) tùy chỉnh</label>
-                                <input type="text" class="form-control" id="url" name="url" placeholder="">
-                            </div>
-                            <div class="form-group">
-                                <label>Tóm tắt</label>
-                                <textarea id="editor2" name="summary" class="form-control" rows="10" >{{ $product->summary }}</textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Mô tả</label>
-                                <textarea id="editor1" name="description" class="form-control" rows="10" >{{ $product->description }}</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Meta Title</label>
-                                <input type="text" class="form-control" id="meta_title" name="meta_title" value="{{ $product->meta_title }}" >
-                            </div>
-                            <div class="form-group">
-                                <label>Meta Description</label>
-                                <textarea name="meta_description" id="meta_description" class="form-control" rows="3" >{{ $product->meta_description }}</textarea>
-                            </div>
+                        <div class="box-header with-border">
+                            <button type="submit" class="btn btn-info btn-flat">
+                                <i class="fa fa-edit"></i>
+                                Cập nhật
+                            </button>
                         </div>
-                        <!-- /.box-body -->
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Cập Nhật</button>
-                            <input type="reset" class="btn btn-default pull-right" value="Reset">
+                        <div class="box-body">
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td><label for="">Mã ĐH :</label></td>
+                                    <td>{{ $order->code }}</td>
+                                    <td><label>Ngày Đặt Hàng:</label></td>
+                                    <td>{{ $order->created_at }}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Họ tên :</label></td>
+                                    <td>{{ $order->fullname }}</td>
+                                    <td><label>Mã giảm giá</label></td>
+                                    <td>{{ $order->coupon }}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>SĐT :</label> </td>
+                                    <td>{{ $order->phone }}</td>
+                                    <td><label>Tạm tính</label></td>
+                                    <td>{{ number_format($order->total) }}</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Email :</label></td>
+                                    <td>{{ $order->email }}</td>
+                                    <td><label>Khuyến mại</label></td>
+                                    <td>{{ number_format($order->discount) }} đ</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Địa chỉ :</label> </td>
+                                    <td colspan="">{{ $order->address }}</td>
+                                    <td><label>Thành tiền</label></td>
+                                    <td style="color: red">{{ number_format($order->total - $order->discount) }} đ</td>
+
+                                </tr>
+                                <tr>
+                                    <td><label>Địa chỉ nhận hàng :</label> </td>
+                                    <td colspan="">
+                                        <div class="form-group">
+                                            <input class="form-control" name="address2" value="{{ $order->address2 }}">
+                                        </div>
+                                    </td>
+                                    <td><label>Trạng thái ĐH</label></td>
+                                    <td style="color: red">
+                                        <select class="form-control " name="order_status_id" style="max-width: 150px;display: inline-block;">
+                                            <option value="0">-- chọn --</option>
+                                            @foreach($order_status as $status)
+                                                <option {{ ($order->order_status_id == $status->id ? 'selected':'') }} value="{{ $status->id }}">{{ $status->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label>Ghi chú :</label> </td>
+                                    <td colspan="3">
+                                        <div class="form-group">
+                                            <textarea name="note" class="form-control" rows="3" placeholder="">{{ $order->note }}</textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
                         </div>
                     </form>
                 </div>
                 <!-- /.box -->
+                <div class="box">
+
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover">
+                            <tbody>
+                            <tr>
+                                <th>TT</th>
+                                <th style="max-with:200px">Tên SP</th>
+                                <th>Hình ảnh</th>
+                                <th>SKU</th>
+                                <th>Số lượng</th>
+
+                                <th>Giá</th>
+                                <th>Thành tiền</th>
+                                <th class="text-center"></th>
+                            </tr>
+                            </tbody>
+                            <!-- Lặp một mảng dữ liệu pass sang view để hiển thị -->
+                            @foreach($order->details as $key => $item)
+                                <tr class="item-{{ $item->id }}"> <!-- Thêm Class Cho Dòng -->
+                                    <td>{{ $key }}</td>
+                                    <td>
+                                        <a href="{{route('admin.product.edit', ['id'=> $item->product_id])}}">
+                                            {{ substr($item->name, 0, 50) }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @if ($item->image) <!-- Kiểm tra hình ảnh tồn tại -->
+                                            <img src="{{asset($item->image)}}" width="50" height="50">
+                                        @endif
+                                    </td>
+                                    <td>{{ $item->sku }}</td>
+                                    <td>{{ $item->qty }}</td>
+                                    <td>{{ number_format($item->price) }} đ</td>
+
+                                    <td style="color:red;">{{ number_format($item->price * $item->qty) }} đ</td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+
+                </div>
+
             </div>
-            </form>
+            <!--/.col (right) -->
         </div>
         <!-- /.row -->
     </section>
@@ -144,12 +163,33 @@
 @section('my_javascript')
     <script type="text/javascript">
         $(function () {
+            // xóa sản phẩm khỏi giỏ hàng
+            $(document).on("click", '.remove-to-cart', function () {
+                var result = confirm("Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng ?");
+                if (result) {
+                    var order_detail_id = $(this).attr('data-id');
+                    var order_id = $('#order_id').val();
 
-            // setup textarea sử dụng plugin CKeditor
-            var _ckeditor = CKEDITOR.replace('editor1');
-            _ckeditor.config.height = 500; // thiết lập chiều cao
-            var _ckeditor = CKEDITOR.replace('editor2');
-            _ckeditor.config.height = 200; // thiết lập chiều cao
+                    $.ajax({
+                        url: '/admin/order/remove-to-cart',
+                        type: 'post',
+                        data: {
+                            order_id : order_id,
+                            order_detail_id : order_detail_id
+                        }, // dữ liệu truyền sang nếu có
+                        dataType: 'json', // kiểu dữ liệu trả về
+                        success: function (response) {
+                            if (response.status == true) {
+                                // xóa dòng vừa được click delete
+                                $('.item-'+product_id).closest('tr').remove(); // class .item- ở trong class của thẻ td đã khai báo trong file index
+                            }
+                        },
+                        error: function (e) { // lỗi nếu có
+                            console.log(e.message);
+                        }
+                    });
+                }
+            });
         })
     </script>
 @endsection

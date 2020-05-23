@@ -204,6 +204,10 @@ class CartController extends GeneralController
 
             foreach ($_cart->products as $product) {
                 $_detail = new OrderDetail();
+                $_detail->name = $product['item']->name;
+                $_detail->image = $product['item']->image;
+                $_detail->sku = $product['item']->sku;
+                $_detail->user_id = $product['item']->user_id;
                 $_detail->order_id = $order->id;
                 $_detail->product_id = $product['item']->id;
                 $_detail->qty = $product['qty'];
@@ -214,7 +218,8 @@ class CartController extends GeneralController
             // Xóa thông tin giỏ hàng Hiện tại
             $request->session()->forget('cart');
 
-            return redirect()->route('shop.cart.checkout')->with('msg', 'Cảm ơn bạn đã đặt hàng. Mã đơn hàng của bạn : #'.$order->code);
+            return redirect()->route('shop.cart.checkout')
+                             ->with('msg', 'Cảm ơn bạn đã đặt hàng. Mã đơn hàng của bạn : #'.$order->code);
         }
     }
 }

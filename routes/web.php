@@ -43,7 +43,7 @@ Route::get('/admin/logout', 'AdminController@logout')->name('admin.logout');
 
 Route::post('/admin/postLogin', 'AdminController@postLogin')->name('admin.postLogin');
 
-Route::group(['prefix' => 'admin','as' => 'admin.' ], function() {
+Route::group(['prefix' => 'admin','as' => 'admin.' ,'middleware' => ['checkLogin']], function() {
 
     Route::get('/', 'AdminController@index')->name('dashboard');
     Route::resource('category', 'CategoryController');
@@ -58,6 +58,8 @@ Route::group(['prefix' => 'admin','as' => 'admin.' ], function() {
     Route::resource('user', 'UserController');
 
     // Ql Đơn hàng
+    Route::post('order/remove-to-cart', 'OrderController@removeToCart')->name('order.remove');
+
     Route::resource('order', 'OrderController');
 });
 
