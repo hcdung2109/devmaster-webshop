@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2020 at 09:33 PM
+-- Generation Time: May 24, 2020 at 09:59 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -20,6 +20,41 @@ SET time_zone = "+00:00";
 --
 -- Database: `webshop`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `articles`
+--
+
+CREATE TABLE `articles` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `summary` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type` int(11) DEFAULT NULL,
+  `position` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_active` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `meta_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `meta_description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `articles`
+--
+
+INSERT INTO `articles` (`id`, `title`, `slug`, `image`, `summary`, `description`, `type`, `position`, `status`, `url`, `is_active`, `user_id`, `meta_title`, `meta_description`, `created_at`, `updated_at`) VALUES
+(1, 'Săn hàng siêu rẻ: Smartphone giảm giá cả triệu đồng', 'san-hang-sieu-re-smartphone-giam-gia-ca-trieu-dong', 'uploads/article/1590291182_anh-bai-viet.png', '<p>Trong tầm gi&aacute; chỉ 3 triệu đồng, bạn lăn tăn kh&ocirc;ng biết liệu c&oacute; chiếc m&aacute;y t&iacute;nh bảng n&agrave;o đủ tốt để đ&aacute;p ứng được nhu cầu sử dụng h&agrave;ng ng&agrave;y của m&igrave;nh? Một số người m&aacute;ch bạn về những sản phẩm&nbsp;</p>', '<p>Săn h&agrave;ng si&ecirc;u rẻ: Smartphone giảm gi&aacute; cả triệu đồng</p>', 1, 1, NULL, NULL, 1, NULL, NULL, NULL, '2020-05-23 20:33:02', '2020-05-23 23:29:13'),
+(2, 'Mua iPad uy tín – Hãy tới ngay Di Động Thông Minh – 1 đổi 1 trong 45 ngày.', 'mua-ipad-uy-tin-hay-toi-ngay-di-dong-thong-minh-1-doi-1-trong-45-ngay', 'uploads/article/1590293144_91632604_2605838396315776_3847475903265243136_n.jpg', '<p>Bạn đang gặp phải vấn để mắt th&acirc;m quầng do d&ugrave;ng điện thoại nhiều? Đừng lo lắng, hiện nay, đ&atilde; c&oacute; giải ph&aacute;p kem mắt vi kim IDENEL cực hiệu quả d&agrave;nh cho bạn. Sản phẩm đang được giảm gi&aacute; shock k&egrave;m qu&agrave; tặng cực khủng d&agrave;nh ri&ecirc;ng cho kh&aacute;ch h&agrave;ng Di Động Th&ocirc;ng Minh.&nbsp;</p>', '<p>Mua iPad uy t&iacute;n &ndash; H&atilde;y tới ngay Di Động Th&ocirc;ng Minh &ndash; 1 đổi 1 trong 45 ng&agrave;y.</p>', 1, 3, NULL, NULL, 1, NULL, 'Mua iPad uy tín – Hãy tới ngay Di Động Thông Minh – 1 đổi 1 trong 45 ngày.', 'Mua iPad uy tín – Hãy tới ngay Di Động Thông Minh – 1 đổi 1 trong 45 ngày.', '2020-05-23 20:33:29', '2020-05-23 23:28:57'),
+(4, 'Realme X3 SuperZoom: Smartphone khuynh đảo phân khúc tầm trung', 'realme-x3-superzoom-smartphone-khuynh-dao-phan-khuc-tam-trung', 'uploads/article/1590296430_realme-x3-super-zoom-mat-lung.jpg', '<p>iPhone 11 Pro Max hiện vẫn đang l&agrave; một trong những chiếc smartphone tốt nhất thế giới ở thời điểm hiện tại. Trong b&agrave;i viết n&agrave;y, m&igrave;nh sẽ chia sẻ cho c&aacute;c bạn một chiếc iPhone 11 Pro Max gi&aacute; rẻ m&agrave; nếu mua n&oacute;,&nbsp;</p>', '<h2><a href=\"https://didongthongminh.vn/ban-tin-cong-nghe/realme-x3-superzoom-smartphone-khuynh-dao-phan-khuc-tam-trung\">Realme X3 SuperZoom: Smartphone khuynh đảo ph&acirc;n kh&uacute;c tầm trung</a></h2>', 1, 0, NULL, NULL, 1, NULL, NULL, NULL, '2020-05-23 22:00:30', '2020-05-23 23:30:32'),
+(5, 'Lời 7 triệu khi mua iPhone 11 Pro Max bản quốc tế này?', 'loi-7-trieu-khi-mua-iphone-11-pro-max-ban-quoc-te-nay', 'uploads/article/1590296459_iphone-11-pro-max-cu-mat-lung-3-1.png', '<p>Khi thị trường sản phẩm c&ocirc;ng nghệ trở n&ecirc;n b&atilde;o h&ograve;a, nhu cầu sở hữu smartphone của người d&ugrave;ng kh&ocirc;ng đơn thuần chỉ l&agrave; một thiết bị đ&aacute;p ứng tốt mục đ&iacute;ch sử dụng thường ng&agrave;y m&agrave; họ cần nhiều hơn thế.&nbsp;</p>', '<p>Khi thị trường sản phẩm c&ocirc;ng nghệ trở n&ecirc;n b&atilde;o h&ograve;a, nhu cầu sở hữu smartphone của người d&ugrave;ng kh&ocirc;ng đơn thuần chỉ l&agrave; một thiết bị đ&aacute;p ứng tốt mục đ&iacute;ch sử dụng thường ng&agrave;y m&agrave; họ cần nhiều hơn thế. Họ muốn sản phẩm điện thoại đ&oacute; phải tr&ocirc;ng sao thật bắt mắt, mức gi&aacute; sao cho thật dễ chịu v&agrave; điều quan trọng l&agrave; phải tạo được &ldquo;chất&rdquo; ri&ecirc;ng. Liệu smartphone n&agrave;o mới c&oacute; thể xuất sắc đ&aacute;p ứng ngần ấy y&ecirc;u cầu từ ph&iacute;a người d&ugrave;ng? C&acirc;u trả lời chỉ c&oacute; thể l&agrave; Realme X3 SuperZoom ch&iacute;nh h&atilde;ng m&agrave; th&ocirc;i. Dưới đ&acirc;y, b&agrave;i đ&aacute;nh gi&aacute; chi tiết sản phẩm của Di Động Th&ocirc;ng Minh sẽ gi&uacute;p bạn kh&aacute;m ph&aacute; những đặc trưng cấu h&igrave;nh nổi bật đ&oacute;.&nbsp;</p>\r\n\r\n<p><img alt=\"Realme X3 SuperZoom chính hãng\" src=\"https://cdn.didongthongminh.vn/upload_images/2019/05/realme-x3-super-zoom-mat-lung.jpg\" /></p>\r\n\r\n<p><em>Đ&aacute;nh gi&aacute; Realme X3 SuperZoom: Smartphone khuynh đảo thị trường tầm trung&nbsp;</em></p>\r\n\r\n<h2><strong>Realme X3 SuperZoom: Smartphone khuynh đảo thị trường tầm trung&nbsp;</strong></h2>\r\n\r\n<p>Realme X3 SuperZoom &ndash; smartphone khuynh đảo thị trường tầm trung, chất kh&ocirc;ng thể chất hơn với trang bị camera tầm cỡ, khả năng si&ecirc;u Zoom, si&ecirc;u lấy n&eacute;t, nức l&ograve;ng người d&ugrave;ng. B&ecirc;n cạnh đ&oacute;, c&ograve;n rất nhiều điều th&uacute; vị g&oacute;p phần l&agrave;m n&ecirc;n một X3 SuperZoom huyền thoại vạn người m&ecirc;. Ch&uacute;ng ta c&ugrave;ng t&igrave;m hiểu ngay trong phần nội dung tiếp theo nh&eacute;!</p>\r\n\r\n<p><strong>Hệ thống camera si&ecirc;u zoom, si&ecirc;u lấy n&eacute;t đỉnh cao</strong></p>\r\n\r\n<p><img alt=\"Realme X3 SuperZoom chính hãng\" src=\"https://cdn.didongthongminh.vn/upload_images/2019/05/realme-x3-super-zoom-camera.jpg\" /></p>\r\n\r\n<p><em>Realme x3 SuperZoom sở hữu 4 camera sau 64MP cực đỉnh</em></p>\r\n\r\n<p>Cuộc sống hiện đại cuốn con người v&agrave;o những đam m&ecirc; v&agrave; kh&aacute;t vọng mới. Sự ph&aacute;t triển kh&ocirc;ng ngừng của nền kinh tế thị trường n&acirc;ng cao đời sống mỗi người d&acirc;n to&agrave;n thế giới v&agrave; từ đ&oacute;, trải nghiệm hưởng thụ của người d&ugrave;ng cũng n&acirc;ng l&ecirc;n r&otilde; n&eacute;t. Với giới trẻ, họ đam m&ecirc; nghệ thuật v&agrave; s&aacute;ng tạo cao, do đ&oacute; lấy nguồn cảm hứng từ người d&ugrave;ng trẻ, Realme mang đến sự đầu tư thi&ecirc;n về camera tr&ecirc;n m&aacute;y. Trong đ&oacute;:</p>\r\n\r\n<ul>\r\n	<li>Camera selfie k&eacute;p: 32MP, 8MP</li>\r\n	<li>Bộ tứ camera sau: 64MP, 8MP, 8MP, 2MP</li>\r\n</ul>\r\n\r\n<p>X3 SuperZoom hội tụ đầy đủ tất cả những g&igrave; được coi l&agrave; vượt trội nhất, đỉnh cao nhất d&agrave;nh cho thiết kế camera tr&ecirc;n smartphone đương thời, về cả chất lượng v&agrave; số lượng. Trong đ&oacute;, camera selfie g&oacute;c rộng cho ph&eacute;p chụp ảnh tự sướng g&oacute;c h&igrave;nh rộng lớn, khung cảnh v&agrave; đối tượng ấn tượng. C&aacute;c ống k&iacute;nh tại mặt sau gồm: ống k&iacute;nh g&oacute;c rộng 119 độ, cảm biến ch&iacute;nh, camera macro v&agrave; camera tele dễ d&agrave;ng đ&aacute;p ứng mọi y&ecirc;u cầu chụp ảnh của người d&ugrave;ng. Kh&ocirc;ng những thế, m&aacute;y được trang bị t&iacute;nh năng si&ecirc;u lấy n&eacute;t, si&ecirc;u zoom, khả năng zoom quang 5x hứa hẹn những trải nghiệm th&uacute; vị, hỗ trợ tốt nhất cho người d&ugrave;ng.</p>\r\n\r\n<p><strong>Sức mạnh chip Snapdragon 855+ của nh&agrave; sản xuất Qualcomm lừng danh&nbsp;</strong></p>\r\n\r\n<p><img alt=\"\" src=\"https://cdn.didongthongminh.vn/upload_images/2019/05/snapdragon-855.jpg\" /></p>\r\n\r\n<p><em>Realme X3 SuperZoom trang bị chip Snapdragon 855+ lừng danh của Qualcomm</em></p>\r\n\r\n<p>Với vi xử l&yacute; trang bị tr&ecirc;n&nbsp;<a href=\"https://didongthongminh.vn/realme-x3-super-zoom-12gb-256gb-chinh-hang\"><em><strong>Realme X3 SuperZoom</strong></em></a>, c&acirc;u hỏi đặt ra l&agrave;: Tại sao kh&ocirc;ng l&agrave; Snapdragon 865 m&agrave; lại l&agrave; Snapdragon 855+? Tất nhi&ecirc;n, điều g&igrave; xảy ra cũng đều c&oacute; l&yacute; do của n&oacute;. Việc lựa chọn chip Snapdragon 855+ l&agrave; quyết định thể hiện sự kh&eacute;o l&eacute;o của Realme, vừa đảm bảo hiệu năng mạnh mẽ cho thiết bị, vừa c&oacute; thể giảm bớt chi ph&iacute; sản xuất ở mức thấp nhất, tạo điều kiện tốt nhất cho người d&ugrave;ng trong khoảng t&agrave;i ch&iacute;nh phải chăng để giấc mơ về smartphone cấu h&igrave;nh cao mức gi&aacute; phổ th&ocirc;ng trở th&agrave;nh hiện thực.&nbsp;</p>\r\n\r\n<p>So với Snapdragon 865, con chip mang số hiệu 855+ cấu tạo 8 nh&acirc;n n&agrave;y của Qualcomm kh&ocirc;ng hề l&eacute;p vế, n&oacute; được định h&igrave;nh l&agrave; chipset h&agrave;ng đầu d&agrave;nh ri&ecirc;ng cho d&ograve;ng flagship. Do đ&oacute;, sức mạnh hiệu năng n&oacute; mang đến tr&ecirc;n thực tế, khi được t&iacute;ch hợp c&ugrave;ng Adreno 640 (700 MHz), Android 10, Realme UI l&agrave; v&ocirc; song, khuynh đảo ph&acirc;n kh&uacute;c.&nbsp;</p>\r\n\r\n<h2>&nbsp;</h2>', 1, 2, NULL, NULL, 1, NULL, 'Lời 7 triệu khi mua iPhone 11 Pro Max bản quốc tế này?', 'Lời 7 triệu khi mua iPhone 11 Pro Max bản quốc tế này?', '2020-05-23 22:00:59', '2020-05-24 00:00:45');
 
 -- --------------------------------------------------------
 
@@ -205,13 +240,15 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fullname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `discount` int(11) DEFAULT 0,
   `note` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `coupon_id` int(11) DEFAULT 0,
+  `coupon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0',
   `total` int(11) DEFAULT 0,
   `member_id` int(11) DEFAULT 0,
   `order_status_id` int(11) DEFAULT 0,
@@ -224,8 +261,13 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `name`, `email`, `address`, `phone`, `discount`, `note`, `coupon_id`, `total`, `member_id`, `order_status_id`, `payment_id`, `created_at`, `updated_at`) VALUES
-(9, 'Hoàng Công Dũng', 'dungthuy2109@gmail.com', 'HN', '0986346007', 0, NULL, 0, 25970000, 0, 1, 0, '2020-05-19 12:18:21', '2020-05-19 12:18:21');
+INSERT INTO `orders` (`id`, `code`, `fullname`, `email`, `address`, `address2`, `phone`, `discount`, `note`, `coupon`, `total`, `member_id`, `order_status_id`, `payment_id`, `created_at`, `updated_at`) VALUES
+(9, NULL, 'Hoàng Công Dũng', 'dungthuy2109@gmail.com', 'HN', NULL, '0986346007', 0, NULL, '0', 25970000, 0, 4, 0, '2020-05-19 12:18:21', '2020-05-19 12:18:21'),
+(10, NULL, 'Hoàng Công Dũng', 'hcdung2109@gmail.com', 'HN', NULL, '0986346006', 11395000, 'AB', 'SHOP-K2', 22790000, 0, 1, 0, '2020-05-20 09:55:45', '2020-05-20 09:55:45'),
+(11, 'DH-11-20052020', 'Trần Thuỷ', 'thuthuy@gmail.com', 'Long Biên , Hà nội', NULL, '0986346008', 3995000, 'ko', 'SHOP-K2', 7990000, 0, 1, 0, '2020-05-20 11:01:38', '2020-05-20 11:01:38'),
+(12, 'DH-12-21052020', 'Trần Thuỷ', 'dungthuy2109@gmail.com', 'HN', NULL, '0986346008', 0, NULL, NULL, 15980000, 0, 1, 0, '2020-05-21 07:41:24', '2020-05-21 07:41:24'),
+(13, 'DH-13-21052020', 'Trần Thuỷ', 'dungthuy2109@gmail.com', 'HN', NULL, '0986346008', 0, NULL, NULL, 15980000, 0, 2, 0, '2020-05-21 07:42:09', '2020-05-21 07:42:09'),
+(14, 'DH-14-23052020', 'Trần Thuỷ', 'hcdung2109@gmail.com', 'Bắc Ninh', 'fdfd', '0986346008', 0, 'kfdsfsdf', NULL, 23390000, 0, 4, 0, '2020-05-23 00:30:46', '2020-05-24 00:53:51');
 
 -- --------------------------------------------------------
 
@@ -235,6 +277,10 @@ INSERT INTO `orders` (`id`, `name`, `email`, `address`, `phone`, `discount`, `no
 
 CREATE TABLE `order_detail` (
   `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sku` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `price` int(11) NOT NULL,
@@ -245,9 +291,15 @@ CREATE TABLE `order_detail` (
 -- Dumping data for table `order_detail`
 --
 
-INSERT INTO `order_detail` (`id`, `order_id`, `product_id`, `price`, `qty`) VALUES
-(2, 9, 43, 17980000, 2),
-(3, 9, 30, 7990000, 1);
+INSERT INTO `order_detail` (`id`, `name`, `image`, `sku`, `user_id`, `order_id`, `product_id`, `price`, `qty`) VALUES
+(2, NULL, NULL, '', NULL, 9, 43, 17980000, 2),
+(3, NULL, NULL, '', NULL, 9, 30, 7990000, 1),
+(4, NULL, NULL, '', NULL, 10, 30, 7990000, 1),
+(5, NULL, NULL, '', NULL, 10, 44, 14800000, 2),
+(6, NULL, NULL, '', NULL, 11, 30, 7990000, 1),
+(7, 'Iphone 7 Plus 32GB - NEW', 'uploads/product/1584949065_iphone-7-plus-gold-400x460-400x460.png', NULL, 0, 13, 30, 15980000, 2),
+(8, 'Apple Watch S5 LTE 40mm viền nhôm dây cao su', 'uploads/product/1586667604_apple-watch-s5-lte-40mm-vien-nhom-day-cao-su-ava-400x400.jpg', NULL, 0, 14, 50, 2900000, 1),
+(9, 'ASUS ROG Phone 2 512GB', 'uploads/product/1584948535__600x600__crop_600_asus_rog_phone2_min_1.jpg', NULL, 0, 14, 28, 20490000, 1);
 
 -- --------------------------------------------------------
 
@@ -303,6 +355,8 @@ CREATE TABLE `products` (
   `category_id` int(11) NOT NULL DEFAULT 0,
   `url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sku` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `color` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `memory` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `brand_id` int(11) NOT NULL DEFAULT 0,
   `vendor_id` int(11) NOT NULL DEFAULT 0,
   `summary` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -318,54 +372,71 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `slug`, `image`, `stock`, `price`, `sale`, `position`, `is_active`, `is_hot`, `views`, `category_id`, `url`, `sku`, `brand_id`, `vendor_id`, `summary`, `description`, `meta_title`, `meta_description`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'Iphone 11 128GB Chính hãng (VN/A)', 'iphone-11-128gb-chinh-hang-vna', 'uploads/product/1584936264_iphone11-purple-select-2019.png', 10, 23990000, 22190000, 1, 1, 1, 0, 1, 'https://cellphones.com.vn/iphone-11-128gb.html', NULL, 6, 4, NULL, NULL, NULL, NULL, 0, '2020-03-22 21:04:24', '2020-03-22 21:04:24'),
-(2, 'Iphone 11 Pro Max 512GB Chính hãng (VN/A)', 'iphone-11-pro-max-512gb-chinh-hang-vna', 'uploads/product/1584936455_iphone-11-pro-max-gold-select-2019.jpg', 20, 43990000, 38990000, 2, 1, 1, 0, 1, 'https://cellphones.com.vn/iphone-11-pro-max-512gb.html', NULL, 6, 4, NULL, NULL, NULL, NULL, 0, '2020-03-22 21:07:35', '2020-03-22 21:07:35'),
-(3, 'Iphone 11 256GB Chính hãng (VN/A)', 'iphone-11-256gb-chinh-hang-vna', 'uploads/product/1584936584_iphone11-red-select-2019.jpg', 15, 25990000, 24990000, 3, 1, 0, 0, 1, 'https://cellphones.com.vn/iphone-11-256gb.html', NULL, 6, 4, NULL, NULL, NULL, NULL, 0, '2020-03-22 21:09:44', '2020-03-22 21:09:44'),
-(4, 'Iphone 11 Pro 256GB Chính hãng (VN/A)', 'iphone-11-pro-256gb-chinh-hang-vna', 'uploads/product/1584936656_iphone-11-pro-max-space-select-2019.jpg', 30, 34990000, 31990000, 4, 1, 0, 0, 1, NULL, NULL, 6, 4, NULL, NULL, NULL, NULL, 0, '2020-03-22 21:10:56', '2020-03-22 21:11:04'),
-(5, 'Samsung Galaxy S20+ (Plus)', 'samsung-galaxy-s20-plus', 'uploads/product/1584936729_ss-20-plus-6.jpg', 50, 23990000, 19990000, 5, 1, 1, 0, 1, 'https://cellphones.com.vn/samsung-galaxy-s20-plus.html', NULL, 5, 4, NULL, NULL, NULL, NULL, 0, '2020-03-22 21:12:09', '2020-03-22 21:12:09'),
-(6, 'Iphone X 64GB Chính hãng (VN/A)', 'iphone-x-64gb-chinh-hang-vna', 'uploads/product/1584936812_iphone_x_64gb.jpg', 25, 19500000, 16990000, 6, 1, 0, 0, 1, 'https://didongviet.vn/iphone-x', NULL, 6, 5, NULL, NULL, NULL, NULL, 0, '2020-03-22 21:13:32', '2020-03-22 21:13:32'),
-(7, 'Iphone Xs Max 256GB Chính hãng (VN/A)', 'iphone-xs-max-256gb-chinh-hang-vna', 'uploads/product/1584936905_iphone_xs_max_256gb.jpg', 22, 19990000, 17499000, 7, 1, 1, 0, 1, 'https://didongviet.vn/iphone-xs-xs-max', NULL, 6, 5, NULL, NULL, NULL, NULL, 0, '2020-03-22 21:15:05', '2020-03-22 21:15:05'),
-(8, 'Samsung Galaxy A71', 'samsung-galaxy-a71', 'uploads/product/1584946189_600_samsung-galaxy-a71_1_1.jpg', 29, 10490000, 9490000, 8, 1, 1, 0, 1, 'https://fptshop.com.vn/dien-thoai/samsung-galaxy-a71', NULL, 5, 8, NULL, NULL, NULL, NULL, 0, '2020-03-22 23:49:49', '2020-03-22 23:49:49'),
-(9, 'Iphone Xr 64GB', 'iphone-xr-64gb', 'uploads/product/1584946258_iphone_xr_64gb.jpg', 13, 16990000, 15990000, 9, 1, 0, 0, 1, 'https://fptshop.com.vn/dien-thoai/iphone-xr-64gb', NULL, 6, 8, NULL, NULL, NULL, NULL, 0, '2020-03-22 23:50:58', '2020-03-22 23:50:58'),
-(10, 'Vsmart Active 3 6GB-64GB', 'vsmart-active-3-6gb-64gb', 'uploads/product/1584946508_Vsmart-active-3-black-1.jfif', 5, 4490000, 3990000, 10, 1, 1, 0, 1, 'https://fptshop.com.vn/dien-thoai/vsmart-active-3-6gb-64gb', NULL, 13, 8, NULL, NULL, NULL, NULL, 0, '2020-03-22 23:55:08', '2020-03-22 23:55:08'),
-(11, 'Xiaomi Mi Note 10 Pro', 'xiaomi-mi-note-10-pro', 'uploads/product/1584946581_xiaomi-mi-note-10-pro-black-400x460.png', 7, 14990000, 13990000, 11, 1, 0, 0, 1, 'https://www.thegioididong.com/dtdd/xiaomi-mi-note-10-pro', NULL, 7, 6, NULL, NULL, NULL, NULL, 0, '2020-03-22 23:56:21', '2020-03-22 23:56:21'),
-(12, 'Oppo Reno 2F', 'oppo-reno-2f', 'uploads/product/1584946658_oppo-reno2-f-400x460.png', 10, 8990000, 7990000, 12, 1, 0, 0, 1, 'https://www.thegioididong.com/dtdd/oppo-reno2-f', NULL, 9, 6, NULL, NULL, NULL, NULL, 0, '2020-03-22 23:57:38', '2020-03-22 23:57:38'),
-(13, 'Macbook Pro 16 inch 2019 (MVVJ2/ MVVL2) – Core i7/ 16Gb/ 512GB – NEW', 'macbook-pro-16-inch-2019-mvvj2-mvvl2-core-i7-16gb-512gb-new', 'uploads/product/1584947146_macpro16_2019.jfif', 5, 57500000, 57500000, 13, 1, 1, 0, 4, 'https://macone.vn/macbook-pro-16-inch-2019-mvvj2-mvvl2-core-i7-16gb-512gb-new/', NULL, 6, 9, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:05:46', '2020-03-23 00:05:46'),
-(14, 'iMac 2019 27 inch Retina 5K MRR12 – New (Full VAT)', 'imac-2019-27-inch-retina-5k-mrr12-new-full-vat', 'uploads/product/1584947228_imac27inch2019.jfif', 2, 57990000, 57990000, 14, 1, 0, 0, 4, 'https://macone.vn/imac-2019-27inch-retina-5k-mrr12-new/', 'kajima0420', 6, 9, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:07:08', '2020-03-23 00:07:08'),
-(15, 'Apple Watch Series 5 GPS (Nhôm/40mm) – New', 'apple-watch-series-5-gps-nhom40mm-new', 'uploads/product/1584947328_apple_watch_series_5.jpg', 28, 10490000, 10790000, 15, 1, 1, 0, 6, 'https://macone.vn/apple-watch-series-5-gps-nhom-40mm-new/', NULL, 6, 9, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:08:48', '2020-03-23 00:08:48'),
-(16, 'Apple Watch Series 5 GPS + Cellular ( Thép/40mm/Sport )', 'apple-watch-series-5-gps-cellular-thep40mmsport', 'uploads/product/1584947401_apple_watch_series_5_gps_celluar.jpg', 15, 19500000, 18990000, 16, 1, 1, 0, 6, 'https://macone.vn/apple-watch-series-5-gps-cellular-thep-40mm-sport-new/', NULL, 6, 9, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:10:01', '2020-03-23 00:10:01'),
-(17, 'Apple Watch Series 3 GPS (Nhôm/38mm) – New', 'apple-watch-series-3-gps-nhom38mm-new', 'uploads/product/1586667523_apple-watch-3-phien-ban-38-mm-400x400.jpg', 1, 6300000, 5490000, 17, 1, 0, 0, 6, NULL, NULL, 6, 9, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:11:04', '2020-04-11 21:58:43'),
-(18, 'Macbook Air 13 inch 2019 – Core i5 128GB 8GB RAM – NEW', 'macbook-air-13-inch-2019-core-i5-128gb-8gb-ram-new', 'uploads/product/1584947569_mac_air_2019.jpg', 6, 26790000, 26490000, 18, 1, 1, 0, 4, 'https://macone.vn/macbook-air-13-inch-2019-core-i5-128gb-8gb-ram-new-2/', 'sdtpcmt', 6, 9, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:12:49', '2020-03-23 00:12:49'),
-(19, 'Samsung Galaxy Watch 42mm', 'samsung-galaxy-watch-42mm', 'uploads/product/1584947672_dong-ho-thong-minh-samsung-galaxy-watch-42mm-20-20-600x600.jpg', 2, 6990000, 6990000, 19, 1, 0, 0, 6, 'https://www.thegioididong.com/dong-ho-thong-minh/samsung-galaxy-watch-42mm', '0', 5, 6, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:14:32', '2020-03-23 00:14:32'),
-(20, 'Mi Band 4', 'mi-band-4', 'uploads/product/1584947723_mi-band-4-6-600x600.jpg', 5, 850000, 750000, 20, 1, 0, 0, 6, 'https://www.thegioididong.com/dong-ho-thong-minh/mi-band-4', NULL, 7, 6, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:15:23', '2020-03-23 00:15:23'),
-(21, 'Apple AirPods 2 VN/A', 'apple-airpods-2-vna', 'uploads/product/1584947820_apple airpods 2.jpg', 30, 5900000, 3650000, 21, 1, 1, 0, 20, 'https://cellphones.com.vn/apple-airpods-2.html', NULL, 6, 4, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:17:00', '2020-03-23 00:17:00'),
-(22, 'Airpods Pro', 'airpods-pro', 'uploads/product/1584947890_637094271123296138_HASP-00629662-1.jfif', 50, 7390000, 7390000, 22, 1, 1, 0, 20, 'https://fptshop.com.vn/phu-kien/apple-tai-nghe-airpods-pro', NULL, 6, 8, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:18:10', '2020-03-23 00:18:10'),
-(23, 'Galaxy Buds', 'galaxy-buds', 'uploads/product/1584947979_galaxy buds.jpg', 10, 4490000, 2390000, 23, 1, 0, 0, 20, 'https://cellphones.com.vn/tai-nghe-bluetooth-samsung-galaxy-buds.html?gclid=CjwKCAjwvOHzBRBoEiwA48i6Ap-1Plvl5J3-xCX-1Kg_DJ22VnDsC6ZH1rQoNzDtwhMkWq698MjRDhoCxvAQAvD_BwE', NULL, 5, 4, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:19:39', '2020-03-23 00:19:39'),
-(24, 'LAPTOP DELL INSPRION 7591 KJ2G41(I7 9750H 8GB / 256GB SSD/15.6FHD / VGA 3GB / Win 10 / Bạc)', 'laptop-dell-insprion-7591-kj2g41i7-9750h-8gb-256gb-ssd156fhd-vga-3gb-win-10-bac', 'uploads/product/1584948108_30089_laptop_dell_inspiron_15_7591_kj2g41_1.jpg', 10, 29990000, 2890000, 24, 1, 1, 0, 4, 'https://cellphones.com.vn/laptop-dell-insprion-7591-kj2g41-core-i7-9750h-ram-8gb-ssd-256gb-15-6inch-fhd-vga-3gb.html', NULL, 8, 4, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:21:48', '2020-03-23 00:21:48'),
-(25, 'Headphones chống ồn Sony WH-1000XM3', 'headphones-chong-on-sony-wh-1000xm3', 'uploads/product/1584948293_2068_tai_nghe_bluetooth_sony_wh_1000xm3__1__1_1.jpg', 5, 8490000, 6490000, 25, 1, 0, 0, 20, 'https://cellphones.com.vn/tai-nghe-khong-day-chong-on-sony-wh-1000-xm3.html', '0', 10, 4, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:24:53', '2020-03-23 00:24:53'),
-(26, 'Samsung Galaxy S20 Ultra', 'samsung-galaxy-s20-ultra', 'uploads/product/1584948393_600_samsung-galaxy-s20-ultra-5g.jpg', 35, 29990000, 25099000, 26, 1, 1, 0, 1, 'https://cellphones.com.vn/samsung-galaxy-s20-ultra.html?gclid=CjwKCAjwvOHzBRBoEiwA48i6ApklPr0_OfD-XUHmI6USZ7UdLMH2PMvZrHPgb4XFBPUCnH1SlnIiqxoCf3AQAvD_BwE', NULL, 5, 4, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:26:33', '2020-03-23 00:26:33'),
-(27, 'Asus Zenbook UX333FA-A4011T/Core i5-8265U', 'asus-zenbook-ux333fa-a4011tcore-i5-8265u', 'uploads/product/1584948463_637020003765248380_asus-zenbook-flip-um462da-bac-2.png', 3, 21990000, 20990000, 27, 1, 0, 0, 4, 'https://fptshop.com.vn/may-tinh-xach-tay/asus-zenbook-ux333fa-a4011t-core-i5-8265u?utm_source=masoffer&traffic_id=5e7583cf9ff3670041555447&', NULL, 12, 8, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:27:43', '2020-03-23 00:27:43'),
-(28, 'ASUS ROG Phone 2 512GB', 'asus-rog-phone-2-512gb', 'uploads/product/1584948535__600x600__crop_600_asus_rog_phone2_min_1.jpg', 0, 21490000, 20490000, 28, 1, 0, 0, 1, 'https://cellphones.com.vn/asus-rog-phone-2.html?cmpid=sem_search_google&gclid=CjwKCAjwvOHzBRBoEiwA48i6AhWoww0hYgq7gdPjqqHrdL7tqJ6Gbi32VOaynb1fYSBknBNmbnmv1BoCjX4QAvD_BwE', NULL, 12, 4, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:28:55', '2020-03-23 00:28:55'),
-(29, 'Tai Nghe Gaming Logitech G Pro (Gen 2) – Hàng Chính Hãng', 'tai-nghe-gaming-logitech-g-pro-gen-2-hang-chinh-hang', 'uploads/product/1584948978_a0abb6e8532b674d4bf4847b1e0819c1.png', 2, 2890000, 1990000, 29, 1, 0, 0, 20, NULL, NULL, 11, 10, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:35:43', '2020-03-23 00:36:33'),
-(30, 'Iphone 7 Plus 32GB - NEW', 'iphone-7-plus-32gb-new', 'uploads/product/1584949065_iphone-7-plus-gold-400x460-400x460.png', 1, 8990000, 7990000, 30, 1, 0, 0, 1, 'https://www.thegioididong.com/dtdd/iphone-7-plus', NULL, 6, 6, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:37:45', '2020-03-23 00:37:45'),
-(40, 'Samsung Galaxy Tab with S Pen (P205)', 'samsung-galaxy-tab-with-s-pen-p205', 'uploads/product/1586666383_samsung-galaxy-tab-a8-plus-p205-black-400x400.jpg', 5, 6999000, 5999000, 0, 1, 0, 0, 2, NULL, NULL, 5, 6, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 21:39:43', '2020-04-11 21:39:43'),
-(41, 'iPad Mini 7.9 inch Wifi 64GB (2019)', 'ipad-mini-79-inch-wifi-64gb-2019', 'uploads/product/1586666566_ipad-mini-79-inch-wifi-2019-gold-400x400.jpg', 5, 10990000, 10490000, 1, 1, 0, 0, 2, NULL, NULL, 6, 6, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 21:42:46', '2020-04-11 21:42:46'),
-(42, 'Samsung Galaxy Tab A8 8\" T295 (2019)', 'samsung-galaxy-tab-a8-8-t295-2019', 'uploads/product/1586666633_samsung-galaxy-tab-a8-plus-p205-black-400x400.jpg', 4, 4000000, 3690000, 2, 1, 0, 0, 2, NULL, NULL, 5, 0, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 21:43:53', '2020-04-11 21:47:15'),
-(43, 'iPad 10.2 inch Wifi Cellular 128GB (2019)', 'ipad-102-inch-wifi-cellular-128gb-2019', 'uploads/product/1586666700_ipad-10-2-inch-wifi-cellular-128gb-2019-gray-400x400.jpg', 2, 9760000, 8990000, 3, 1, 0, 0, 2, NULL, NULL, 6, 6, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 21:45:00', '2020-04-11 21:45:00'),
-(44, 'Huawei MediaPad M5 Lite', 'huawei-mediapad-m5-lite', 'uploads/product/1586666762_huawei-mediapad-m5-lite-gray-400x400.jpg', 3, 7900000, 7400000, 0, 1, 0, 0, 2, NULL, NULL, 5, 6, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 21:46:02', '2020-04-11 21:46:02'),
-(45, 'Acer Aspire A315 54 36QY i3 10110U (NX.HM2SV.001)', 'acer-aspire-a315-54-36qy-i3-10110u-nxhm2sv001', 'uploads/product/1586666994_acer-aspire-a315-54-36qy-i3-10110u-4gb-256gb-win10-1-400x400.jpg', 2, 10230000, 8500000, 0, 1, 0, 0, 4, NULL, NULL, 6, 6, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 21:49:54', '2020-04-11 21:49:54'),
-(46, 'Asus VivoBook A412FA i3 8145U', 'asus-vivobook-a412fa-i3-8145u', 'uploads/product/1586667066_asus-vivobook-a412f-i3-8145u-4gb-32gb-512gb-win10-400x400.jpg', 8, 7890000, 6900000, 0, 1, 0, 0, 4, NULL, 'EK661T', 5, 4, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 21:51:06', '2020-04-11 21:51:06'),
-(47, 'HP 15s du0072TX i3 7020U (8WP16PA)', 'hp-15s-du0072tx-i3-7020u-8wp16pa', 'uploads/product/1586667231_hp-15s-du0072tx-i3-7020u-4gb-256gb-2gb-mx110-win10-1-400x400.jpg', 5, 22520000, 20000000, 2, 1, 0, 0, 4, NULL, NULL, 8, 4, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 21:53:51', '2020-04-11 21:53:51'),
-(48, 'Asus VivoBook X409FA i5 8265U', 'asus-vivobook-x409fa-i5-8265u', 'uploads/product/1586667310_asus-vivobook-x409f-i5-8265u-8gb-1tb-win10-ek138t2-1-thumb-1-400x400.jpg', 2, 13800000, 12000000, 4, 1, 0, 0, 4, NULL, 'EK138T', 5, 11, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 21:55:10', '2020-04-11 21:55:10'),
-(49, 'HP 348 G7 i5 10210U (9PH06PA)', 'hp-348-g7-i5-10210u-9ph06pa', 'uploads/product/1586667371_hp-348-g7-i5-9ph06pa-218439-1-400x400.jpg', 4, 16000000, 15700000, 0, 1, 0, 0, 4, NULL, NULL, 8, 5, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 21:56:11', '2020-04-11 21:56:11'),
-(50, 'Apple Watch S5 LTE 40mm viền nhôm dây cao su', 'apple-watch-s5-lte-40mm-vien-nhom-day-cao-su', 'uploads/product/1586667604_apple-watch-s5-lte-40mm-vien-nhom-day-cao-su-ava-400x400.jpg', 2, 4000000, 2900000, 4, 1, 0, 0, 6, NULL, NULL, 6, 4, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 22:00:04', '2020-04-11 22:00:04'),
-(51, 'Daumier DM-JLW001.SLTN.8SNI.S.M - Nam - Superman', 'daumier-dm-jlw001sltn8snism-nam-superman', 'uploads/product/1586667688_daumier-dm-jlw001-sltn-8sni-s-m-nam-1-1-400x400.jpg', 3, 3500000, 2990000, 0, 1, 0, 0, 6, NULL, NULL, 15, 0, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 22:01:28', '2020-04-11 22:01:28'),
-(52, 'Pin sạc dự phòng Polymer 10.000mAh Xiaomi Mi 18W Fast Charge Power Bank 3', 'pin-sac-du-phong-polymer-10000mah-xiaomi-mi-18w-fast-charge-power-bank-3', 'uploads/product/1586667835_sac-du-phong-polymer-10000mah-xiaomi-mi-18w-den-1-400x400.jpg', 2, 4490000, 500000, 0, 1, 0, 0, 3, NULL, NULL, 15, 6, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 22:03:55', '2020-04-11 22:03:55'),
-(53, 'Loa Bluetooth eSaver S12B-2 Đen', 'loa-bluetooth-esaver-s12b-2-den', 'uploads/product/1586667890_loa-bluetooth-esaver-s12b-2-den-avatar-2-400x400.jpg', 3, 300000, 2490000, 0, 1, 0, 0, 3, NULL, NULL, 5, 5, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 22:04:50', '2020-04-11 22:04:50'),
-(54, 'Dây cáp Micro USB 1 m e.VALU LTM-01', 'day-cap-micro-usb-1-m-evalu-ltm-01', 'uploads/product/1586667963_cap-micro-1m-evalu-ltm-01-12-400x400.jpg', 2, 280000, 190000, 0, 1, 0, 0, 3, NULL, NULL, 15, 11, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 22:06:03', '2020-04-11 22:06:03'),
-(55, 'Thẻ nhớ MicroSD 32 GB Lexar class 10 UHS-I', 'the-nho-microsd-32-gb-lexar-class-10-uhs-i', 'uploads/product/1586668015_the-nho-microsd-32gb-lexar-class-10-uhs-i-5-400x400.jpg', 3, 400000, 320000, 0, 1, 0, 0, 3, NULL, NULL, 15, 0, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 22:06:55', '2020-04-11 22:06:55'),
-(56, 'Tai nghe Bluetooth Mozard Flex4 Đen Xanh', 'tai-nghe-bluetooth-mozard-flex4-den-xanh', 'uploads/product/1586668068_tai-nghe-bluetooth-mozard-flex4-den-xanh-1-600x600-1-400x400.jpg', 3, 200000, 190000, 0, 1, 0, 0, 3, NULL, NULL, 6, 11, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 22:07:48', '2020-04-11 22:07:48');
+INSERT INTO `products` (`id`, `name`, `slug`, `image`, `stock`, `price`, `sale`, `position`, `is_active`, `is_hot`, `views`, `category_id`, `url`, `sku`, `color`, `memory`, `brand_id`, `vendor_id`, `summary`, `description`, `meta_title`, `meta_description`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 'Iphone 11 128GB Chính hãng (VN/A)', 'iphone-11-128gb-chinh-hang-vna', 'uploads/product/1584936264_iphone11-purple-select-2019.png', 10, 23990000, 22190000, 1, 1, 1, 0, 1, 'https://cellphones.com.vn/iphone-11-128gb.html', NULL, NULL, NULL, 6, 4, NULL, NULL, NULL, NULL, 0, '2020-03-22 21:04:24', '2020-03-22 21:04:24'),
+(2, 'Iphone 11 Pro Max 512GB Chính hãng (VN/A)', 'iphone-11-pro-max-512gb-chinh-hang-vna', 'uploads/product/1584936455_iphone-11-pro-max-gold-select-2019.jpg', 20, 43990000, 38990000, 2, 1, 1, 0, 1, 'https://cellphones.com.vn/iphone-11-pro-max-512gb.html', NULL, NULL, NULL, 6, 4, NULL, NULL, NULL, NULL, 0, '2020-03-22 21:07:35', '2020-03-22 21:07:35'),
+(3, 'Iphone 11 256GB Chính hãng (VN/A)', 'iphone-11-256gb-chinh-hang-vna', 'uploads/product/1584936584_iphone11-red-select-2019.jpg', 15, 25990000, 24990000, 3, 1, 0, 0, 1, 'https://cellphones.com.vn/iphone-11-256gb.html', NULL, NULL, NULL, 6, 4, NULL, NULL, NULL, NULL, 0, '2020-03-22 21:09:44', '2020-03-22 21:09:44'),
+(4, 'Iphone 11 Pro 256GB Chính hãng (VN/A)', 'iphone-11-pro-256gb-chinh-hang-vna', 'uploads/product/1584936656_iphone-11-pro-max-space-select-2019.jpg', 30, 34990000, 31990000, 4, 1, 0, 0, 1, NULL, NULL, NULL, NULL, 6, 4, NULL, NULL, NULL, NULL, 0, '2020-03-22 21:10:56', '2020-03-22 21:11:04'),
+(5, 'Samsung Galaxy S20+ (Plus)', 'samsung-galaxy-s20-plus', 'uploads/product/1584936729_ss-20-plus-6.jpg', 50, 23990000, 19990000, 5, 1, 1, 0, 1, 'https://cellphones.com.vn/samsung-galaxy-s20-plus.html', NULL, NULL, NULL, 5, 4, NULL, NULL, NULL, NULL, 0, '2020-03-22 21:12:09', '2020-03-22 21:12:09'),
+(6, 'Iphone X 64GB Chính hãng (VN/A)', 'iphone-x-64gb-chinh-hang-vna', 'uploads/product/1584936812_iphone_x_64gb.jpg', 25, 19500000, 16990000, 6, 1, 0, 0, 1, 'https://didongviet.vn/iphone-x', NULL, NULL, NULL, 6, 5, NULL, NULL, NULL, NULL, 0, '2020-03-22 21:13:32', '2020-03-22 21:13:32'),
+(7, 'Iphone Xs Max 256GB Chính hãng (VN/A)', 'iphone-xs-max-256gb-chinh-hang-vna', 'uploads/product/1584936905_iphone_xs_max_256gb.jpg', 22, 19990000, 17499000, 7, 1, 1, 0, 1, 'https://didongviet.vn/iphone-xs-xs-max', NULL, NULL, NULL, 6, 5, NULL, NULL, NULL, NULL, 0, '2020-03-22 21:15:05', '2020-03-22 21:15:05'),
+(8, 'Samsung Galaxy A71', 'samsung-galaxy-a71', 'uploads/product/1584946189_600_samsung-galaxy-a71_1_1.jpg', 29, 10490000, 9490000, 8, 1, 1, 0, 1, 'https://fptshop.com.vn/dien-thoai/samsung-galaxy-a71', NULL, NULL, NULL, 5, 8, NULL, NULL, NULL, NULL, 0, '2020-03-22 23:49:49', '2020-03-22 23:49:49'),
+(9, 'Iphone Xr 64GB', 'iphone-xr-64gb', 'uploads/product/1584946258_iphone_xr_64gb.jpg', 13, 16990000, 15990000, 9, 1, 0, 0, 1, 'https://fptshop.com.vn/dien-thoai/iphone-xr-64gb', NULL, NULL, NULL, 6, 8, NULL, NULL, NULL, NULL, 0, '2020-03-22 23:50:58', '2020-03-22 23:50:58'),
+(10, 'Vsmart Active 3 6GB-64GB', 'vsmart-active-3-6gb-64gb', 'uploads/product/1584946508_Vsmart-active-3-black-1.jfif', 5, 4490000, 3990000, 10, 1, 1, 0, 1, 'https://fptshop.com.vn/dien-thoai/vsmart-active-3-6gb-64gb', NULL, NULL, NULL, 13, 8, NULL, NULL, NULL, NULL, 0, '2020-03-22 23:55:08', '2020-03-22 23:55:08'),
+(11, 'Xiaomi Mi Note 10 Pro', 'xiaomi-mi-note-10-pro', 'uploads/product/1584946581_xiaomi-mi-note-10-pro-black-400x460.png', 7, 14990000, 13990000, 11, 1, 0, 0, 1, 'https://www.thegioididong.com/dtdd/xiaomi-mi-note-10-pro', NULL, NULL, NULL, 7, 6, NULL, NULL, NULL, NULL, 0, '2020-03-22 23:56:21', '2020-03-22 23:56:21'),
+(12, 'Oppo Reno 2F', 'oppo-reno-2f', 'uploads/product/1584946658_oppo-reno2-f-400x460.png', 10, 8990000, 7990000, 12, 1, 0, 0, 1, 'https://www.thegioididong.com/dtdd/oppo-reno2-f', NULL, NULL, NULL, 9, 6, NULL, NULL, NULL, NULL, 0, '2020-03-22 23:57:38', '2020-03-22 23:57:38'),
+(13, 'Macbook Pro 16 inch 2019 (MVVJ2/ MVVL2) – Core i7/ 16Gb/ 512GB – NEW', 'macbook-pro-16-inch-2019-mvvj2-mvvl2-core-i7-16gb-512gb-new', 'uploads/product/1584947146_macpro16_2019.jfif', 5, 57500000, 57500000, 13, 1, 1, 0, 4, 'https://macone.vn/macbook-pro-16-inch-2019-mvvj2-mvvl2-core-i7-16gb-512gb-new/', NULL, NULL, NULL, 6, 9, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:05:46', '2020-03-23 00:05:46'),
+(14, 'iMac 2019 27 inch Retina 5K MRR12 – New (Full VAT)', 'imac-2019-27-inch-retina-5k-mrr12-new-full-vat', 'uploads/product/1584947228_imac27inch2019.jfif', 2, 57990000, 57990000, 14, 1, 0, 0, 4, 'https://macone.vn/imac-2019-27inch-retina-5k-mrr12-new/', 'kajima0420', NULL, NULL, 6, 9, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:07:08', '2020-03-23 00:07:08'),
+(15, 'Apple Watch Series 5 GPS (Nhôm/40mm) – New', 'apple-watch-series-5-gps-nhom40mm-new', 'uploads/product/1584947328_apple_watch_series_5.jpg', 28, 10490000, 10790000, 15, 1, 1, 0, 6, 'https://macone.vn/apple-watch-series-5-gps-nhom-40mm-new/', NULL, NULL, NULL, 6, 9, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:08:48', '2020-03-23 00:08:48'),
+(16, 'Apple Watch Series 5 GPS + Cellular ( Thép/40mm/Sport )', 'apple-watch-series-5-gps-cellular-thep40mmsport', 'uploads/product/1584947401_apple_watch_series_5_gps_celluar.jpg', 15, 19500000, 18990000, 16, 1, 1, 0, 6, 'https://macone.vn/apple-watch-series-5-gps-cellular-thep-40mm-sport-new/', NULL, NULL, NULL, 6, 9, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:10:01', '2020-03-23 00:10:01'),
+(17, 'Apple Watch Series 3 GPS (Nhôm/38mm) – New', 'apple-watch-series-3-gps-nhom38mm-new', 'uploads/product/1586667523_apple-watch-3-phien-ban-38-mm-400x400.jpg', 1, 6300000, 5490000, 17, 1, 0, 0, 6, NULL, NULL, NULL, NULL, 6, 9, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:11:04', '2020-04-11 21:58:43'),
+(18, 'Macbook Air 13 inch 2019 – Core i5 128GB 8GB RAM – NEW', 'macbook-air-13-inch-2019-core-i5-128gb-8gb-ram-new', 'uploads/product/1584947569_mac_air_2019.jpg', 6, 26790000, 26490000, 18, 1, 1, 0, 4, 'https://macone.vn/macbook-air-13-inch-2019-core-i5-128gb-8gb-ram-new-2/', 'sdtpcmt', NULL, NULL, 6, 9, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:12:49', '2020-03-23 00:12:49'),
+(19, 'Samsung Galaxy Watch 42mm', 'samsung-galaxy-watch-42mm', 'uploads/product/1584947672_dong-ho-thong-minh-samsung-galaxy-watch-42mm-20-20-600x600.jpg', 2, 6990000, 6990000, 19, 1, 0, 0, 6, 'https://www.thegioididong.com/dong-ho-thong-minh/samsung-galaxy-watch-42mm', '0', NULL, NULL, 5, 6, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:14:32', '2020-03-23 00:14:32'),
+(20, 'Mi Band 4', 'mi-band-4', 'uploads/product/1584947723_mi-band-4-6-600x600.jpg', 5, 850000, 750000, 20, 1, 0, 0, 6, 'https://www.thegioididong.com/dong-ho-thong-minh/mi-band-4', NULL, NULL, NULL, 7, 6, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:15:23', '2020-03-23 00:15:23'),
+(21, 'Apple AirPods 2 VN/A', 'apple-airpods-2-vna', 'uploads/product/1584947820_apple airpods 2.jpg', 30, 5900000, 3650000, 21, 1, 1, 0, 20, 'https://cellphones.com.vn/apple-airpods-2.html', NULL, NULL, NULL, 6, 4, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:17:00', '2020-03-23 00:17:00'),
+(22, 'Airpods Pro', 'airpods-pro', 'uploads/product/1584947890_637094271123296138_HASP-00629662-1.jfif', 50, 7390000, 7390000, 22, 1, 1, 0, 20, 'https://fptshop.com.vn/phu-kien/apple-tai-nghe-airpods-pro', NULL, NULL, NULL, 6, 8, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:18:10', '2020-03-23 00:18:10'),
+(23, 'Galaxy Buds', 'galaxy-buds', 'uploads/product/1584947979_galaxy buds.jpg', 10, 4490000, 2390000, 23, 1, 0, 0, 20, 'https://cellphones.com.vn/tai-nghe-bluetooth-samsung-galaxy-buds.html?gclid=CjwKCAjwvOHzBRBoEiwA48i6Ap-1Plvl5J3-xCX-1Kg_DJ22VnDsC6ZH1rQoNzDtwhMkWq698MjRDhoCxvAQAvD_BwE', NULL, NULL, NULL, 5, 4, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:19:39', '2020-03-23 00:19:39'),
+(24, 'LAPTOP DELL INSPRION 7591 KJ2G41(I7 9750H 8GB / 256GB SSD/15.6FHD / VGA 3GB / Win 10 / Bạc)', 'laptop-dell-insprion-7591-kj2g41i7-9750h-8gb-256gb-ssd156fhd-vga-3gb-win-10-bac', 'uploads/product/1584948108_30089_laptop_dell_inspiron_15_7591_kj2g41_1.jpg', 10, 29990000, 2890000, 24, 1, 1, 0, 4, 'https://cellphones.com.vn/laptop-dell-insprion-7591-kj2g41-core-i7-9750h-ram-8gb-ssd-256gb-15-6inch-fhd-vga-3gb.html', NULL, NULL, NULL, 8, 4, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:21:48', '2020-03-23 00:21:48'),
+(25, 'Headphones chống ồn Sony WH-1000XM3', 'headphones-chong-on-sony-wh-1000xm3', 'uploads/product/1584948293_2068_tai_nghe_bluetooth_sony_wh_1000xm3__1__1_1.jpg', 5, 8490000, 6490000, 25, 1, 0, 0, 20, 'https://cellphones.com.vn/tai-nghe-khong-day-chong-on-sony-wh-1000-xm3.html', '0', NULL, NULL, 10, 4, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:24:53', '2020-03-23 00:24:53'),
+(26, 'Samsung Galaxy S20 Ultra', 'samsung-galaxy-s20-ultra', 'uploads/product/1584948393_600_samsung-galaxy-s20-ultra-5g.jpg', 35, 29990000, 25099000, 26, 1, 1, 0, 1, 'https://cellphones.com.vn/samsung-galaxy-s20-ultra.html?gclid=CjwKCAjwvOHzBRBoEiwA48i6ApklPr0_OfD-XUHmI6USZ7UdLMH2PMvZrHPgb4XFBPUCnH1SlnIiqxoCf3AQAvD_BwE', NULL, NULL, NULL, 5, 4, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:26:33', '2020-03-23 00:26:33'),
+(27, 'Asus Zenbook UX333FA-A4011T/Core i5-8265U', 'asus-zenbook-ux333fa-a4011tcore-i5-8265u', 'uploads/product/1584948463_637020003765248380_asus-zenbook-flip-um462da-bac-2.png', 3, 21990000, 20990000, 27, 1, 0, 0, 4, 'https://fptshop.com.vn/may-tinh-xach-tay/asus-zenbook-ux333fa-a4011t-core-i5-8265u?utm_source=masoffer&traffic_id=5e7583cf9ff3670041555447&', NULL, NULL, NULL, 12, 8, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:27:43', '2020-03-23 00:27:43'),
+(28, 'ASUS ROG Phone 2 512GB', 'asus-rog-phone-2-512gb', 'uploads/product/1584948535__600x600__crop_600_asus_rog_phone2_min_1.jpg', 0, 21490000, 20490000, 28, 1, 0, 0, 1, 'https://cellphones.com.vn/asus-rog-phone-2.html?cmpid=sem_search_google&gclid=CjwKCAjwvOHzBRBoEiwA48i6AhWoww0hYgq7gdPjqqHrdL7tqJ6Gbi32VOaynb1fYSBknBNmbnmv1BoCjX4QAvD_BwE', NULL, NULL, NULL, 12, 4, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:28:55', '2020-03-23 00:28:55'),
+(29, 'Tai Nghe Gaming Logitech G Pro (Gen 2) – Hàng Chính Hãng', 'tai-nghe-gaming-logitech-g-pro-gen-2-hang-chinh-hang', 'uploads/product/1584948978_a0abb6e8532b674d4bf4847b1e0819c1.png', 2, 2890000, 1990000, 29, 1, 0, 0, 20, NULL, NULL, NULL, NULL, 11, 10, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:35:43', '2020-03-23 00:36:33'),
+(30, 'Iphone 7 Plus 32GB - NEW', 'iphone-7-plus-32gb-new', 'uploads/product/1584949065_iphone-7-plus-gold-400x460-400x460.png', 1, 8990000, 7990000, 30, 1, 0, 0, 1, 'https://www.thegioididong.com/dtdd/iphone-7-plus', NULL, NULL, NULL, 6, 6, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:37:45', '2020-03-23 00:37:45'),
+(40, 'Samsung Galaxy Tab with S Pen (P205)', 'samsung-galaxy-tab-with-s-pen-p205', 'uploads/product/1586666383_samsung-galaxy-tab-a8-plus-p205-black-400x400.jpg', 5, 6999000, 5999000, 0, 1, 0, 0, 2, NULL, NULL, NULL, NULL, 5, 6, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 21:39:43', '2020-04-11 21:39:43'),
+(41, 'iPad Mini 7.9 inch Wifi 64GB (2019)', 'ipad-mini-79-inch-wifi-64gb-2019', 'uploads/product/1586666566_ipad-mini-79-inch-wifi-2019-gold-400x400.jpg', 5, 10990000, 10490000, 1, 1, 0, 0, 2, NULL, NULL, NULL, NULL, 6, 6, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 21:42:46', '2020-04-11 21:42:46'),
+(42, 'Samsung Galaxy Tab A8 8\" T295 (2019)', 'samsung-galaxy-tab-a8-8-t295-2019', 'uploads/product/1586666633_samsung-galaxy-tab-a8-plus-p205-black-400x400.jpg', 4, 4000000, 3690000, 2, 1, 0, 0, 2, NULL, NULL, NULL, NULL, 5, 0, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 21:43:53', '2020-04-11 21:47:15'),
+(43, 'iPad 10.2 inch Wifi Cellular 128GB (2019)', 'ipad-102-inch-wifi-cellular-128gb-2019', 'uploads/product/1586666700_ipad-10-2-inch-wifi-cellular-128gb-2019-gray-400x400.jpg', 2, 9760000, 8990000, 3, 1, 0, 0, 2, NULL, NULL, NULL, NULL, 6, 6, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 21:45:00', '2020-04-11 21:45:00'),
+(44, 'Huawei MediaPad M5 Lite', 'huawei-mediapad-m5-lite', 'uploads/product/1586666762_huawei-mediapad-m5-lite-gray-400x400.jpg', 3, 7900000, 7400000, 0, 1, 0, 0, 2, NULL, NULL, NULL, NULL, 5, 6, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 21:46:02', '2020-04-11 21:46:02'),
+(45, 'Acer Aspire A315 54 36QY i3 10110U (NX.HM2SV.001)', 'acer-aspire-a315-54-36qy-i3-10110u-nxhm2sv001', 'uploads/product/1586666994_acer-aspire-a315-54-36qy-i3-10110u-4gb-256gb-win10-1-400x400.jpg', 2, 10230000, 8500000, 0, 1, 0, 0, 4, NULL, NULL, NULL, NULL, 6, 6, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 21:49:54', '2020-04-11 21:49:54'),
+(46, 'Asus VivoBook A412FA i3 8145U', 'asus-vivobook-a412fa-i3-8145u', 'uploads/product/1586667066_asus-vivobook-a412f-i3-8145u-4gb-32gb-512gb-win10-400x400.jpg', 8, 7890000, 6900000, 0, 1, 0, 0, 4, NULL, 'EK661T', NULL, NULL, 5, 4, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 21:51:06', '2020-04-11 21:51:06'),
+(47, 'HP 15s du0072TX i3 7020U (8WP16PA)', 'hp-15s-du0072tx-i3-7020u-8wp16pa', 'uploads/product/1586667231_hp-15s-du0072tx-i3-7020u-4gb-256gb-2gb-mx110-win10-1-400x400.jpg', 5, 22520000, 20000000, 2, 1, 0, 0, 4, NULL, NULL, NULL, NULL, 8, 4, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 21:53:51', '2020-04-11 21:53:51'),
+(48, 'Asus VivoBook X409FA i5 8265U', 'asus-vivobook-x409fa-i5-8265u', 'uploads/product/1586667310_asus-vivobook-x409f-i5-8265u-8gb-1tb-win10-ek138t2-1-thumb-1-400x400.jpg', 2, 13800000, 12000000, 4, 1, 0, 0, 4, NULL, 'EK138T', NULL, NULL, 5, 11, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 21:55:10', '2020-04-11 21:55:10'),
+(49, 'HP 348 G7 i5 10210U (9PH06PA)', 'hp-348-g7-i5-10210u-9ph06pa', 'uploads/product/1586667371_hp-348-g7-i5-9ph06pa-218439-1-400x400.jpg', 4, 16000000, 15700000, 0, 1, 0, 0, 4, NULL, NULL, NULL, NULL, 8, 5, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 21:56:11', '2020-04-11 21:56:11'),
+(50, 'Apple Watch S5 LTE 40mm viền nhôm dây cao su', 'apple-watch-s5-lte-40mm-vien-nhom-day-cao-su', 'uploads/product/1586667604_apple-watch-s5-lte-40mm-vien-nhom-day-cao-su-ava-400x400.jpg', 2, 4000000, 2900000, 4, 1, 0, 0, 6, NULL, NULL, NULL, NULL, 6, 4, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 22:00:04', '2020-04-11 22:00:04'),
+(51, 'Daumier DM-JLW001.SLTN.8SNI.S.M - Nam - Superman', 'daumier-dm-jlw001sltn8snism-nam-superman', 'uploads/product/1586667688_daumier-dm-jlw001-sltn-8sni-s-m-nam-1-1-400x400.jpg', 3, 3500000, 2990000, 0, 1, 0, 0, 6, NULL, NULL, NULL, NULL, 15, 0, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 22:01:28', '2020-04-11 22:01:28'),
+(52, 'Pin sạc dự phòng Polymer 10.000mAh Xiaomi Mi 18W Fast Charge Power Bank 3', 'pin-sac-du-phong-polymer-10000mah-xiaomi-mi-18w-fast-charge-power-bank-3', 'uploads/product/1586667835_sac-du-phong-polymer-10000mah-xiaomi-mi-18w-den-1-400x400.jpg', 2, 4490000, 500000, 0, 1, 0, 0, 3, NULL, NULL, NULL, NULL, 15, 6, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 22:03:55', '2020-04-11 22:03:55'),
+(53, 'Loa Bluetooth eSaver S12B-2 Đen', 'loa-bluetooth-esaver-s12b-2-den', 'uploads/product/1586667890_loa-bluetooth-esaver-s12b-2-den-avatar-2-400x400.jpg', 3, 300000, 2490000, 0, 1, 0, 0, 3, NULL, NULL, NULL, NULL, 5, 5, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 22:04:50', '2020-04-11 22:04:50'),
+(54, 'Dây cáp Micro USB 1 m e.VALU LTM-01', 'day-cap-micro-usb-1-m-evalu-ltm-01', 'uploads/product/1586667963_cap-micro-1m-evalu-ltm-01-12-400x400.jpg', 2, 280000, 190000, 0, 1, 0, 0, 3, NULL, NULL, NULL, NULL, 15, 11, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 22:06:03', '2020-04-11 22:06:03'),
+(55, 'Thẻ nhớ MicroSD 32 GB Lexar class 10 UHS-I', 'the-nho-microsd-32-gb-lexar-class-10-uhs-i', 'uploads/product/1586668015_the-nho-microsd-32gb-lexar-class-10-uhs-i-5-400x400.jpg', 3, 400000, 320000, 0, 1, 0, 0, 3, NULL, NULL, NULL, NULL, 15, 0, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 22:06:55', '2020-04-11 22:06:55'),
+(56, 'Tai nghe Bluetooth Mozard Flex4 Đen Xanh', 'tai-nghe-bluetooth-mozard-flex4-den-xanh', 'uploads/product/1586668068_tai-nghe-bluetooth-mozard-flex4-den-xanh-1-600x600-1-400x400.jpg', 3, 200000, 190000, 0, 1, 0, 0, 3, NULL, NULL, NULL, NULL, 6, 11, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 22:07:48', '2020-04-11 22:07:48');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_images`
+--
+
+CREATE TABLE `product_images` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_active` int(11) NOT NULL,
+  `position` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -393,7 +464,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `role_id`, `avatar`, `is_active`) VALUES
 (1, 'Hoàng Dũng', 'hcdung209@gmail.com', '$2y$10$TNWZo9WER49I.Z5ad4hIMO/cQRYAn8nMXOSgajlfo/pO.LEaXLKxq', NULL, '2020-04-10 21:24:51', '2020-05-19 12:32:10', 1, 'uploads/user/1586579091_Tổng-hợp-hình-ảnh-avatar-dễ-thương-làm-hình-đại-diện-đẹp-nhất-1.jpg', 1),
 (2, 'Ngọc Hà', 'ngocha18082407@gmail.com', '2345678', NULL, '2020-04-10 21:25:55', '2020-04-10 21:25:55', 2, 'uploads/user/1586579155_tai-hinh-chibi-bst.jpg', 1),
-(3, 'admin', 'admin@gmail.com', '$2y$10$CWWZcJDTL2Xf1O8ZaD99dOrImQSKfePrU8L19Hw/vcqUca6u2T0uq', NULL, '2020-05-19 12:32:27', '2020-05-19 12:32:27', 1, NULL, 1);
+(3, 'admin', 'admin@gmail.com', '$2y$10$CWWZcJDTL2Xf1O8ZaD99dOrImQSKfePrU8L19Hw/vcqUca6u2T0uq', 'ESv8rldA3M3lK5eoZfOKUBaQvsP0QCM26T1mPbTbWpXZP7MKQ1s5c99nBcx0', '2020-05-19 12:32:27', '2020-05-19 12:32:27', 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -433,6 +504,12 @@ INSERT INTO `vendors` (`id`, `name`, `slug`, `email`, `phone`, `image`, `website
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `articles`
+--
+ALTER TABLE `articles`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `banners`
@@ -505,6 +582,12 @@ ALTER TABLE `products`
   ADD KEY `products_slug_index` (`slug`) USING BTREE;
 
 --
+-- Indexes for table `product_images`
+--
+ALTER TABLE `product_images`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -521,6 +604,12 @@ ALTER TABLE `vendors`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `articles`
+--
+ALTER TABLE `articles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `banners`
@@ -562,13 +651,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `order_status`
@@ -581,6 +670,12 @@ ALTER TABLE `order_status`
 --
 ALTER TABLE `products`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+
+--
+-- AUTO_INCREMENT for table `product_images`
+--
+ALTER TABLE `product_images`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
