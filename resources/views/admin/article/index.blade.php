@@ -3,7 +3,7 @@
     <style>tr td:first-child {max-width: 250px}</style>
     <section class="content-header">
         <h1>
-            Danh Sách Sản Phẩm <a href="{{route('admin.product.create')}}" class="btn btn-flat btn-info"><i class="fa fa-plus"></i> Thêm SP</a>
+            Danh Sách Tin Tức <a href="{{route('admin.article.create')}}" class="btn btn-info"><i class="fa fa-plus"></i> Thêm Bài Viết</a>
         </h1>
     </section>
     <section class="content">
@@ -30,10 +30,8 @@
                                 <th>TT</th>
                                 <th style="max-with:200px">Tên SP</th>
                                 <th>Hình ảnh</th>
-                                <th>Số lượng</th>
-                                <th>Giá KM</th>
-                                <th>Giá Gốc</th>
-                                <th>Sản phẩm Hot</th>
+                                <th>Loại</th>
+                                <th>Vi trí</th>
                                 <th>Trạng thái</th>
                                 <th class="text-center">Hành động</th>
                             </tr>
@@ -42,23 +40,27 @@
                             @foreach($data as $key => $item)
                                 <tr class="item-{{ $item->id }}"> <!-- Thêm Class Cho Dòng -->
                                     <td>{{ $key }}</td>
-                                    <td>{{ substr($item->name, 0, 50) }}</td>
+                                    <td>{{ substr($item->title, 0, 50) }}</td>
                                     <td>
                                     @if ($item->image) <!-- Kiểm tra hình ảnh tồn tại -->
                                         <img src="{{asset($item->image)}}" width="50" height="50">
                                         @endif
                                     </td>
-                                    <td>{{ $item->stock }}</td>
-                                    <td>{{ $item->sale }}</td>
-                                    <td>{{ $item->price }}</td>
-                                    <td>{{ ($item->is_hot == 1) ? 'Có' : 'Không' }}</td>
+                                    <td>
+                                        @if ($item->type === 1)
+                                            <span>Tin tức</span>
+                                        @elseif ($item->type === 2)
+                                            <span>Tin khuyến mại</span>
+                                        @else
+                                            <span>Tin nổi bật</span>
+                                        @endif
+                                    </td>
+                                    <td>{{ $item->position }}</td>
                                     <td>{{ ($item->is_active == 1) ? 'Hiển thị' : 'Ẩn' }}</td>
                                     <td class="text-center">
-                                        <a href="{{route('admin.product.edit', ['id'=> $item->id])}}" class="btn btn-flat btn-info">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
+                                        <a href="{{route('admin.article.edit', ['id'=> $item->id])}}" class="btn btn-flat btn-info"><i class="fa fa-edit"></i></a>
                                         <!-- Thêm sự kiện onlick cho nút xóa -->
-                                        <a href="javascript:void(0)" class="btn btn-flat btn-danger" onclick="destroyProduct({{ $item->id }})" >
+                                        <a href="javascript:void(0)" class="btn btn-flat btn-danger" onclick="destroyModel('article', {{ $item->id }})" >
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     </td>

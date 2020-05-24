@@ -25,68 +25,9 @@
                                     <div class="tab-pane active" id="thumbnail_1">
                                         <div class="single-product-image">
                                             <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" />
-                                            <a class="fancybox" href="img/product/sale/1.jpg" data-fancybox-group="gallery"><span class="btn large-btn">View larger <i class="fa fa-search-plus"></i></span></a>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="thumbnail_2">
-                                        <div class="single-product-image">
-                                            <img src="img/product/sale/3.jpg" alt="single-product-image" />
-                                            <a class="new-mark-box" href="#">new</a>
-                                            <a class="fancybox" href="img/product/sale/3.jpg" data-fancybox-group="gallery"><span class="btn large-btn">View larger <i class="fa fa-search-plus"></i></span></a>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="thumbnail_3">
-                                        <div class="single-product-image">
-                                            <img src="img/product/sale/9.jpg" alt="single-product-image" />
-                                            <a class="new-mark-box" href="#">new</a>
-                                            <a class="fancybox" href="img/product/sale/9.jpg" data-fancybox-group="gallery"><span class="btn large-btn">View larger <i class="fa fa-search-plus"></i></span></a>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="thumbnail_4">
-                                        <div class="single-product-image">
-                                            <img src="img/product/sale/13.jpg" alt="single-product-image" />
-                                            <a class="new-mark-box" href="#">new</a>
-                                            <a class="fancybox" href="img/product/sale/13.jpg" data-fancybox-group="gallery"><span class="btn large-btn">View larger <i class="fa fa-search-plus"></i></span></a>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="thumbnail_5">
-                                        <div class="single-product-image">
-                                            <img src="img/product/sale/7.jpg" alt="single-product-image" />
-                                            <a class="new-mark-box" href="#">new</a>
-                                            <a class="fancybox" href="img/product/sale/7.jpg" data-fancybox-group="gallery"><span class="btn large-btn">View larger <i class="fa fa-search-plus"></i></span></a>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="thumbnail_6">
-                                        <div class="single-product-image">
-                                            <img src="img/product/sale/12.jpg" alt="single-product-image" />
-                                            <a class="new-mark-box" href="#">new</a>
-                                            <a class="fancybox" href="img/product/sale/12.jpg" data-fancybox-group="gallery"><span class="btn large-btn">View larger <i class="fa fa-search-plus"></i></span></a>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="select-product">
-                                <!-- Nav tabs -->
-                                <ul class="nav nav-tabs select-product-tab bxslider">
-                                    <li class="active">
-                                        <a href="#thumbnail_1" data-toggle="tab"><img src="img/product/sidebar_product/1.jpg" alt="pro-thumbnail" /></a>
-                                    </li>
-                                    <li>
-                                        <a href="#thumbnail_2" data-toggle="tab"><img src="img/product/sidebar_product/2.jpg" alt="pro-thumbnail" /></a>
-                                    </li>
-                                    <li>
-                                        <a href="#thumbnail_3" data-toggle="tab"><img src="img/product/sidebar_product/3.jpg" alt="pro-thumbnail" /></a>
-                                    </li>
-                                    <li>
-                                        <a href="#thumbnail_4" data-toggle="tab"><img src="img/product/sidebar_product/4.jpg" alt="pro-thumbnail" /></a>
-                                    </li>
-                                    <li>
-                                        <a href="#thumbnail_5" data-toggle="tab"><img src="img/product/sidebar_product/5.jpg" alt="pro-thumbnail" /></a>
-                                    </li>
-                                    <li>
-                                        <a href="#thumbnail_6" data-toggle="tab"><img src="img/product/sidebar_product/6.jpg" alt="pro-thumbnail" /></a>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                         <div class="col-lg-7 col-md-7 col-sm-8 col-xs-12">
@@ -102,35 +43,6 @@
                                 <div class="single-product-price">
                                     <h2>{{ number_format($product->sale,0,",",".") }} <span style="text-transform: lowercase">đ</span></h2>
                                 </div>
-                                <div class="single-product-desc">
-                                    <p>Faded short sleeves t-shirt with high neckline. Soft and stretchy material for a comfortable fit. Accessorize with a straw hat and you're ready for summer!</p>
-                                </div>
-                                <div class="single-product-info">
-                                    <a href="#"><i class="fa fa-envelope"></i></a>
-                                    <a href="#"><i class="fa fa-print"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                </div>
-                                <div class="single-product-quantity">
-                                    <p class="small-title">Số lượng</p>
-                                    <div class="cart-quantity">
-                                        <div class="cart-plus-minus-button single-qty-btn">
-                                            <input class="cart-plus-minus sing-pro-qty" type="text" name="qty" value="0">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="single-product-size">
-                                    <p class="small-title">Size </p>
-                                    <select name="product-size" id="product-size">
-                                        <option value="">S</option>
-                                        <option value="">M</option>
-                                        <option value="">L</option>
-                                    </select>
-                                </div>
-                                <div class="single-product-color">
-                                    <p class="small-title">Color </p>
-                                    <a href="#"><span></span></a>
-                                    <a class="color-blue" href="#"><span></span></a>
-                                </div>
                                 <div class="single-product-add-cart">
                                     <a class="add-cart-text" title="Add to cart" href="{{ route('shop.cart.add-to-cart', ['id' => $product->id]) }}">Mua Hàng</a>
                                 </div>
@@ -139,7 +51,7 @@
                     </div>
                     <!-- SINGLE-PRODUCT-DESCRIPTION END -->
                     <!-- SINGLE-PRODUCT INFO TAB START -->
-                    <div class="row">
+                    <div class="row" style="margin-top: 20px">
                         <div class="col-sm-12">
                             <div class="product-more-info-tab">
                                 <!-- Nav tabs -->
@@ -232,61 +144,12 @@
                 </div>
                 <!-- RIGHT SIDE BAR START -->
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <!-- SINGLE SIDE BAR START -->
-                    <div class="single-product-right-sidebar">
-                        <h2 class="left-title">Viewed products</h2>
-                        <ul>
-                            <li>
-                                <a href="#"><img src="img/product/sidebar_product/2.jpg" alt="" /></a>
-                                <div class="r-sidebar-pro-content">
-                                    <h5><a href="#">Faded Short ...</a></h5>
-                                    <p>Faded short sleeves t-shirt with high...</p>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="#"><img src="img/product/sidebar_product/4.jpg" alt="" /></a>
-                                <div class="r-sidebar-pro-content">
-                                    <h5><a href="#">Printed Chif ..</a></h5>
-                                    <p>Printed chiffon knee length dress...</p>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="#"><img src="img/product/sidebar_product/6.jpg" alt="" /></a>
-                                <div class="r-sidebar-pro-content">
-                                    <h5><a href="#">Printed Sum ...</a></h5>
-                                    <p>Long printed dress with thin...</p>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="#"><img src="img/product/sidebar_product/1.jpg" alt="" /></a>
-                                <div class="r-sidebar-pro-content">
-                                    <h5><a href="#">Printed Dress </a></h5>
-                                    <p>100% cotton double printed dress....</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- SINGLE SIDE BAR END -->
-                    <!-- SINGLE SIDE BAR START -->
                     <div class="single-product-right-sidebar clearfix">
                         <h2 class="left-title">Tags </h2>
                         <div class="category-tag">
-                            <a href="#">fashion</a>
-                            <a href="#">handbags</a>
-                            <a href="#">women</a>
-                            <a href="#">men</a>
-                            <a href="#">kids</a>
-                            <a href="#">New</a>
-                            <a href="#">Accessories</a>
-                            <a href="#">clothing</a>
-                            <a href="#">New</a>
-                        </div>
-                    </div>
-                    <!-- SINGLE SIDE BAR END -->
-                    <!-- SINGLE SIDE BAR START -->
-                    <div class="single-product-right-sidebar">
-                        <div class="slider-right zoom-img">
-                            <a href="#"><img class="img-responsive" src="img/product/cms11.jpg" alt="sidebar left" /></a>
+                            @foreach($tags as $tag)
+                                <a href="/danh-muc/{{ $tag->slug }}">{{ $tag->name}}</a>
+                            @endforeach
                         </div>
                     </div>
                 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use App\Banner;
 use App\Cart;
 use App\Category; // cần thêm dòng này nếu chưa có
@@ -86,19 +87,20 @@ class ShopController extends GeneralController
         }
     }
 
-    public function getProduct($category , $slug , $id)
+    public function getProduct($slug , $id)
     {
-        // step 1 : lấy chi tiết thể loại
-        $category = Category::where(['slug' => $category])->first();
-
-        if (!$category) {
-            return $this->notfound();
-        }
         // get chi tiet sp
         $product = Product::find($id);
         if (!$product) {
             return $this->notfound();
         }
+
+        $category = Category::find($product->category_id);
+
+        $tags = Category::where([
+                                ['id' , '<>', 0],
+                                ['is_active' , '=', 1]
+                            ])->get();
 
 
         // step 2 : lấy list SP liên quan
@@ -111,7 +113,8 @@ class ShopController extends GeneralController
         return view('shop.product',[
             'category' => $category,
             'product' => $product,
-            'relatedProducts' => $relatedProducts
+            'relatedProducts' => $relatedProducts,
+            'tags' => $tags
         ]);
     }
 
@@ -146,5 +149,27 @@ class ShopController extends GeneralController
             'products' => $products,
             'totalResult' => $totalResult,
             'keyword' => $keyword]);
+    }
+
+    public function getListArticles()
+    {
+        $articles = Article::latest()->paginate(15);
+
+        return view('shop.list-articles',[
+            'articles' => $articles
+        ]);
+    }
+
+    public function getArticle($slug , $id)
+    {
+        $article = Article::find($id);
+
+        if (!$article) {
+            return $this->notfound();
+        }
+
+        return view('shop.article',[
+            'article' => $article
+        ]);
     }
 }

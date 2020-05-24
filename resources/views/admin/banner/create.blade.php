@@ -46,6 +46,7 @@
                                 <select class="form-control" name="type">
                                     <option value="1">slide</option>
                                     <option value="2">background</option>
+                                    <option value="2">banner right</option>
                                 </select>
                             </div>
                             <div class="checkbox">

@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
+use App\Order;
+use App\Product;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -9,7 +13,17 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
+        $numOrder = Order::count();
+        $numArticle = Article::count();
+        $numProduct = Product::count();
+        $numUser = User::count();
+
+        return view('admin.dashboard', [
+            'numOrder' => $numOrder,
+            'numArticle' => $numArticle,
+            'numProduct' => $numProduct,
+            'numUser' => $numUser
+        ]);
     }
 
     public function login()
@@ -33,9 +47,7 @@ class AdminController extends Controller
 
         // check success
         if (Auth::attempt($data, $request->has('remember'))) {
-            if (Auth::user()->role_id == 1) {
-                return redirect()->route('admin.product.index');
-            }
+            return redirect()->route('admin.order.index');
         }
 
         return redirect()->back()->with('msg', 'Email hoặc Password không chính xác');;

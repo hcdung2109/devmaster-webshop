@@ -3,7 +3,7 @@
     <style>.w-50 { width: 50% }</style>
     <section class="content-header">
         <h1>
-            Thêm mới sản phẩm <a href="{{route('admin.product.index')}}" class="btn btn-success pull-right"><i
+            Thêm mới sản phẩm <a href="{{route('admin.product.index')}}" class="btn btn-flat btn-success "><i
                     class="fa fa-list"></i> Danh Sách SP</a>
         </h1>
     </section>

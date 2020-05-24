@@ -25,10 +25,10 @@ class Cart extends Model
         }
     }
 
-    // Thêm sản phẩm khỏi giỏ hàng
+    // Thêm sản phẩm vào giỏ hàng
     public function add($product , $id)
     {
-        //$price = $product->sale ? $product->sale : $product->price;
+
         $_item = ['qty' => 0, 'price' => $product->sale, 'item' => $product];
         if ($this->products && array_key_exists($id, $this->products)) {
             $_item = $this->products[$id];
@@ -38,17 +38,17 @@ class Cart extends Model
         $_item['price'] = $_item['qty'] * $product->sale;
 
         $this->products[$id] = $_item;
-        $this->totalPrice += $product->sale;
-        $this->totalQty++;
+        $this->totalPrice = $this->totalPrice + $product->sale;
+        $this->totalQty = $this->totalQty + 1; // tăng lên 1 sản phẩm
     }
 
     // Xóa sản phẩm khỏi giỏ hàng
     public function remove($id)
     {
-        // giảm sl
-        $this->totalQty -= $this->products[$id]['qty'];
-        // giảm giá
-        $this->totalPrice -= $this->products[$id]['price'];
+        // trừ bớt số lượng
+        $this->totalQty = $this->totalQty - $this->products[$id]['qty'];
+        // trừ giá
+        $this->totalPrice = $this->totalPrice - $this->products[$id]['price'];
 
         unset($this->products[$id]);
 

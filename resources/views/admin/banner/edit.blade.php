@@ -49,6 +49,7 @@
                                 <select class="form-control" name="type">
                                     <option value="1" {{ ($banner->type == 1) ? 'selected' : '' }} >slide</option>
                                     <option value="2" {{ ($banner->type == 2) ? 'selected' : '' }} >background</option>
+                                    <option value="2" {{ ($banner->type == 3) ? 'selected' : '' }} >banner right</option>
                                 </select>
                             </div>
                             <div class="checkbox">

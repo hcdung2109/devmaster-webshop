@@ -33,14 +33,6 @@
                                         <div class="single-product-item">
                                             <div class="product-image">
                                                 <a href="{{ route('shop.product', ['category' => $product->category->slug , 'slug' => $product->slug , 'id' => $product->id]) }}" title="{{ $product->name }}" ><img src="{{ asset($product->image) }}" alt="{{ $product->name }}"></a>
-                                                <div class="overlay-content">
-                                                    <ul>
-                                                        <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                        <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                        <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                        <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                                    </ul>
-                                                </div>
                                             </div>
                                             <div class="product-info">
                                                 <a href="{{ route('shop.product', ['category' => $product->category->slug , 'slug' => $product->slug , 'id' => $product->id]) }}" title="{{ $product->name }}">{{ $product->name }}</a>

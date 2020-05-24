@@ -19,52 +19,37 @@
         margin-left: 5px;
         color: #222;
     }
+    .main-slider-area, .left-category-menu, .main-slider-area img {
+        height: 320px !important;
+    }
+
+    .left-category-menu ul li {
+        display: block;
+        width: 100%;
+        height: 80px;
+    }
+    .list_news img{
+        width: 100px;
+        height: 60px;
+        margin: 0px auto;
+        display: block;
+        overflow: hidden;
+        float: left;
+        margin-right: 10px;
+    }
+    .list_news .article-title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
 </style>
 <!-- HEADER-BOTTOM-AREA START -->
 <section class="header-bottom-area">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                <!-- LEFT-CATEGORY-MENU START -->
-                <div class="left-category-menu">
-                    <div class="left-product-cat">
-                        <div class="category-heading">
-                            <h2>Danh Mục</h2>
-                        </div>
-                        <!-- CATEGORY-MENU-LIST START -->
-                        <div class="category-menu-list">
-                            <ul>
-                                @if(!empty($categories))
-                                    @foreach($categories as $category)
-                                        <li>
-                                            <!-- Bước 1 :  Hiển thị danh mục cha -->
-                                            @if($category->parent_id == 0)
-                                                <a href="{{ route('shop.getProductsByCategory', [ 'id' => $category->id ]) }}">
-                                                    {{ $category->name }}<i class="fa fa-angle-right"></i>
-                                                </a>
-
-                                                <!-- Bước 2 : Hiển thị danh mục con -->
-                                                <div class="cat-left-drop-menu-single">
-                                                    <ul>
-                                                        @foreach($categories as $child)
-                                                            @if($category->id == $child->parent_id)
-                                                                <li><a href="{{ route('shop.getProductsByCategory', [ 'id' => $child->id ]) }}">{{ $child->name }}</a></li>
-                                                            @endif
-                                                        @endforeach
-                                                    </ul>
-                                                </div>
-                                            @endif
-                                        </li>
-                                    @endforeach
-                                @endif
-                            </ul>
-                        </div>
-                        <!-- CATEGORY-MENU-LIST END -->
-                    </div>
-                </div>
-                <!-- LEFT-CATEGORY-MENU END -->
-            </div>
-            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                 <!-- MAIN-SLIDER-AREA START -->
                 <div class="main-slider-area">
                     <div class="slider-area">
@@ -83,6 +68,24 @@
                     </div>
                 </div>
                 <!-- MAIN-SLIDER-AREA END -->
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <!-- LEFT-CATEGORY-MENU START -->
+                <div class="left-category-menu">
+                    <ul class="list_news">
+                        @if(!empty($articles))
+                            @foreach($articles as $article)
+                                <li>
+                                    <a href="{{ route('shop.article.detail', ['slug' => $article->slug , 'id' => $article->id]) }}">
+                                        <img src="{{asset($article->image)}}" width="100" height="50">
+                                        <span class="title">{{ $article->title }}</span>
+                                    </a>
+                                </li>
+                            @endforeach
+                        @endif
+                    </ul>
+                </div>
+                <!-- LEFT-CATEGORY-MENU END -->
             </div>
         </div>
     </div>

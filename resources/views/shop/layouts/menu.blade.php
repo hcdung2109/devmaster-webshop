@@ -6,23 +6,7 @@
 <header class="main-menu-area">
     <div class="container">
         <div class="row">
-            <!-- SHOPPING-CART START -->
-            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 pull-right shopingcartarea">
-                <div class="shopping-cart-out pull-right">
-                    <div class="shopping-cart">
-                        <a class="shop-link" href="{{ route('shop.cart') }}" title="Gio Hàng">
-                            <i class="fa fa-shopping-cart cart-icon" style="margin-right: 0px"></i>
-                            @if(session('cart'))
-                              <span id="total-qty" class="" style="margin: 5px">( {{session('cart')->totalQty }} )</span>
-                            @else
-                                <span id="total-qty" class="" style="margin: 5px">( 0 )</span>
-                            @endif
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- SHOPPING-CART END -->
-            <!-- MAINMENU START -->
+
             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 no-padding-right menuarea">
                 <div class="mainmenu">
                     <nav>
@@ -53,6 +37,7 @@
                                     @endif
                                 @endforeach
                             @endif
+                            <li class="active"><a href="/tin-tuc">Tin tức</a></li>
                         </ul>
                     </nav>
                 </div>

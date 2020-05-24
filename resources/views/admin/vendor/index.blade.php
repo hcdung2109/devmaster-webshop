@@ -26,12 +26,11 @@
                         <table class="table table-hover">
                             <tbody>
                             <tr>
-                                <th>Tên Nhà  Cung Cấp</th>
+                                <th>Tên NCC</th>
                                 <th>Email</th>
                                 <th>Điện Thoại</th>
-                                <th>Hình Ảnh</th>
+                                <th>Avart</th>
                                 <th>WebSite</th>
-                                <th>Địa Chỉ</th>
                                 <th>Vị trí</th>
                                 <th>Trạng Thái</th>
                                 <th class="text-center">Hành động</th>
@@ -49,11 +48,9 @@
                                         @endif
                                     </td>
                                     <td>{{ $item->website }}</td>
-                                    <td>{{ $item->address }}</td>
                                     <td>{{ $item->position }}</td>
                                     <td>{{ ($item->is_active == 1) ? 'Hiển thị' : 'Ẩn' }}</td>
                                     <td class="text-center">
-                                        <a href="{{route('admin.vendor.show', ['id'=> $item->id ])}}" class="btn btn-default">Xem</a>
                                         <a href="{{route('admin.vendor.edit', ['id'=> $item->id])}}" class="btn btn-info">Sửa</a>
                                         <!-- Thêm sự kiện onlick cho nút xóa -->
                                         <a href="javascript:void(0)" class="btn btn-danger" onclick="destroyVendor({{ $item->id }})" >Xóa</a>

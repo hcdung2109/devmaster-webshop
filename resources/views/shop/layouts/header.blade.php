@@ -16,8 +16,14 @@
                     <nav>
                         <ul class="list-inline">
                             <li><a href="{{ route('contact.index') }}">Liên Hệ</a></li>
-                            <li><a href="{{ route('shop.cart') }}">Giỏ Hàng</a></li>
-                            <li><a href="">Đăng Nhập</a></li>
+                            <li><a href="{{ route('shop.cart') }}">
+                                    Giỏ Hàng
+                                    @if(session('cart'))
+                                        <span id="total-qty" class="" style="margin: 5px">( {{session('cart')->totalQty }} )</span>
+                                    @else
+                                        <span id="total-qty" class="" style="margin: 5px">( 0 )</span>
+                                    @endif
+                                </a></li>
                         </ul>
                     </nav>
                 </div>

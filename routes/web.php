@@ -2,13 +2,15 @@
 
 // Trang chủ
 Route::get('/', 'ShopController@index');
-// the loai
-Route::get('category/{id}', 'ShopController@getProductsByCategory')->name('shop.getProductsByCategory');
 
 // Chi tiet sản phẩn
-Route::get('/{category}/{slug}_{id}', 'ShopController@getProduct')->name('shop.product');
+Route::get('/chi-tiet-san-pham/{slug}_{id}', 'ShopController@getProduct')->name('shop.product');
 
 Route::get('/tim-kiem', 'ShopController@search')->name('shop.search');
+
+Route::get('/tin-tuc', 'ShopController@getListArticles')->name('shop.article');
+// Chi tiet tin tuc
+Route::get('/tin-tuc/{slug}_{id}', 'ShopController@getArticle')->name('shop.article.detail');
 
 // Gio hang
 Route::get('/dat-hang', 'CartController@index')->name('shop.cart');
@@ -61,6 +63,8 @@ Route::group(['prefix' => 'admin','as' => 'admin.' ,'middleware' => ['checkLogin
     Route::post('order/remove-to-cart', 'OrderController@removeToCart')->name('order.remove');
 
     Route::resource('order', 'OrderController');
+    // QL bài viết
+    Route::resource('article', 'ArticleController');
 });
 
 Auth::routes();
