@@ -148,7 +148,8 @@ class ShopController extends GeneralController
         return view('shop.search', [
             'products' => $products,
             'totalResult' => $totalResult,
-            'keyword' => $keyword]);
+            'keyword' => $keyword ? $keyword : ''
+        ]);
     }
 
     public function getListArticles()

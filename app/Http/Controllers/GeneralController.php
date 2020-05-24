@@ -21,7 +21,7 @@ class GeneralController extends Controller
         // 3. lấy dữ liệu tin tức
         $articles = Article::where('is_active', 1)
                             ->orderBy('id', 'desc')
-                            ->take(5)
+                            ->take(4)
                             ->get();
 
         $this->categories = $categories;

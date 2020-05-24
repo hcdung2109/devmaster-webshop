@@ -4,9 +4,7 @@
             <!-- HEADER-LEFT-MENU START -->
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="header-left-menu">
-                    <div class="welcome-info">
-                        Bom <span>Store</span>
-                    </div>
+                    
                 </div>
             </div>
             <!-- HEADER-LEFT-MENU END -->
@@ -46,7 +44,7 @@
                 <div class="categorys-product-search">
                     <form action="{{ route('shop.search') }}" method="GET" class="search-form-cat">
                         <div class="search-product form-group">
-                            <input style="width: 100%" type="text" class="form-control search-form" name="tu-khoa" placeholder="Nhập từ khóa tìm kiếm" />
+                            <input value="{{ isset($keyword) ? $keyword : '' }}" style="width: 100%" type="text" class="form-control search-form" name="tu-khoa" placeholder="Nhập từ khóa tìm kiếm" />
                             <button class="search-button" type="submit">
                                 <i class="fa fa-search"></i>
                             </button>

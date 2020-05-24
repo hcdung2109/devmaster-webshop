@@ -6,9 +6,9 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <!-- BSTORE-BREADCRUMB START -->
                     <div class="bstore-breadcrumb">
-                        <a href="index.html">HOMe</a>
+                        <a href="/">Trang chủ</a>
                         <span><i class="fa fa-caret-right	"></i></span>
-                        <span>Contact</span>
+                        <span>Liên hệ</span>
                     </div>
                     <!-- BSTORE-BREADCRUMB END -->
                 </div>
@@ -39,7 +39,7 @@
                                             <input type="text" class="form-control input-feild" id="phone" name="phone" value="">
                                         </div>
                                         <br>
-                                        <button type="submit" name="submit" id="sendMessage" class="send-message main-btn">Send <i class="fa fa-chevron-right"></i></button>
+                                        <button type="submit" name="submit" id="sendMessage" class="send-message main-btn">Gửi <i class="fa fa-chevron-right"></i></button>
                                     </div>
                                     <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
                                         <div class="type-of-text">

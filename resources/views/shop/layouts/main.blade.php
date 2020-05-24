@@ -86,6 +86,16 @@
     <!-- MODERNIZR JS
     ============================================ -->
     <script src="shop/js/vendor/modernizr-2.6.2.min.js"></script>
+
+    <style>
+        .header-top {
+            background: #f5f5f5;
+            color: black;
+        }
+        .header-right-menu nav ul li a { color: #666 }
+        .header-middle { background-color: white}
+        .logo { padding-top: 20px; margin-bottom: 20px; }
+    </style>
 </head>
 <body class="index-2">
 <!--[if lt IE 8]>
