@@ -65,6 +65,8 @@ Route::group(['prefix' => 'admin','as' => 'admin.' ,'middleware' => ['checkLogin
     Route::resource('order', 'OrderController');
     // QL bài viết
     Route::resource('article', 'ArticleController');
+    // Cau Hinh Website
+    Route::resource('setting', 'SettingController');
 });
 
 Auth::routes();

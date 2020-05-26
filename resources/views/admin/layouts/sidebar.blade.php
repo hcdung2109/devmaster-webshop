@@ -28,6 +28,7 @@
             <li><a href="{{ route('admin.vendor.index') }}"><i class="fa fa-cube"></i> <span>QL Nhà Cung Cấp</span></a></li>
             <li><a href="{{ route('admin.brand.index') }}"><i class="fa fa-fire"></i> <span>QL Thương Hiệu</span></a></li>
             <li><a href="{{ route('admin.user.index') }}"><i class="fa fa-user"></i> <span>QL Người dùng</span></a></li>
+            <li><a href="{{ route('admin.setting.index') }}"><i class="fa fa-cog"></i> <span>Cấu hình Website</span></a></li>
         </ul>
     </section>
     <!-- /.sidebar -->

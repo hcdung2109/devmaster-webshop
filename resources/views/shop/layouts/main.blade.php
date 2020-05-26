@@ -92,9 +92,10 @@
             background: #f5f5f5;
             color: black;
         }
-        .header-right-menu nav ul li a { color: #666 }
+        .header-right-menu nav ul li a { color: #666; font-weight: bold;font-size: 13px }
         .header-middle { background-color: white}
         .logo { padding-top: 20px; margin-bottom: 20px; }
+
     </style>
 </head>
 <body class="index-2">
