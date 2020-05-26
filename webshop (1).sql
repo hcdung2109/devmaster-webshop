@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2020 at 09:59 AM
+-- Generation Time: May 26, 2020 at 05:27 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -402,7 +402,7 @@ INSERT INTO `products` (`id`, `name`, `slug`, `image`, `stock`, `price`, `sale`,
 (27, 'Asus Zenbook UX333FA-A4011T/Core i5-8265U', 'asus-zenbook-ux333fa-a4011tcore-i5-8265u', 'uploads/product/1584948463_637020003765248380_asus-zenbook-flip-um462da-bac-2.png', 3, 21990000, 20990000, 27, 1, 0, 0, 4, 'https://fptshop.com.vn/may-tinh-xach-tay/asus-zenbook-ux333fa-a4011t-core-i5-8265u?utm_source=masoffer&traffic_id=5e7583cf9ff3670041555447&', NULL, NULL, NULL, 12, 8, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:27:43', '2020-03-23 00:27:43'),
 (28, 'ASUS ROG Phone 2 512GB', 'asus-rog-phone-2-512gb', 'uploads/product/1584948535__600x600__crop_600_asus_rog_phone2_min_1.jpg', 0, 21490000, 20490000, 28, 1, 0, 0, 1, 'https://cellphones.com.vn/asus-rog-phone-2.html?cmpid=sem_search_google&gclid=CjwKCAjwvOHzBRBoEiwA48i6AhWoww0hYgq7gdPjqqHrdL7tqJ6Gbi32VOaynb1fYSBknBNmbnmv1BoCjX4QAvD_BwE', NULL, NULL, NULL, 12, 4, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:28:55', '2020-03-23 00:28:55'),
 (29, 'Tai Nghe Gaming Logitech G Pro (Gen 2) – Hàng Chính Hãng', 'tai-nghe-gaming-logitech-g-pro-gen-2-hang-chinh-hang', 'uploads/product/1584948978_a0abb6e8532b674d4bf4847b1e0819c1.png', 2, 2890000, 1990000, 29, 1, 0, 0, 20, NULL, NULL, NULL, NULL, 11, 10, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:35:43', '2020-03-23 00:36:33'),
-(30, 'Iphone 7 Plus 32GB - NEW', 'iphone-7-plus-32gb-new', 'uploads/product/1584949065_iphone-7-plus-gold-400x460-400x460.png', 1, 8990000, 7990000, 30, 1, 0, 0, 1, 'https://www.thegioididong.com/dtdd/iphone-7-plus', NULL, NULL, NULL, 6, 6, NULL, NULL, NULL, NULL, 0, '2020-03-23 00:37:45', '2020-03-23 00:37:45'),
+(30, 'Iphone 7 Plus 32GB - NEW', 'iphone-7-plus-32gb-new', 'uploads/product/1584949065_iphone-7-plus-gold-400x460-400x460.png', 1, 8990000, 7990000, 30, 1, 0, 0, 1, NULL, NULL, NULL, NULL, 6, 6, '<p>Đặc điểm nổi bật của iPhone 7 32GB T&igrave;m hiểu th&ecirc;m Bộ sản phẩm chuẩn: Hộp, Sạc, Tai nghe, S&aacute;ch hướng dẫn, C&aacute;p, C&acirc;y lấy sim iPhone 7 32GB vẫn mang tr&ecirc;n m&igrave;nh thiết kế quen thuộc của từ thời iPhone 6 nhưng c&oacute; nhiều thay đổi lớn về phần cứng, d&agrave;n loa stereo v&agrave; cấu h&igrave;nh cực mạnh.</p>', '<h2>vẫn mang tr&ecirc;n m&igrave;nh thiết kế quen thuộc của từ thời&nbsp;<a href=\"https://www.thegioididong.com/dtdd/iphone-6-32gb-gold\" target=\"_blank\">iPhone 6</a>&nbsp;nhưng c&oacute; nhiều thay đổi lớn về phần cứng, d&agrave;n loa stereo v&agrave; cấu h&igrave;nh cực mạnh.</h2>\r\n\r\n<h3>Camera trước tăng l&ecirc;n 7 MP</h3>\r\n\r\n<p>Một sự cải thiện đ&aacute;ng kể so với&nbsp;<a href=\"https://www.thegioididong.com/dtdd/iphone-6s-32gb\" target=\"_blank\">iPhone 6s</a>&nbsp;trước đ&oacute;, những tấm ảnh chụp selfie của bạn c&agrave;ng th&ecirc;m độ chi tiết v&agrave; sắc n&eacute;t.</p>\r\n\r\n<p><a href=\"https://www.thegioididong.com/images/42/74110/iphone-7-tgdd-12.jpg\" onclick=\"return false;\"><img alt=\"Nâng câp camera trên điện thoại iPhone 7\" src=\"https://cdn.tgdd.vn/Products/Images/42/74110/iphone-7-tgdd-12.jpg\" /></a></p>\r\n\r\n<p>Bộ nhớ trong của m&aacute;y cũng được n&acirc;ng cấp l&ecirc;n 32 GB gi&uacute;p bạn thoải m&aacute;i chụp v&agrave; lưu trữ ảnh m&agrave; kh&ocirc;ng lo hết dung lượng để lưu.</p>\r\n\r\n<p><a href=\"https://www.thegioididong.com/images/42/74110/iphone-7-tgdd-2.jpg\" onclick=\"return false;\"><img alt=\"Ảnh chụp từ camera sau của điện thoại iPhone 7\" src=\"https://cdn.tgdd.vn/Products/Images/42/74110/iphone-7-tgdd-2.jpg\" /></a></p>\r\n\r\n<p>C&ugrave;ng với đ&oacute; l&agrave; t&iacute;nh năng chụp Retina Flash gi&uacute;p bạn chụp ảnh tốt hơn ở điều kiện thiếu s&aacute;ng.</p>\r\n\r\n<p><a href=\"https://www.thegioididong.com/images/42/74110/iphone-7-tgdd-1.jpg\" onclick=\"return false;\"><img alt=\"Ảnh chụp từ camera sau của điện thoại iPhone 7\" src=\"https://cdn.tgdd.vn/Products/Images/42/74110/iphone-7-tgdd-1.jpg\" /></a></p>\r\n\r\n<p>Ngo&agrave;i ra, camera ph&iacute;a sau của&nbsp;<a href=\"https://www.thegioididong.com/dtdd-apple-iphone\" target=\"_blank\">điện thoại iPhone</a>&nbsp;n&agrave;y&nbsp;đ&atilde; được thiết kế gọn g&agrave;ng với đường bo mềm mại hơn, hạn chế tối đa trầy xước cho ống k&iacute;nh.</p>\r\n\r\n<p><a href=\"https://www.thegioididong.com/images/42/74110/iphone-7-tgdd-15.jpg\" onclick=\"return false;\"><img alt=\"Thiết kế camera trên điện thoại iPhone 7\" src=\"https://cdn.tgdd.vn/Products/Images/42/74110/iphone-7-tgdd-15.jpg\" /></a></p>\r\n\r\n<h3>&Acirc;m thanh stereo ph&aacute;t ra từ 2 ph&iacute;a</h3>\r\n\r\n<p>Kh&ocirc;ng c&ograve;n kh&oacute; chịu khi bạn cầm m&aacute;y chơi game nhưng bị b&iacute;t loa như ở những phi&ecirc;n bản trước đ&oacute;.</p>\r\n\r\n<p><a href=\"https://www.thegioididong.com/images/42/87838/iphone-7-256gb-loa.jpg\" onclick=\"return false;\"><img alt=\"Dàn loa stereo của điện thoại iPhone 7\" src=\"https://cdn.tgdd.vn/Products/Images/42/87838/iphone-7-256gb-loa.jpg\" /></a></p>\r\n\r\n<p><a href=\"https://www.thegioididong.com/dtdd\" target=\"_blank\">Điện thoại</a>&nbsp;iPhone 7 32 GB được trang bị d&agrave;n loa tr&ecirc;n dưới cho &acirc;m thanh ph&aacute;t ra hay hơn.</p>\r\n\r\n<h3>Cảm biến v&acirc;n tay nhanh nhạy hơn</h3>\r\n\r\n<p>Gi&uacute;p bạn mở kh&oacute;a m&aacute;y chỉ trong v&agrave;i nốt nhạc, gi&uacute;p tiết kiệm thời gian cũng như bảo mật cao dữ liệu trong m&aacute;y.</p>\r\n\r\n<p><a href=\"https://www.thegioididong.com/images/42/74110/iphone-7-tgdd-16.jpg\" onclick=\"return false;\"><img alt=\"Nút home lực tích hợp trên điện thoại iPhone 7\" src=\"https://cdn.tgdd.vn/Products/Images/42/74110/iphone-7-tgdd-16.jpg\" /></a></p>\r\n\r\n<p>Xem th&ecirc;m:&nbsp;<a href=\"https://www.thegioididong.com/hoi-dap/thiet-lap-van-tay-moi-tren-iphone-7-920010\" target=\"_blank\">Hướng dẫn bạn c&aacute;ch c&agrave;i đặt v&acirc;n tay iPhone 7</a>.</p>\r\n\r\n<h3>M&agrave;n h&igrave;nh 4.7 inch c&agrave;ng th&ecirc;m sắc n&eacute;t</h3>\r\n\r\n<p>C&ugrave;ng với đ&oacute; l&agrave; khả năng hiển thị tốt hơn dưới trời nắng, g&oacute;c nh&igrave;n nghi&ecirc;ng kh&ocirc;ng bị mất m&agrave;u.</p>\r\n\r\n<p><a href=\"https://www.thegioididong.com/images/42/74110/iphone-7-tgdd-13.jpg\" onclick=\"return false;\"><img alt=\"Màn hình hiển thị trên điện thoại iPhone 7\" src=\"https://cdn.tgdd.vn/Products/Images/42/74110/iphone-7-tgdd-13.jpg\" /></a></p>\r\n\r\n<h3>Cấu h&igrave;nh mạnh mẽ thoải m&aacute;i chiến game</h3>\r\n\r\n<p>M&aacute;y t&iacute;ch hợp&nbsp;<a href=\"https://www.thegioididong.com/hoi-dap/tong-quan-ve-chip-a10-fusion-cua-apple-885052\" target=\"_blank\">chip xử l&yacute; A10</a>&nbsp;mới nhất, RAM 2 GB c&ugrave;ng hệ điều h&agrave;nh iOS lu&ocirc;n được cập nhật mới gi&uacute;p m&aacute;y vận h&agrave;nh nhẹ nh&agrave;ng v&agrave; nhanh nhạy.</p>\r\n\r\n<p><a href=\"https://www.thegioididong.com/images/42/74110/iphone-7-tgdd-3-2.jpg\" onclick=\"return false;\"><img alt=\"Điểm Antutu Benchmark trên chiếc điện thoại iPhone 7\" src=\"https://cdn.tgdd.vn/Products/Images/42/74110/iphone-7-tgdd-3-2.jpg\" /></a></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><em>Clip test game nặng GTA (Nguồn: Youtube XEETECHCARE)</em></p>\r\n\r\n<h3>N&uacute;t home th&agrave;nh dạng cứng v&agrave; nhận biết cảm ứng lực</h3>\r\n\r\n<p>N&uacute;t home tr&ograve;n tr&ecirc;n iPhone 7 ch&iacute;nh thức l&agrave; dạng cứng, tức bạn sẽ kh&ocirc;ng nhấn xuống được nữa, để thao t&aacute;c tr&ecirc;n n&uacute;t n&agrave;y bạn sẽ nhấn 1 lực vừa phải đến khi n&uacute;t home run nhẹ l&ecirc;n.</p>\r\n\r\n<p><a href=\"https://www.thegioididong.com/images/42/74110/iphone-7-tgdd-19.jpg\" onclick=\"return false;\"><img alt=\"Nâng cấp nút Home của điện thoại iPhone 7\" src=\"https://cdn.tgdd.vn/Products/Images/42/74110/iphone-7-tgdd-19.jpg\" /></a></p>\r\n\r\n<p>Điều dễ nhận thấy nhất về iPhone 7 tiếp theo ch&iacute;nh l&agrave; mặt sau với d&atilde;y ăng-ten được giấu đi, c&ograve;n lại ngoại h&igrave;nh m&aacute;y kh&ocirc;ng thay đổi nhiều so với&nbsp;iPhone 6s&nbsp;trước đ&oacute;.</p>\r\n\r\n<p><a href=\"https://www.thegioididong.com/images/42/74110/iphone-7-tgdd-11.jpg\" onclick=\"return false;\"><img alt=\"Nâng cấp nút Home của điện thoại iPhone 7\" src=\"https://cdn.tgdd.vn/Products/Images/42/74110/iphone-7-tgdd-11.jpg\" /></a></p>', NULL, NULL, 0, '2020-03-23 00:37:45', '2020-05-24 01:17:03'),
 (40, 'Samsung Galaxy Tab with S Pen (P205)', 'samsung-galaxy-tab-with-s-pen-p205', 'uploads/product/1586666383_samsung-galaxy-tab-a8-plus-p205-black-400x400.jpg', 5, 6999000, 5999000, 0, 1, 0, 0, 2, NULL, NULL, NULL, NULL, 5, 6, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 21:39:43', '2020-04-11 21:39:43'),
 (41, 'iPad Mini 7.9 inch Wifi 64GB (2019)', 'ipad-mini-79-inch-wifi-64gb-2019', 'uploads/product/1586666566_ipad-mini-79-inch-wifi-2019-gold-400x400.jpg', 5, 10990000, 10490000, 1, 1, 0, 0, 2, NULL, NULL, NULL, NULL, 6, 6, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 21:42:46', '2020-04-11 21:42:46'),
 (42, 'Samsung Galaxy Tab A8 8\" T295 (2019)', 'samsung-galaxy-tab-a8-8-t295-2019', 'uploads/product/1586666633_samsung-galaxy-tab-a8-plus-p205-black-400x400.jpg', 4, 4000000, 3690000, 2, 1, 0, 0, 2, NULL, NULL, NULL, NULL, 5, 0, '<p>tt</p>', '<p>mt</p>', NULL, NULL, 0, '2020-04-11 21:43:53', '2020-04-11 21:47:15'),
@@ -437,6 +437,35 @@ CREATE TABLE `product_images` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `settings`
+--
+
+CREATE TABLE `settings` (
+  `id` int(11) NOT NULL,
+  `company` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `hotline` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tax` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `facebook` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `introduce` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`id`, `company`, `address`, `address2`, `image`, `phone`, `hotline`, `tax`, `facebook`, `email`, `introduce`, `created_at`, `updated_at`) VALUES
+(1, 'Hoàng Vinh', 'Q.Đống Đa , Hà Nội', 'Q.Long Biên, Hà Nội', 'uploads/setting/1590462650_logo.png', '0986346008', '18001166', NULL, 'https://www.facebook.com/didongthongminh.vn/', 'admin@gmail.com', NULL, NULL, '2020-05-25 20:11:24');
 
 -- --------------------------------------------------------
 
@@ -588,6 +617,12 @@ ALTER TABLE `product_images`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -676,6 +711,12 @@ ALTER TABLE `products`
 --
 ALTER TABLE `product_images`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
