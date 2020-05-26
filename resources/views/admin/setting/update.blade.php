@@ -22,8 +22,8 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên Công Ty</label>
-                                <input value="{{ $setting->company }}" type="text" class="form-control" id="name"
-                                       name="name" placeholder="">
+                                <input value="{{ $setting->company }}" type="text" class="form-control" id="company"
+                                       name="company" placeholder="">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputFile">Logo</label>

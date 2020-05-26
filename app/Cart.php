@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
 {
-    public $products;
-    public $totalPrice = 0;
-    public $totalQty = 0;
-    public $discount = 0;
-    public $coupon;
+    public $products; // danh sản phẩm
+    public $totalPrice = 0; // tông
+    public $totalQty = 0; // tổng sô SP
+    public $discount = 0; // giá giảm
+    public $coupon; // Mã giảm giá
 
     public function __construct($cart)
     {
@@ -26,18 +26,23 @@ class Cart extends Model
     }
 
     // Thêm sản phẩm vào giỏ hàng
-    public function add($product , $id)
+    public function add($product)
     {
 
-        $_item = ['qty' => 0, 'price' => $product->sale, 'item' => $product];
-        if ($this->products && array_key_exists($id, $this->products)) {
-            $_item = $this->products[$id];
+        $_item = [
+            'qty' => 0,
+            'price' => $product->sale,
+            'item' => $product
+        ];
+
+        if ($this->products && array_key_exists($product->id, $this->products)) {
+            $_item = $this->products[$product->id];
         }
 
         $_item['qty']++;
         $_item['price'] = $_item['qty'] * $product->sale;
 
-        $this->products[$id] = $_item;
+        $this->products[$product->id] = $_item;
         $this->totalPrice = $this->totalPrice + $product->sale;
         $this->totalQty = $this->totalQty + 1; // tăng lên 1 sản phẩm
     }

@@ -116,7 +116,7 @@
 <!-- BRAND-CLIENT-AREA START -->
 @include('shop.layouts.footer')
 <!-- COPYRIGHT-AREA START -->
-<footer class="copyright-area">
+<footer class="copyright-area" style="padding: 10px 0px">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

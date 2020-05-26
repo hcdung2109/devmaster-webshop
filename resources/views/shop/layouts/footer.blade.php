@@ -64,87 +64,19 @@
     <div class="container">
         <div class="footer-top-container">
             <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <!-- FOOTER-TOP-LEFT START -->
                     <div class="footer-top-left">
 
-                        <div class="about-us-area">
-                            <h2>About Us</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                        <div class="about-us-area" >
+                            <p style="font-size: 20px;">{{ $settings->company }}</p>
+                            <p>Địa chỉ : {{ $settings->address }}</p>
+                            <p>SĐT : {{ $settings->phone }}</p>
+                            <p>Email : {{ $settings->email }}</p>
+                            <p>MST : {{ $settings->tax }}</p>
                         </div>
-                        <!-- ABOUT-US-AREA END -->
-                        <!-- FLLOW-US-AREA START -->
-                        <div class="fllow-us-area">
-                            <h2>Follow us</h2>
-                            <ul class="flow-us-link">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-rss"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            </ul>
-                        </div>
-                        <!-- FLLOW-US-AREA END -->
                     </div>
                     <!-- FOOTER-TOP-LEFT END -->
-                </div>
-                <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
-                    <div class="footer-top-right-2">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <!-- FOTTER-MENU-WIDGET START -->
-                                <div class="fotter-menu-widget">
-                                    <div class="single-f-widget">
-                                        <h2>Categories</h2>
-                                        <ul>
-                                            <li><a href="shop-gird.html"><i class="fa fa-angle-double-right"></i>Women </a></li>
-                                            <li><a href="shop-gird.html"><i class="fa fa-angle-double-right"></i>Men</a></li>
-                                            <li><a href="shop-gird.html"><i class="fa fa-angle-double-right"></i>clothing</a></li>
-                                            <li><a href="shop-gird.html"><i class="fa fa-angle-double-right"></i>kids</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- FOTTER-MENU-WIDGET END -->
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                                <!-- FOTTER-MENU-WIDGET START -->
-                                <div class="fotter-menu-widget">
-                                    <div class="single-f-widget">
-                                        <h2>Information</h2>
-                                        <ul>
-                                            <li><a href="#"><i class="fa fa-angle-double-right"></i>Specials</a></li>
-                                            <li><a href="#"><i class="fa fa-angle-double-right"></i>New products</a></li>
-                                            <li><a href="#"><i class="fa fa-angle-double-right"></i>Best sellers</a></li>
-                                            <li><a href="contact-us.html"><i class="fa fa-angle-double-right"></i>Contact Us</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- FOTTER-MENU-WIDGET END -->
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <!-- FOTTER-MENU-WIDGET START -->
-                                <div class="fotter-menu-widget">
-                                    <div class="single-f-widget">
-                                        <h2>My account</h2>
-                                        <ul>
-                                            <li><a href="#"><i class="fa fa-angle-double-right"></i>My orders</a></li>
-                                            <li><a href="#"><i class="fa fa-angle-double-right"></i>My credit slips</a></li>
-                                            <li><a href="#"><i class="fa fa-angle-double-right"></i>My addresses</a></li>
-                                            <li><a href="#"><i class="fa fa-angle-double-right"></i>My personal info</a></li>
-                                            <li><a href="#"><i class="fa fa-angle-double-right"></i>Sign out</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- FOTTER-MENU-WIDGET END -->
-                            </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <!-- PAYMENT-METHOD START -->
-                                <div class="payment-method">
-                                    <img class="img-responsive pull-right" src="shop/img/payment.png" alt="payment-method" />
-                                </div>
-                                <!-- PAYMENT-METHOD END -->
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

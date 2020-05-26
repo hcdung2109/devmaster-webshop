@@ -76,13 +76,13 @@ class SettingController extends Controller
     {
         //validate
         $request->validate([
-            'name' => 'required|max:255'
+            'company' => 'required|max:255'
         ]);
 
         $setting = Setting::findorFail($id);
-        $setting->company = $request->input('name');
-        $setting->phone = str_slug($request->input('phone'));
-        $setting->hotline = str_slug($request->input('hotline'));
+        $setting->company = $request->input('company');
+        $setting->phone = $request->input('phone');
+        $setting->hotline = $request->input('hotline');
         $setting->address = $request->input('address');
         $setting->address2 = $request->input('address2');
         $setting->tax = $request->input('tax');

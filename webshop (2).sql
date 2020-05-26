@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2020 at 05:27 AM
+-- Generation Time: May 26, 2020 at 09:18 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -250,7 +250,7 @@ CREATE TABLE `orders` (
   `note` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `coupon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0',
   `total` int(11) DEFAULT 0,
-  `member_id` int(11) DEFAULT 0,
+  `user_id` int(11) DEFAULT 0,
   `order_status_id` int(11) DEFAULT 0,
   `payment_id` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -261,13 +261,14 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `code`, `fullname`, `email`, `address`, `address2`, `phone`, `discount`, `note`, `coupon`, `total`, `member_id`, `order_status_id`, `payment_id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `orders` (`id`, `code`, `fullname`, `email`, `address`, `address2`, `phone`, `discount`, `note`, `coupon`, `total`, `user_id`, `order_status_id`, `payment_id`, `created_at`, `updated_at`) VALUES
 (9, NULL, 'Hoàng Công Dũng', 'dungthuy2109@gmail.com', 'HN', NULL, '0986346007', 0, NULL, '0', 25970000, 0, 4, 0, '2020-05-19 12:18:21', '2020-05-19 12:18:21'),
 (10, NULL, 'Hoàng Công Dũng', 'hcdung2109@gmail.com', 'HN', NULL, '0986346006', 11395000, 'AB', 'SHOP-K2', 22790000, 0, 1, 0, '2020-05-20 09:55:45', '2020-05-20 09:55:45'),
 (11, 'DH-11-20052020', 'Trần Thuỷ', 'thuthuy@gmail.com', 'Long Biên , Hà nội', NULL, '0986346008', 3995000, 'ko', 'SHOP-K2', 7990000, 0, 1, 0, '2020-05-20 11:01:38', '2020-05-20 11:01:38'),
 (12, 'DH-12-21052020', 'Trần Thuỷ', 'dungthuy2109@gmail.com', 'HN', NULL, '0986346008', 0, NULL, NULL, 15980000, 0, 1, 0, '2020-05-21 07:41:24', '2020-05-21 07:41:24'),
 (13, 'DH-13-21052020', 'Trần Thuỷ', 'dungthuy2109@gmail.com', 'HN', NULL, '0986346008', 0, NULL, NULL, 15980000, 0, 2, 0, '2020-05-21 07:42:09', '2020-05-21 07:42:09'),
-(14, 'DH-14-23052020', 'Trần Thuỷ', 'hcdung2109@gmail.com', 'Bắc Ninh', 'fdfd', '0986346008', 0, 'kfdsfsdf', NULL, 23390000, 0, 4, 0, '2020-05-23 00:30:46', '2020-05-24 00:53:51');
+(14, 'DH-14-23052020', 'Trần Thuỷ', 'hcdung2109@gmail.com', 'Bắc Ninh', 'fdfd', '0986346008', 0, 'kfdsfsdf', NULL, 23390000, 0, 3, 0, '2020-05-23 00:30:46', '2020-05-25 23:46:41'),
+(15, 'DH-15-26052020', 'HCDUNG', 'hcdung2109@gmail.com', 'Tầng 6, Tòa CT Building , Đống Đa , HN', NULL, '0986346008', 0, 'Giao hàng ngoài 17h', NULL, 7990000, 0, 2, 0, '2020-05-25 23:59:42', '2020-05-26 00:05:38');
 
 -- --------------------------------------------------------
 
@@ -299,7 +300,8 @@ INSERT INTO `order_detail` (`id`, `name`, `image`, `sku`, `user_id`, `order_id`,
 (6, NULL, NULL, '', NULL, 11, 30, 7990000, 1),
 (7, 'Iphone 7 Plus 32GB - NEW', 'uploads/product/1584949065_iphone-7-plus-gold-400x460-400x460.png', NULL, 0, 13, 30, 15980000, 2),
 (8, 'Apple Watch S5 LTE 40mm viền nhôm dây cao su', 'uploads/product/1586667604_apple-watch-s5-lte-40mm-vien-nhom-day-cao-su-ava-400x400.jpg', NULL, 0, 14, 50, 2900000, 1),
-(9, 'ASUS ROG Phone 2 512GB', 'uploads/product/1584948535__600x600__crop_600_asus_rog_phone2_min_1.jpg', NULL, 0, 14, 28, 20490000, 1);
+(9, 'ASUS ROG Phone 2 512GB', 'uploads/product/1584948535__600x600__crop_600_asus_rog_phone2_min_1.jpg', NULL, 0, 14, 28, 20490000, 1),
+(10, 'Iphone 7 Plus 32GB - NEW', 'uploads/product/1584949065_iphone-7-plus-gold-400x460-400x460.png', NULL, 0, 15, 30, 7990000, 1);
 
 -- --------------------------------------------------------
 
@@ -465,7 +467,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `company`, `address`, `address2`, `image`, `phone`, `hotline`, `tax`, `facebook`, `email`, `introduce`, `created_at`, `updated_at`) VALUES
-(1, 'Hoàng Vinh', 'Q.Đống Đa , Hà Nội', 'Q.Long Biên, Hà Nội', 'uploads/setting/1590462650_logo.png', '0986346008', '18001166', NULL, 'https://www.facebook.com/didongthongminh.vn/', 'admin@gmail.com', NULL, NULL, '2020-05-25 20:11:24');
+(1, 'Công Ty TNHH Hoàng Vinh .co,ltd', 'Q.Đống Đa , Hà Nội', 'Q.Long Biên, Hà Nội', 'uploads/setting/1590462650_logo.png', '0986346008', '18001166', '000010', 'https://www.facebook.com/didongthongminh.vn/', 'admin@gmail.com', NULL, NULL, '2020-05-25 21:19:10');
 
 -- --------------------------------------------------------
 
@@ -493,7 +495,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `role_id`, `avatar`, `is_active`) VALUES
 (1, 'Hoàng Dũng', 'hcdung209@gmail.com', '$2y$10$TNWZo9WER49I.Z5ad4hIMO/cQRYAn8nMXOSgajlfo/pO.LEaXLKxq', NULL, '2020-04-10 21:24:51', '2020-05-19 12:32:10', 1, 'uploads/user/1586579091_Tổng-hợp-hình-ảnh-avatar-dễ-thương-làm-hình-đại-diện-đẹp-nhất-1.jpg', 1),
 (2, 'Ngọc Hà', 'ngocha18082407@gmail.com', '2345678', NULL, '2020-04-10 21:25:55', '2020-04-10 21:25:55', 2, 'uploads/user/1586579155_tai-hinh-chibi-bst.jpg', 1),
-(3, 'admin', 'admin@gmail.com', '$2y$10$CWWZcJDTL2Xf1O8ZaD99dOrImQSKfePrU8L19Hw/vcqUca6u2T0uq', 'ESv8rldA3M3lK5eoZfOKUBaQvsP0QCM26T1mPbTbWpXZP7MKQ1s5c99nBcx0', '2020-05-19 12:32:27', '2020-05-19 12:32:27', 1, NULL, 1);
+(3, 'admin', 'admin@gmail.com', '$2y$10$CWWZcJDTL2Xf1O8ZaD99dOrImQSKfePrU8L19Hw/vcqUca6u2T0uq', 'YM1Ci9N2UG5jtazijHTZOQRukttsEhbp9FOtdRs4OWrjembgBjb6kqhraYWJ', '2020-05-19 12:32:27', '2020-05-19 12:32:27', 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -686,13 +688,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `order_status`

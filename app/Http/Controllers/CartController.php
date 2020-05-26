@@ -40,7 +40,7 @@ class CartController extends GeneralController
         // Khởi tạo giỏ hàng
         $cart = new Cart($_cart);
         // Thêm sản phẩm vào giỏ
-        $cart->add($product, $id);
+        $cart->add($product);
         // Lưu thông tin vào session
         $request->session()->put('cart', $cart);
 
@@ -71,7 +71,7 @@ class CartController extends GeneralController
     {
         // check nhập số lượng không đúng định dạng
         $validator = Validator::make($request->all(), [
-            'qty' => 'required|numeric',
+            'qty' => 'required|numeric|min:1',
         ]);
 
         // check số lượng lỗi
@@ -82,21 +82,13 @@ class CartController extends GeneralController
             ]);
         }
 
-        $id = $request->input('id');
+        $product_id = $request->input('id');
         $qty = $request->input('qty');
 
-        // Kiểm tra tồn tại giỏ hàng cũ
+        // Lấy giỏ hàng hiện tại thông qua session
         $_cart = session('cart');
-        if (!$_cart) {
-            return response()->json([
-                'status'  => false ,
-                'data' => 'Bạn chưa thêm sản phẩm nào trong giỏ hàng'
-            ]);
-        }
-
-        // Khởi tạo giỏ hàng
         $cart = new Cart($_cart);
-        $cart->store($id, $qty);
+        $cart->store($product_id, $qty);
 
         if (count($cart->products) > 0) {
             // Lưu thông tin vào session
@@ -112,24 +104,18 @@ class CartController extends GeneralController
 
     }
 
+    // Check mã giảm giá
     public function checkCoupon(Request $request)
     {
         $coupon = Coupon::where('code', $request->coupon_code)->first();
 
         if (!$coupon) {
-            return redirect()->back()->withErrors('msg', 'Mã giảm giá không tồn tại');
+            return redirect()->back()->withErrors(['errorCoupon' => 'Mã giảm giá không tồn tại']);
         }
 
-        // Kiểm tra tồn tại giỏ hàng cũ
+
         $_cart = session('cart');
-        if (!$_cart) {
-            return response()->json([
-                'status'  => false ,
-                'data' => 'Bạn chưa thêm sản phẩm nào trong giỏ hàng'
-            ]);
-        }
-
-        $discount = 0;
+        $discount = 0; // số tiền được giảm giá , default = 0
 
         // check default tính theo giá
         if ($coupon->value) {
@@ -141,9 +127,9 @@ class CartController extends GeneralController
             }
         }
 
-        // Khởi tạo giỏ hàng
+        // Get lại giỏ hàng
         $cart = new Cart($_cart);
-        $cart->discount = $discount;
+        $cart->discount = $discount; // set số tiền được giảm
         $cart->coupon = $coupon->code;
 
         // Lưu thông tin vào session
@@ -167,13 +153,14 @@ class CartController extends GeneralController
         return view('shop.checkout');
     }
 
+    // thêm đơn hàng
     public function postCheckout(Request $request)
     {
         if (!session('cart')) {
             return redirect('/');
         }
 
-        $validatedData = $request->validate([
+        $request->validate([
             'fullname' => 'required|max:255',
             'phone' => 'required',
             'email' => 'required|email',
@@ -204,11 +191,11 @@ class CartController extends GeneralController
 
             foreach ($_cart->products as $product) {
                 $_detail = new OrderDetail();
+                $_detail->order_id = $order->id;
                 $_detail->name = $product['item']->name;
                 $_detail->image = $product['item']->image;
                 $_detail->sku = $product['item']->sku;
                 $_detail->user_id = $product['item']->user_id;
-                $_detail->order_id = $order->id;
                 $_detail->product_id = $product['item']->id;
                 $_detail->qty = $product['qty'];
                 $_detail->price = $product['price'];

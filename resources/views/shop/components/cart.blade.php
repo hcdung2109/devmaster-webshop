@@ -8,6 +8,7 @@
         $coupon = $cart->coupon;
         $payment = $totalPrice - $discount;
     @endphp
+
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="row" style="margin-bottom: 20px">
             <div class="col-lg-6"></div><!-- /.col-lg-6 -->
@@ -20,6 +21,11 @@
                         </span>
                     </div>
                 </form>
+                @if($errors->any())
+                    @foreach ($errors->all() as $error)
+                        <p style="text-align: right;color: red;">{{ $error }}</p>
+                    @endforeach
+                @endif
             </div><!-- /.col-lg-6 -->
         </div><!-- /.row -->
     </div>
@@ -61,7 +67,7 @@
                         </td>
                         <td class="cart_quantity text-center">
                             <div class="">
-                                <input min="1" class="cart-plus-minus item-qty" data-id="{{ $product['item']->id }}" type="number" name="qty" value="{{ $product['qty'] }}">
+                                <input min="1" class="cart-plus-minus item-qty" data-id="{{ $product['item']->id }}" data-num="{{ $product['qty'] }}" type="number" name="qty" value="{{ $product['qty'] }}">
                             </div>
                         </td>
                         <td class="cart-total">
@@ -70,8 +76,8 @@
                         </td>
                         <td class="cart-delete text-center">
                             <a data-id="{{ $product['item']->id }}" href="javascript:void(0)"
-                               class="cart_quantity_delete remove-to-cart" title="Xóa sản phẩm"><i
-                                        class="fa fa-trash-o"></i></a>
+                               class="cart_quantity_delete remove-to-cart" title="Xóa sản phẩm">
+                                <i class="fa fa-trash-o"></i></a>
                         </td>
                     </tr>
                 @endforeach
@@ -99,6 +105,67 @@
             </table>
         </div>
     </div>
+    @section('my_javascript')
+    <script type="text/javascript">
+        $(function () {
+            // xóa sản phẩm khỏi giỏ hàng
+            $(document).on("click", '.remove-to-cart', function () {
+                var result = confirm("Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng ?");
+                if (result) {
+                    var product_id = $(this).attr('data-id');
+                    $.ajax({
+                        url: '/dat-hang/xoa-sp-gio-hang/'+product_id,
+                        type: 'get',
+                        data: {
+                            id : product_id
+                        }, // dữ liệu truyền sang nếu có
+                        dataType: "HTML", // kiểu dữ liệu trả về
+                        success: function (response) {
+                            $('#my-cart').html(response);
+                        },
+                        error: function (e) { // lỗi nếu có
+                            console.log(e.message);
+                        }
+                    });
+                }
+            });
+
+            // cập nhật số lượng giỏ hàng
+            //$('.item-qty').change(function () {
+            $(document).on("change", '.item-qty', function () {
+                var product_id = $(this).attr('data-id');
+                var before_qty = $(this).attr('data-num');
+                var qty = $(this).val();
+
+                if (qty == 0) {
+                    alert('Nhập số lượng phải lớn hơn 0');
+                    $(this).val(before_qty);
+                    return false;
+                }
+
+                $.ajax({
+                    url: '/dat-hang/cap-nhat-gio-hang',
+                    type: 'get',
+                    data: {
+                        id : product_id,
+                        qty : qty
+                    }, // dữ liệu truyền sang nếu có
+                    dataType: "json", // kiểu dữ liệu trả về
+                    success: function (response) {
+                        console.log(response);
+                        // success
+                        if (response.status == true) {
+                            $('#my-cart').html(response.data);
+                        }
+                    },
+                    error: function (e) { // lỗi nếu có
+                        console.log(e.message);
+                    }
+                });
+            });
+        })
+    </script>
+    @endsection
 @else
     <style>
         .buyother {

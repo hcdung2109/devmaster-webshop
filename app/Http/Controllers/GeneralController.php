@@ -6,6 +6,7 @@ use App\Article;
 use App\Banner;
 use App\Category; // cần thêm dòng này nếu chưa có
 use App\Product;
+use App\Setting;
 use Illuminate\Http\Request;
 
 class GeneralController extends Controller
@@ -26,7 +27,10 @@ class GeneralController extends Controller
 
         $this->categories = $categories;
 
-        view()->share(['categories' => $categories, 'banners' => $banners, 'articles' => $articles]);
+        // 4. cấu hình website
+        $settings = Setting::first();
+
+        view()->share(['categories' => $categories, 'banners' => $banners, 'articles' => $articles,'settings' => $settings]);
     }
 
     public function notfound()

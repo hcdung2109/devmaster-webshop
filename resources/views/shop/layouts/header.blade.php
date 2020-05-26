@@ -38,7 +38,7 @@
             <div class="col-sm-12">
                 <!-- LOGO START -->
                 <div class="logo">
-                    <a href="/"><img src="shop/img/logo2.png" alt="bstore logo" /></a>
+                    <a href="/"><img src="{{ asset($settings->image) }}" alt="bstore logo" /></a>
                 </div>
 
                 <div class="categorys-product-search">

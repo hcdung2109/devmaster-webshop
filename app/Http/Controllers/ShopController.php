@@ -87,6 +87,7 @@ class ShopController extends GeneralController
         }
     }
 
+    // Chi tiet san pham
     public function getProduct($slug , $id)
     {
         // get chi tiet sp
@@ -152,6 +153,7 @@ class ShopController extends GeneralController
         ]);
     }
 
+    // Danh sach bai viet
     public function getListArticles()
     {
         $articles = Article::latest()->paginate(15);
@@ -161,6 +163,7 @@ class ShopController extends GeneralController
         ]);
     }
 
+    // Chi tiet bai viet
     public function getArticle($slug , $id)
     {
         $article = Article::find($id);

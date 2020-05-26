@@ -11,7 +11,7 @@
                 <div class="mainmenu">
                     <nav>
                         <ul class="list-inline mega-menu">
-                            <li class="active"><a href="/">Trang Chủ</a></li>
+                            <li><a href="/">Trang Chủ</a></li>
                             @if(!empty($categories))
                                 @foreach($categories as $category)
                                     @if($category->parent_id == 0)
@@ -37,7 +37,7 @@
                                     @endif
                                 @endforeach
                             @endif
-                            <li class="active"><a href="/tin-tuc">Tin tức</a></li>
+                            <li><a href="/tin-tuc">Tin tức</a></li>
                         </ul>
                     </nav>
                 </div>
