@@ -3,6 +3,8 @@
 // Trang chủ
 Route::get('/', 'ShopController@index');
 
+Route::get('/danh-muc/{slug}', 'ShopController@getProductsByCategory')->name('shop.category');
+
 // Chi tiet sản phẩn
 Route::get('/chi-tiet-san-pham/{slug}_{id}', 'ShopController@getProduct')->name('shop.product');
 
@@ -71,4 +73,3 @@ Route::group(['prefix' => 'admin','as' => 'admin.' ,'middleware' => ['checkLogin
 
 Auth::routes();
 
-Route::get('/danh-muc/{slug}', 'ShopController@getProductsByCategory')->name('shop.category');
