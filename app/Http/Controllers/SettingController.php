@@ -14,10 +14,10 @@ class SettingController extends Controller
      */
     public function index()
     {
-        $setting = Setting::first();
+        $data = Setting::first();
 
         return view('admin.setting.update', [
-            'setting' => $setting
+            'setting' => $data
         ]);
 
     }
@@ -76,10 +76,10 @@ class SettingController extends Controller
     {
         //validate
         $request->validate([
-            'company' => 'required|max:255'
+            'company' => 'required|max:255',
         ]);
 
-        $setting = Setting::findorFail($id);
+        $setting = Setting::findorFail($id); // object
         $setting->company = $request->input('company');
         $setting->phone = $request->input('phone');
         $setting->hotline = $request->input('hotline');

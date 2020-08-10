@@ -1,5 +1,4 @@
 @extends('shop.layouts.main')
-
 @section('content')
     <section class="main-content-section">
         <div class="container">
@@ -9,7 +8,7 @@
                     <div class="bstore-breadcrumb">
                         <a href="/">Trang chủ<span><i class="fa fa-caret-right"></i> </span> </a>
                         <span> <i class="fa fa-caret-right"> </i> </span>
-                        <a href="shop-gird.html">{{ $category->name }}</a>
+                        <a href="{{ route('shop.category', ['slug' => $category->slug]) }}">{{ $category->name }}</a>
                     </div>
                     <!-- BSTORE-BREADCRUMB END -->
                 </div>
@@ -37,6 +36,8 @@
                                     <p>Tình trạng:
                                         @if ($product->stock > 0)
                                             <span style="color: green">CÒN HÀNG</span>
+                                        @else
+                                            <span style="color: grey">HẾT HÀNG</span>
                                         @endif
                                     </p>
                                 </div>

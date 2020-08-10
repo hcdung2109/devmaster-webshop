@@ -29,7 +29,7 @@
                                         <div class="product-info">
                                             <a href="{{ route('shop.product', ['slug' => $product->slug , 'id' => $product->id]) }}">{{ $product->name }}</a>
                                             <div class="price-box">
-                                                <span class="price">{{ number_format($product->sale,0,",",".") }}đ<span class="p-price">{{ number_format($product->price,0,",",".") }}đ</span></span>
+                                                <span class="price">{{ number_format($product->sale, 0,",",".") }}đ<span class="p-price">{{ number_format($product->price,0,",",".") }}đ</span></span>
                                             </div>
                                         </div>
                                     </div>

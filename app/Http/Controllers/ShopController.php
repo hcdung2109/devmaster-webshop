@@ -21,27 +21,31 @@ class ShopController extends GeneralController
     // trang chủ
     public function index()
     {
-        $categories = $this->categories;
 
-        // 3. Lấy danh sách phẩm theo thể loại
-        $list = []; // chứa danh sách sản phẩm  theo thể loại
+        $list = []; // chứa danh sách sản phẩm  theo danh mục
 
-        foreach($categories as $key => $category) {
-            if($category->parent_id == 0) { // check danh mục cha
-                $ids = [$category->id]; // $ids = array($category->id);
+        foreach($this->categories as $key => $parent) {
+            if($parent->parent_id == 0) { // check danh mục cha
+                $ids = [] ; // tạo chứa các id của danh cha + danh mục con trực thuộc
 
-                foreach($categories as $child) {
-                    if ($child->parent_id == $category->id) {
+                $ids[] = $parent->id; // id danh mục cha
+
+                foreach($this->categories as $child) {
+                    if ($child->parent_id == $parent->id) {
                         $ids[] = $child->id; // thêm phần tử vào mảng
                     }
                 } // ids = [1,7,8,9,..]
 
-                $list[$key]['category'] = $category;
+                $list[$key]['category'] = $parent; // điện thoại, tablet
 
+                // SELECT * FROM `products` WHERE is_active = 1 AND is_hot = 0 AND category_id IN (1,7,9,11) ORDER BY id DESC LIMIT 10
                 $list[$key]['products'] = Product::where(['is_active' => 1, 'is_hot' => 0])
-                                                        ->whereIn('category_id' , $ids)
-                                                        ->limit(10)->orderBy('id', 'desc')
-                                                        ->get();
+                                                    ->whereIn('category_id' , $ids)
+                                                    ->limit(10)
+                                                    ->orderBy('id', 'desc')
+                                                    ->get();
+
+
             }
         }
 
@@ -50,38 +54,36 @@ class ShopController extends GeneralController
         ]);
     }
 
-    // Get san phan theo the loai
+    // lấy san phan theo danh mục
     public function getProductsByCategory($slug)
     {
         // step 1 : lấy chi tiết thể loại
         $cate = Category::where(['slug' => $slug])->first();
 
         if ($cate) {
-            $categories = $this->categories;
             // step 1.1 Check danh mục cha -> lấy toàn bộ danh mục con để where In
-            $ids = [];
-            foreach($categories as $key => $category) {
-                if($category->id == $cate->id) {
-                    $ids[] = $cate->id;
+            $ids = []; // lưu toàn id của danh mục cha + id - danh mục con
 
-                    foreach ($categories as $child) {
-                        if ($child->parent_id == $cate->id) {
-                            $ids[] = $child->id; // thêm phần tử vào mảng
-                        }
-                    }
+            $ids[] = $cate->id;
+
+            foreach ($this->categories as $child) {
+                if ($child->parent_id == $cate->id) {
+                    $ids[] = $child->id; // thêm id của danh mục con vào mảng ids
                 }
             }
 
             // step 2 : lấy list sản phẩm theo thể loại
-            $products = Product::where(['is_active' => 1, 'is_hot' => 0])
-                                    ->whereIn('category_id' , $ids)
-                                    ->limit(10)->orderBy('id', 'desc')
-                                    ->get();
+            $products = Product::where(['is_active' => 1])
+                                ->whereIn('category_id' , $ids)
+                                ->limit(10)
+                                ->orderBy('id', 'desc')
+                                ->get();
 
             return view('shop.products-by-category',[
-                'category' => $category,
+                'category' => $cate,
                 'products' => $products
             ]);
+
         } else {
             return $this->notfound();
         }
@@ -99,17 +101,19 @@ class ShopController extends GeneralController
         $category = Category::find($product->category_id);
 
         $tags = Category::where([
-                                ['id' , '<>', 0],
-                                ['is_active' , '=', 1]
-                            ])->get();
+                                    ['parent_id' , '<>', 0],
+                                    ['is_active' , '=', 1]
+                                ])->get();
 
 
-        // step 2 : lấy list SP liên quan
+        // step 2 : lấy list 10 SP liên quan
         $relatedProducts = Product::where([
                                 ['is_active' , '=', 1],
-                                ['category_id', '=' , $category->id ],
-                                ['id', '<>' , $id]
-                            ])->orderBy('id', 'desc')->paginate(10);
+                                ['category_id', '=' , $product->category_id ],
+                                ['id', '<>' , $product->$id]
+                            ])->orderBy('id', 'desc')
+                            ->take(10)
+                            ->get();
 
         return view('shop.product',[
             'category' => $category,
