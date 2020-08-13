@@ -1,13 +1,8 @@
-<style>
-    /*.main-menu-area, .shopping-cart a.shop-link, .shopping-cart-out { height: 45px; }
-    .mainmenu nav ul li a { line-height: 45px; }
-    .shipping-cart-overly { top: 45px }*/
-</style>
 <header class="main-menu-area">
     <div class="container">
         <div class="row">
 
-            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 no-padding-right menuarea">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding-right menuarea">
                 <div class="mainmenu">
                     <nav>
                         <ul class="list-inline mega-menu">
@@ -24,7 +19,7 @@
 
                                                     <div class="mega-menu-list">
                                                          @foreach($categories as $key => $child)
-                                                            @if($category->id == $child->parent_id && ($key%2) == 1)
+                                                            @if($child->parent_id == $category->id  && ($key%2) == 1)
                                                                 <a class="mega-menu-title" href="{{ route('shop.category', ['slug' => $child->slug]) }}">
                                                                     <i class="fa fa-angle-double-right" aria-hidden="true"></i> {{ $child->name }}</a>
                                                             @endif
@@ -47,6 +42,7 @@
                                     @endif
                                 @endforeach
                             @endif
+                            <li><a href="/khuyen-mai">Khuyến mại</a></li>
                             <li><a href="/tin-tuc">Tin tức</a></li>
                         </ul>
                     </nav>

@@ -24,12 +24,14 @@
                                 <li class="gategory-product-list col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                     <div class="single-product-item">
                                         <div class="product-image">
-                                            <a href="{{ route('shop.product', ['slug' => $product->slug , 'id' => $product->id]) }}" title="{{ $product->name }}" ><img src="{{ asset($product->image) }}" alt="{{ $product->name }}"></a>
+                                            <a href="{{ route('shop.product', ['slug' => $product->slug , 'id' => $product->id]) }}" title="{{ $product->name }}" >
+                                                <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
+                                            </a>
                                         </div>
                                         <div class="product-info">
                                             <a href="{{ route('shop.product', ['slug' => $product->slug , 'id' => $product->id]) }}" title="{{ $product->name }}">{{ $product->name }}</a>
                                             <div class="price-box">
-                                                <span class="price">{{ number_format($product->sale,0,",",".") }}đ<span class="p-price">{{ number_format($product->price,0,",",".") }}đ</span></span>
+                                                <span class="price">{{ number_format($product->sale,0,",",".") }} đ<span class="p-price">{{ number_format($product->price,0,",",".") }} đ</span></span>
                                             </div>
                                         </div>
                                     </div>

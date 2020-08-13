@@ -3,6 +3,7 @@
 // Trang chủ
 Route::get('/', 'ShopController@index');
 
+// Danh mục
 Route::get('/danh-muc/{slug}', 'ShopController@getProductsByCategory')->name('shop.category');
 
 // Chi tiet sản phẩn
@@ -11,6 +12,7 @@ Route::get('/chi-tiet-san-pham/{slug}_{id}', 'ShopController@getProduct')->name(
 Route::get('/tim-kiem', 'ShopController@search')->name('shop.search');
 
 Route::get('/tin-tuc', 'ShopController@getListArticles')->name('shop.article');
+
 // Chi tiet tin tuc
 Route::get('/tin-tuc/{slug}_{id}', 'ShopController@getArticle')->name('shop.article.detail');
 

@@ -21,7 +21,7 @@
                 </a>
             </li>
             <li><a href="{{ route('admin.order.index') }}"><i class="fa fa-cubes"></i> <span>QL Đơn đặt hàng</span></a></li>
-            <li><a href="{{ route('admin.category.index') }}"><i class="fa fa-dashboard"></i> <span>QL Danh mục SP</span></a></li>
+            <li><a href="{{ route('admin.category.index') }}"><i class="fa fa-dashboard"></i> <span>QL Danh mục</span></a></li>
             <li><a href="{{ route('admin.product.index') }}"><i class="fa fa-database"></i> <span>QL Sản Phẩm</span></a></li>
             <li><a href="{{ route('admin.article.index') }}"><i class="fa fa-file-text"></i> <span>QL Tin tức</span></a></li>
             <li><a href="{{ route('admin.banner.index') }}"><i class="fa fa-photo"></i> <span>QL Banner</span></a></li>

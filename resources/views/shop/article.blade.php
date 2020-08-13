@@ -24,8 +24,7 @@
                     {!! $article->description !!}
 
                     <a href="/" class="btn btn-flat btn-info">
-                        <i class="fa fa-home"></i>
-                        Về trang chủ
+                        <i class="fa fa-home"></i> Về trang chủ
                     </a>
                 </div>
             </div>
