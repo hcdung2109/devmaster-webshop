@@ -3,12 +3,15 @@
 // Trang chủ
 Route::get('/', 'ShopController@index');
 
+Route::get('/lien-he', 'ShopController@contact')->name('shop.contact');
+Route::post('/lien-he', 'ShopController@contactStore')->name('shop.contactStore');
+
 // Danh mục
 Route::get('/danh-muc/{slug}', 'ShopController@getProductsByCategory')->name('shop.category');
 
 // Chi tiet sản phẩn
 Route::get('/chi-tiet-san-pham/{slug}_{id}', 'ShopController@getProduct')->name('shop.product');
-
+// Tim kiem san pham , tin tuc
 Route::get('/tim-kiem', 'ShopController@search')->name('shop.search');
 
 Route::get('/tin-tuc', 'ShopController@getListArticles')->name('shop.article');

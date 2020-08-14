@@ -6,6 +6,7 @@ use App\Article;
 use App\Banner;
 use App\Cart;
 use App\Category; // cần thêm dòng này nếu chưa có
+use App\Contact;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -62,26 +63,28 @@ class ShopController extends GeneralController
 
         if ($cate) {
             // step 1.1 Check danh mục cha -> lấy toàn bộ danh mục con để where In
-            $ids = []; // lưu toàn id của danh mục cha + id - danh mục con
+            $ids = []; // mảng lưu toàn id của danh mục cha + id - danh mục con
 
-            $ids[] = $cate->id;
+            $ids[] = $cate->id; // 1
+            $child_categories = []; // lưu danh mục con
 
             foreach ($this->categories as $child) {
                 if ($child->parent_id == $cate->id) {
                     $ids[] = $child->id; // thêm id của danh mục con vào mảng ids
+                    $child_categories[] = $child;
                 }
-            }
+            } // ids = 1,7,8,9,11
 
             // step 2 : lấy list sản phẩm theo thể loại
-            $products = Product::where(['is_active' => 1])
+            $list_products = Product::where(['is_active' => 1])
                                 ->whereIn('category_id' , $ids)
-                                ->limit(10)
-                                ->orderBy('id', 'desc')
-                                ->get();
+                                ->latest()
+                                ->paginate(16);
 
             return view('shop.products-by-category',[
                 'category' => $cate,
-                'products' => $products
+                'products' => $list_products,
+                'child_categories' => $child_categories
             ]);
 
         } else {
@@ -123,32 +126,26 @@ class ShopController extends GeneralController
         ]);
     }
 
-
+    /**
+     * Tìm kiếm san phẩm
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\View\View
+     */
     public function search(Request $request)
     {
+        // b1. Lấy từ khóa tìm kiếm
         $keyword = $request->input('tu-khoa');
+
         $slug = str_slug($keyword);
-        $totalResult = 0;
 
-        $products = [];
-
-        //$sql = "SELECT * FROM products WHERE is_active = 1 AND (name like '%?%' OR slug like '%?%' OR summary like '%?%')";
-        //$results = DB::select($sql, [
-        //    $keyword, $slug , $keyword
-        //]);
+        //$sql = "SELECT * FROM products WHERE is_active = 1 AND slug like '%$keyword%'";
 
         $products = Product::where([
-            ['name', 'like', '%' . $keyword . '%'],
-            ['is_active', '=', 1]
-        ])->orWhere([
-            ['slug', 'like', '%' . str_slug($keyword) . '%'],
-            ['is_active', '=', 1]
-        ])->orWhere([
-            ['summary', 'like', '%' . $keyword . '%'],
-            ['is_active', '=', 1]
-        ])->paginate(20);
+                ['slug', 'like', '%' . $slug . '%'],
+                ['is_active', '=', 1]
+            ])->paginate(20);
 
-        $totalResult = $products->total();
+        $totalResult = $products->total(); // số lượng kết quả tìm kiếm
 
         return view('shop.search', [
             'products' => $products,
@@ -179,5 +176,30 @@ class ShopController extends GeneralController
         return view('shop.article',[
             'article' => $article
         ]);
+    }
+
+    public function contact()
+    {
+        return view('shop.contact.index');
+    }
+
+    public function contactStore(Request $request)
+    {
+        //validate
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email'
+        ]);
+
+        //luu vào csdl
+        $contact = new Contact();
+        $contact->name = $request->input('name');
+        $contact->phone = $request->input('phone');
+        $contact->email = $request->input('email');
+        $contact->content = $request->input('content');
+        $contact->save();
+
+        // chuyển về trang chủ
+        return redirect('/');
     }
 }
