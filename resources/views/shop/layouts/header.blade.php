@@ -13,7 +13,7 @@
                 <div class="header-right-menu">
                     <nav>
                         <ul class="list-inline">
-                            <li><a href="{{ route('contact.index') }}">Liên Hệ</a></li>
+                            <li><a href="/lien-he">Liên Hệ</a></li>
                             <li><a href="{{ route('shop.cart') }}">
                                     Giỏ Hàng
                                     @if(session('cart'))
