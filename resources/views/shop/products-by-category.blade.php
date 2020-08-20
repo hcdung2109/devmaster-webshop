@@ -1,6 +1,7 @@
 @extends('shop.layouts.main')
 
 @section('content')
+    <style></style>
     <section class="main-content-section">
         <div class="container">
             <div class="row">
@@ -20,12 +21,19 @@
                     <div class="product-left-sidebar">
 
                         <div class="product-single-sidebar">
-                            <span class="sidebar-title">Thương hiệu</span>
-                            <ul>
-                                @foreach($child_categories as $child)
+                            <span class="sidebar-title" style="border-bottom: 0px; ">Thương hiệu</span>
+                            <ul class="thuong-hieu">
+                                <li>
+                                    <label class="cheker">
+                                        <input class="filter_category" data-text="tat-ca" type="checkbox" name="category_id" value="" checked />
+                                        <span></span>
+                                    </label>
+                                    <a href="javascript:void(0)">Tất cả</a>
+                                </li>
+                                @foreach($branchs as $child)
                                     <li>
                                         <label class="cheker">
-                                            <input type="checkbox" name="category_id" value="{{ $child->id }}"/>
+                                            <input class="filter_category" data-text="{{ $child->slug }}" type="checkbox" name="category_id" value="{{ $child->id }}"/>
                                             <span></span>
                                         </label>
                                         <a href="#">{{ $child->name }}</a>
@@ -36,18 +44,18 @@
                         <!-- SINGLE SIDEBAR CATEGORIES END -->
                         <!-- SINGLE SIDEBAR AVAILABILITY START -->
                         <div class="product-single-sidebar">
-                            <span class="sidebar-title">Mức giá</span>
+                            <span class="sidebar-title" style="border-bottom: 0px">Mức giá</span>
                             <ul>
                                 <li>
                                     <label class="cheker">
-                                        <input type="checkbox" name="availability"/>
+                                        <input {{ ($filter_price == '' ? 'checked' : '') }} class="filter-price" value="tat-ca" type="radio" name="availability"/>
                                         <span></span>
                                     </label>
                                     <a href="#">Tất cả</a>
                                 </li>
                                 <li>
                                     <label class="cheker">
-                                        <input type="checkbox" name="price" value="1-2000000"/>
+                                        <input {{ ($filter_price == '1-2000000' ? 'checked' : '') }} class="filter-price" type="radio" name="price" value="1-2000000"/>
                                         <span></span>
                                     </label>
                                     <a href="#">Dưới 2 triệu
@@ -55,7 +63,7 @@
                                 </li>
                                 <li>
                                     <label class="cheker">
-                                        <input type="checkbox" name="price" value="2000000-4000000"/>
+                                        <input {{ ($filter_price == '2000000-4000000' ? 'checked' : '') }} class="filter-price" type="radio" name="price" value="2000000-4000000"/>
                                         <span></span>
                                     </label>
                                     <a href="#">Từ 2 - 4 triệu
@@ -63,7 +71,7 @@
                                 </li>
                                 <li>
                                     <label class="cheker">
-                                        <input type="checkbox" name="price" value="4000000-7000000"/>
+                                        <input {{ ($filter_price == '4000000-7000000' ? 'checked' : '') }} class="filter-price" type="radio" name="price" value="4000000-7000000"/>
                                         <span></span>
                                     </label>
                                     <a href="#">Từ 4 - 7 triệu
@@ -71,7 +79,7 @@
                                 </li>
                                 <li>
                                     <label class="cheker">
-                                        <input type="checkbox" name="price" value="7000000-13000000"/>
+                                        <input {{ ($filter_price == '7000000-13000000' ? 'checked' : '') }} class="filter-price" type="radio" name="price" value="7000000-13000000"/>
                                         <span></span>
                                     </label>
                                     <a href="#">Từ 7 - 13 triệu
@@ -79,7 +87,7 @@
                                 </li>
                                 <li>
                                     <label class="cheker">
-                                        <input type="checkbox" name="price" value="20000000"/>
+                                        <input {{ ($filter_price == '13000000-' ? 'checked' : '') }} class="filter-price" type="radio" name="price" value="13000000-"/>
                                         <span></span>
                                     </label>
                                     <a href="#">Trên 13 triệu
@@ -98,13 +106,14 @@
                             <h1>
                                 <span class="cat-name">{{ $category->name }}</span>
                                 <div class="shoort-by" style="float: right">
+                                    <label for="" style="font-size: 14px;text-transform: capitalize;font-weight: normal">Sắp sếp</label>
                                     <div class="short-select-option">
-                                        <select name="sortby" id="productShort">
-                                            <option value="">-- Sắp sếp ---</option>
-                                            <option value="">Nổi bật</option>
-                                            <option value="">Bán chạy nhất</option>
-                                            <option value="">Gía thấp đến cao</option>
-                                            <option value="">Gía cao đến thấp</option>
+                                        <select name="sortby" id="productShort" class="filter_sort">
+                                            <option value="tat-ca">-- Tất cả ---</option>
+                                            <option {{ ($filter_sort == 'noi-bat' ? 'selected' : '') }} value="noi-bat">Nổi bật</option>
+                                            <option {{ ($filter_sort == 'ban-chay-nhat' ? 'selected' : '') }} value="ban-chay-nhat">Bán chạy nhất</option>
+                                            <option {{ ($filter_sort == 'gia-thap-den-cao' ? 'selected' : '') }} value="gia-thap-den-cao">Gía thấp đến cao</option>
+                                            <option {{ ($filter_sort == 'gia-cao-den-thap' ? 'selected' : '') }} value="gia-cao-den-thap">Gía cao đến thấp</option>
                                         </select>
                                     </div>
                                 </div>
@@ -149,3 +158,93 @@
         </div>
     </section>
 @endsection
+
+@section('my_javascript')
+    <script type="text/javascript">
+
+        var pathname = window.location.pathname; // danh-muc/dien-thoai
+        var urlParams = new URLSearchParams(window.location.search);
+
+        $(document).on('click', '.filter_category', function () {
+            var slug = $(this).data('text');
+
+            // check nếu là tất cả
+            if (slug === 'tat-ca') {
+                urlParams.delete('thuong-hieu');
+            } else {
+                var inputCategories = $('.filter_category');
+                var str_slug = '';
+
+                // vòng lặp từ 1, để loại bỏ tất-cả
+                for(var i = 1; inputCategories[i]; ++i) {
+                    if (inputCategories[i].checked) {
+                        str_slug += inputCategories[i].getAttribute('data-text') + ',';
+                    }
+                }
+
+                // Xóa ký tự "," cuối cùng sau khi nối chuỗi ở trên
+                if(str_slug && str_slug.slice(-1) === ',') {
+                    var indexPath = str_slug.lastIndexOf(',');
+                    str_slug = str_slug.substring(0, indexPath);
+                }
+
+                urlParams.set('thuong-hieu', str_slug);
+            }
+
+            // chuyển hướng trang
+            window.location.href = pathname + "?"+decodeURIComponent(urlParams.toString());
+
+        });
+
+        $(document).on('click', '.filter-price', function () {
+            var price = $(this).val();
+
+            if (price === 'tat-ca') {
+                urlParams.delete('gia');
+            } else {
+                urlParams.set('gia', price);
+            }
+
+            // chuyển hướng trang
+            window.location.href = pathname + "?"+decodeURIComponent(urlParams.toString());
+        });
+
+        $(document).on('change', '.filter_sort', function () {
+            var sort = $(this).val();
+
+            if (sort === 'tat-ca') {
+                urlParams.delete('sap-sep');
+            } else {
+                urlParams.set('sap-sep', sort);
+            }
+
+            // chuyển hướng trang
+            window.location.href = pathname + "?"+decodeURIComponent(urlParams.toString());
+        });
+
+        $( document ).ready(function() {
+
+            // SET Checked cho thuong hieu
+            var arr_filter_brands = {{ $arr_filter_brands }};
+
+            if (arr_filter_brands && arr_filter_brands.length) {
+                var inputCategories = $('.filter_category');
+
+                for(var i=0; inputCategories[i]; ++i) {
+                    // remove checked
+                    inputCategories[i].removeAttribute('checked');
+
+                    var valueInput = inputCategories[i].getAttribute('value');
+                    valueInput = parseInt(valueInput);
+                    if(arr_filter_brands.indexOf(valueInput) >= 0) {
+                        inputCategories[i].setAttribute('checked', 'checked');
+                    }
+                }
+            }
+
+        });
+
+    </script>
+@endsection
+
+

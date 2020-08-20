@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Banner;
+use App\Brand;
 use App\Cart;
 use App\Category; // cần thêm dòng này nếu chưa có
 use App\Contact;
@@ -56,8 +57,26 @@ class ShopController extends GeneralController
     }
 
     // lấy san phan theo danh mục
-    public function getProductsByCategory($slug)
+    public function getProductsByCategory(Request $request, $slug)
     {
+
+        $filter_brands = $request->query('thuong-hieu');
+        $filter_price = $request->query('gia');
+        $filter_sort = $request->query('sap-sep');
+
+        $branch_ids = [];
+        if ($filter_brands) {
+            $arr_filter_brands = explode(',', $filter_brands);
+            $arr_brands = Brand::whereIn('slug' , $arr_filter_brands)->get();
+
+            foreach ($arr_brands as $item) {
+                $branch_ids[] = $item->id;
+            }
+        }
+
+
+        // THuong hieu
+        $branchs = Brand::all();
         // step 1 : lấy chi tiết thể loại
         $cate = Category::where(['slug' => $slug])->first();
 
@@ -76,15 +95,61 @@ class ShopController extends GeneralController
             } // ids = 1,7,8,9,11
 
             // step 2 : lấy list sản phẩm theo thể loại
-            $list_products = Product::where(['is_active' => 1])
-                                ->whereIn('category_id' , $ids)
-                                ->latest()
-                                ->paginate(16);
+            //$list_products = Product::where(['is_active' => 1])
+            //                    ->whereIn('category_id' , $ids)
+            //                    ->latest()
+            //                    ->paginate(16);
+
+            $query = DB::table('products')->select('*')
+                                                ->whereIn('category_id', $ids)
+                                                ->where('is_active', '=', 1);
+            // Lọc theo thương hiệu
+            if ($branch_ids) {
+                $query->whereIn('brand_id', $branch_ids);
+            }
+
+            // Lọc theo giá
+            if ($filter_price) {
+                $arr_price = explode('-', $filter_price);
+                if ($arr_price) {
+                    $min_price = (int)$arr_price[0];
+                    $max_price = (int)$arr_price[1];
+
+                    if ($min_price > 0) {
+                        $query->where('sale', '>=' , $min_price);
+                    }
+
+                    if ($max_price > 0) {
+                        $query->where('sale', '<=' , $max_price);
+                    }
+                }
+            }
+
+            // Sắp sếp
+            if ($filter_sort) {
+                if ($filter_sort == 'noi-bat') {
+                    $query->orderBy('is_hot', 'DESC');
+                } elseif ($filter_sort == 'ban-chay-nhat') {
+                    $query->orderBy('is_hot', 'DESC');
+                } elseif ($filter_sort == 'gia-thap-den-cao') {
+                    $query->orderBy('sale', 'ASC');
+                } elseif ($filter_sort == 'gia-cao-den-thap') {
+                    $query->orderBy('sale', 'DESC');
+                }
+
+            } else {
+                $query->orderBy('id', 'DESC');
+            }
+
+            $list_products = $query->paginate(16);;
 
             return view('shop.products-by-category',[
                 'category' => $cate,
                 'products' => $list_products,
-                'child_categories' => $child_categories
+                'branchs' => $branchs,
+                'filter_sort' => $filter_sort,
+                'filter_price' => $filter_price ? $filter_price : '',
+                'arr_filter_brands' => json_encode($branch_ids)
             ]);
 
         } else {
