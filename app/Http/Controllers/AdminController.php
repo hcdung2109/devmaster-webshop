@@ -40,8 +40,8 @@ class AdminController extends Controller
         ]);
 
         $data = [
-            'email' => $request->input('email'),
-            'password' => $request->input('password')
+            'email' => trim($request->input('email')),
+            'password' => trim($request->input('password'))
         ];
 
 

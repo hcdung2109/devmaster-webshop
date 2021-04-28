@@ -21,10 +21,12 @@ class GeneralController extends Controller
         $this->categories = $categories;
 
         // 2. Lấy dữ liệu - Banner
-        $banners = Banner::where('is_active', 1)->orderBy('position', 'desc')->get();
+        $banners = Banner::where('is_active', 1)->orderBy('id', 'desc')
+                                                ->orderBy('position', 'asc')->get();
         // 3. lấy dữ liệu 4 tin tức mới nhất
         $articles = Article::where('is_active', 1)
                             ->orderBy('id', 'desc')
+                            ->orderBy('position', 'asc')
                             ->take(4)
                             ->get();
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Banner;
+use App\Brand;
 use App\Cart;
 use App\Category; // cần thêm dòng này nếu chưa có
 use App\Contact;
@@ -50,14 +51,75 @@ class ShopController extends GeneralController
             }
         }
 
+        // 2. Lấy dữ liệu - Banner
+//        $banners = Banner::where('is_active', 1)->orderBy('id', 'desc')
+//            ->orderBy('position', 'asc')->get();
+
         return view('shop.home',[
-            'list' => $list
+            'list' => $list,
+            //'banners' => $banners,
         ]);
     }
 
-    // lấy san phan theo danh mục
-    public function getProductsByCategory($slug)
+    // lấy san pham theo danh mục
+    public function getProductsByCategoryOld($slug)
     {
+        // step 1 : lấy chi tiết thể loại => lay ra id danh muc can tim kiem
+        $cate = Category::where(['slug' => $slug])->first();
+
+        if ($cate) {
+            // step 1.1 Check danh mục cha -> lấy toàn bộ danh mục con để where In
+            $ids = []; // mảng lưu toàn id của danh mục cha + id - danh mục con
+
+            $ids[] = $cate->id; // 1
+
+            foreach ($this->categories as $item) {
+                if ($item->parent_id == $cate->id) {
+                    $ids[] = $item->id; // thêm id của danh mục con vào mảng ids
+                }
+            } // ids = 1,7,8,9,11
+
+            // step 2 : lấy list sản phẩm theo thể loại
+            $products = Product::where(['is_active' => 1])
+                                ->whereIn('category_id' , $ids)
+                                ->latest()
+                                ->paginate(16);
+
+            /*$query = DB::table('products')->select('*')
+                ->whereIn('category_id', $ids)
+                ->where('is_active', '=', 1);
+
+            $list_products = $query->paginate(16);;*/
+
+            return view('shop.products-by-category',[
+                'category' => $cate,
+                'products' => $products
+            ]);
+
+        } else {
+            return $this->notfound();
+        }
+    }
+
+    public function getProductsByCategory(Request $request, $slug)
+    {
+
+        $filter_brands = $request->query('thuong-hieu'); // param url : apple,xiaomi,dell,oppo
+        $filter_price = $request->query('gia'); // string 2000000-4000000
+        $filter_sort = $request->query('sap-sep');
+
+        $branch_ids = [];
+        if ($filter_brands) {
+            $arr_filter_brands = explode(',', $filter_brands); // ['apple', 'xiaomi', 'dell']
+            $arr_brands = Brand::whereIn('slug' , $arr_filter_brands)->get();
+
+            foreach ($arr_brands as $item) {
+                $branch_ids[] = $item->id; // thêm phần tử vào mảng
+            }
+        }
+
+        // THuong hieu
+        $branchs = Brand::all();
         // step 1 : lấy chi tiết thể loại
         $cate = Category::where(['slug' => $slug])->first();
 
@@ -76,15 +138,61 @@ class ShopController extends GeneralController
             } // ids = 1,7,8,9,11
 
             // step 2 : lấy list sản phẩm theo thể loại
-            $list_products = Product::where(['is_active' => 1])
-                                ->whereIn('category_id' , $ids)
-                                ->latest()
-                                ->paginate(16);
+            //$list_products = Product::where(['is_active' => 1])
+            //                    ->whereIn('category_id' , $ids)
+            //                    ->latest()
+            //                    ->paginate(16);
+
+            $query = DB::table('products')->select('*')
+                                                ->whereIn('category_id', $ids)
+                                                ->where('is_active', '=', 1);
+            // Lọc theo thương hiệu
+            if (!empty($branch_ids)) {
+                $query->whereIn('brand_id', $branch_ids);
+            }
+
+            // Lọc theo giá
+            if ($filter_price) {
+                $arr_price = explode('-', $filter_price); // chuyển thành mảng [2000000, 4000000]
+                if ($arr_price) {
+                    $min_price = (int)$arr_price[0];
+                    $max_price = (int)$arr_price[1];
+
+                    if ($min_price > 0) {
+                        $query->where('sale', '>=' , $min_price);
+                    }
+
+                    if ($max_price > 0) {
+                        $query->where('sale', '<=' , $max_price);
+                    }
+                }
+            }
+
+            // Sắp sếp
+            if ($filter_sort) {
+                if ($filter_sort == 'noi-bat') {
+                    $query->orderBy('is_hot', 'DESC');
+                } elseif ($filter_sort == 'ban-chay-nhat') {
+                    // tinh don dat hang
+                } elseif ($filter_sort == 'gia-thap-den-cao') {
+                    $query->orderBy('sale', 'ASC');
+                } elseif ($filter_sort == 'gia-cao-den-thap') {
+                    $query->orderBy('sale', 'DESC');
+                }
+
+            } else {
+                $query->orderBy('id', 'DESC');
+            }
+
+            $list_products = $query->paginate(16);;
 
             return view('shop.products-by-category',[
                 'category' => $cate,
                 'products' => $list_products,
-                'child_categories' => $child_categories
+                'branchs' => $branchs, // thương hiệu
+                'filter_sort' => $filter_sort,
+                'filter_price' => $filter_price ? $filter_price : '',
+                'arr_filter_brands' => json_encode($branch_ids)
             ]);
 
         } else {
@@ -113,7 +221,7 @@ class ShopController extends GeneralController
         $relatedProducts = Product::where([
                                 ['is_active' , '=', 1],
                                 ['category_id', '=' , $product->category_id ],
-                                ['id', '<>' , $product->$id]
+                                ['id', '<>' , $product->id]
                             ])->orderBy('id', 'desc')
                             ->take(10)
                             ->get();
@@ -138,12 +246,12 @@ class ShopController extends GeneralController
 
         $slug = str_slug($keyword);
 
-        //$sql = "SELECT * FROM products WHERE is_active = 1 AND slug like '%$keyword%'";
+        $sql = "SELECT * FROM products WHERE is_active = 1 AND slug LIKE '%$slug%' ";
 
         $products = Product::where([
-                ['slug', 'like', '%' . $slug . '%'],
+                ['slug', 'LIKE', '%' . $slug . '%'],
                 ['is_active', '=', 1]
-            ])->paginate(20);
+            ])->paginate(4);
 
         $totalResult = $products->total(); // số lượng kết quả tìm kiếm
 

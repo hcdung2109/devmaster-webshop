@@ -32,9 +32,10 @@
                                 <th>Hình ảnh</th>
                                 <th>Số lượng</th>
                                 <th>Giá KM</th>
-                                <th>Giá Gốc</th>
+{{--                                <th>Giá Gốc</th>--}}
                                 <th>Sản phẩm Hot</th>
                                 <th>Trạng thái</th>
+                                <th>Người tạo</th>
                                 <th class="text-center">Hành động</th>
                             </tr>
                             </tbody>
@@ -50,9 +51,10 @@
                                     </td>
                                     <td>{{ $item->stock }}</td>
                                     <td>{{ $item->sale }}</td>
-                                    <td>{{ $item->price }}</td>
+{{--                                    <td>{{ $item->price }}</td>--}}
                                     <td>{{ ($item->is_hot == 1) ? 'Có' : 'Không' }}</td>
                                     <td>{{ ($item->is_active == 1) ? 'Hiển thị' : 'Ẩn' }}</td>
+                                    <td>{{ isset($item->user->name) ?  $item->user->name : ''}}</td>
                                     <td class="text-center">
                                         <a href="{{route('admin.product.edit', ['id'=> $item->id])}}" class="btn btn-flat btn-info">
                                             <i class="fa fa-edit"></i>

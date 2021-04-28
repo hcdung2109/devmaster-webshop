@@ -17,7 +17,7 @@ Route::get('/tim-kiem', 'ShopController@search')->name('shop.search');
 Route::get('/tin-tuc', 'ShopController@getListArticles')->name('shop.article');
 
 // Chi tiet tin tuc
-Route::get('/tin-tuc/{slug}_{id}', 'ShopController@getArticle')->name('shop.article.detail');
+Route::get('/chi-tiet-tin-tuc', 'ShopController@getArticle')->name('shop.article.detail');
 
 // Gio hang
 Route::get('/dat-hang', 'CartController@index')->name('shop.cart');
@@ -52,7 +52,7 @@ Route::get('/admin/logout', 'AdminController@logout')->name('admin.logout');
 
 Route::post('/admin/postLogin', 'AdminController@postLogin')->name('admin.postLogin');
 
-Route::group(['prefix' => 'admin','as' => 'admin.' ,'middleware' => ['checkLogin']], function() {
+Route::group(['prefix' => 'admin','as' => 'admin.', 'middleware' => 'checkLogin'], function() {
 
     Route::get('/', 'AdminController@index')->name('dashboard');
     Route::resource('category', 'CategoryController');

@@ -13,6 +13,15 @@
             <!-- left column -->
             <div class="col-md-9 col-lg-9">
                 <!-- general form elements -->
+                @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-ban"></i> Lỗi !</h4>
+                        @foreach ($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                    </div>
+                @endif
 
                 <div class="box box-primary">
                     <div class="box-header with-border">
@@ -33,20 +42,20 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputFile">Số lượng</label>
-                                <input type="number" class="form-control w-50" id="stock" name="stock" value="0">
+                                <input type="number" class="form-control w-50" id="stock" name="stock" value="0" min="0">
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="exampleInputFile">Giá gốc (vnđ)</label>
-                                        <input type="number" class="form-control" id="price" name="price" value="0">
+                                        <input type="number" class="form-control" id="price" name="price" value="0" min="0">
                                     </div>
                                 </div>
                                 <!-- /.col-lg-6 -->
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="exampleInputFile">Giá khuyến mại (vnđ)</label>
-                                        <input type="number" class="form-control" id="sale" name="sale" value="0">
+                                        <input type="number" class="form-control" id="sale" name="sale" value="0" min="0">
                                     </div>
                                 </div>
                                 <!-- /.col-lg-6 -->

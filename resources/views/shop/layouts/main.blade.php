@@ -112,7 +112,7 @@
 <!-- MAIN-MENU-AREA END -->
 @include('shop.layouts.main-menu')
 <!-- MAIN-CONTENT -->
-@yield('content')
+    @yield('content')
 <!-- BRAND-CLIENT-AREA START -->
 @include('shop.layouts.footer')
 <!-- COPYRIGHT-AREA START -->

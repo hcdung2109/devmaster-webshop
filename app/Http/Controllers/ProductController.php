@@ -7,6 +7,7 @@ use App\Product;
 use App\Category;
 use App\Vendor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -31,6 +32,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+
         $categories = Category::all();
         $brands = Brand::all();
         $vendors = Vendor::all();
@@ -97,6 +99,7 @@ class ProductController extends Controller
         $product->description = $request->input('description');
         $product->meta_title = $request->input('meta_title');
         $product->meta_description = $request->input('meta_description');
+        $product->user_id = Auth::id(); // lưu id người tạo
         $product->save();
 
         // chuyển hướng đến trang
@@ -201,6 +204,7 @@ class ProductController extends Controller
         $product->description = $request->input('description');
         $product->meta_title = $request->input('meta_title');
         $product->meta_description = $request->input('meta_description');
+        $product->user_id = Auth::id();
         $product->save();
 
         // chuyển hướng đến trang

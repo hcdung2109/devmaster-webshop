@@ -37,11 +37,13 @@ class CartController extends GeneralController
         }
         // Kiểm tra tồn tại giỏ hàng cũ
         $_cart = session('cart') ? session('cart') : '';
-        // Khởi tạo giỏ hàng
+
+        // Khởi tạo lớp giỏ hàng
         $cart = new Cart($_cart);
         // Thêm sản phẩm vào giỏ
         $cart->add($product);
         // Lưu thông tin vào session
+
         $request->session()->put('cart', $cart);
 
         return redirect()->route('shop.cart');
@@ -90,15 +92,15 @@ class CartController extends GeneralController
         $cart = new Cart($_cart);
         $cart->store($product_id, $qty);
 
-        if (count($cart->products) > 0) {
+        if (count($cart->products) > 0) { // check  có sản phẩm trong giỏ hàng không
             // Lưu thông tin vào session
             $request->session()->put('cart', $cart);
         } else {
-            $request->session()->forget('cart');
+            $request->session()->forget('cart'); // clear session cart
         }
 
         return response()->json([
-            'status'  => true,
+            'status'  => true, // thành công
             'data' => view('shop.components.cart')->render()
         ]);
 
@@ -107,14 +109,16 @@ class CartController extends GeneralController
     // Check mã giảm giá
     public function checkCoupon(Request $request)
     {
-        $coupon = Coupon::where('code', $request->coupon_code)->first();
+        $coupon_code = $request->query('coupon_code');
+
+        $coupon = Coupon::where('code', $coupon_code)->first();
 
         if (!$coupon) {
             return redirect()->back()->withErrors(['errorCoupon' => 'Mã giảm giá không tồn tại']);
         }
 
 
-        $_cart = session('cart');
+        $_cart = session('cart'); // lấy thông tin giỏ hàng
         $discount = 0; // số tiền được giảm giá , default = 0
 
         // check default tính theo giá
@@ -156,6 +160,7 @@ class CartController extends GeneralController
     // thêm đơn hàng
     public function postCheckout(Request $request)
     {
+        // kiểm tra session cart - lưu thông tin giỏ hàng có tồn tại không
         if (!session('cart')) {
             return redirect('/');
         }
@@ -167,7 +172,7 @@ class CartController extends GeneralController
             'address' => 'required',
         ]);
 
-        // Kiểm tra tồn tại giỏ hàng cũ
+        // Lấy thông tin giỏ hang hiện tại
         $_cart = session('cart');
 
         // Lưu vào bảng đơn đặt hàng - orders
@@ -181,29 +186,31 @@ class CartController extends GeneralController
         $order->discount = $_cart->discount;
         $order->coupon = $_cart->coupon;
         $order->order_status_id = 1; // 1 = mới
-        // Lưu vào bảng chỉ tiết đơn đặt hàng
-
-
+        // Tạo mã đơn hàng gửi tới khách hàng
+        $order->code = 'DH-'.date('d').date('m').date('Y').'-'.time();
         if ($order->save()) {
-            // Tạo mã đơn hàng gửi tới khách hàng
-            $order->code = 'DH-'.$order->id.'-'.date('d').date('m').date('Y');
-            $order->save();
-
-            foreach ($_cart->products as $product) {
+            $id_order = $order->id;
+            foreach ($_cart->products as $product)
+            {
                 $_detail = new OrderDetail();
-                $_detail->order_id = $order->id;
+                $_detail->order_id = $id_order;
                 $_detail->name = $product['item']->name;
                 $_detail->image = $product['item']->image;
                 $_detail->sku = $product['item']->sku;
-                $_detail->user_id = $product['item']->user_id;
                 $_detail->product_id = $product['item']->id;
                 $_detail->qty = $product['qty'];
                 $_detail->price = $product['price'];
+                $_detail->user_id = $product['item']->user_id;
                 $_detail->save();
+
+                // Giam số lượng trong kho
             }
 
             // Xóa thông tin giỏ hàng Hiện tại
             $request->session()->forget('cart');
+
+            // gửi email cho KH
+
 
             return redirect()->route('shop.cart.checkout')
                              ->with('msg', 'Cảm ơn bạn đã đặt hàng. Mã đơn hàng của bạn : #'.$order->code);

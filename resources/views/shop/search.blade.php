@@ -49,7 +49,7 @@
 
                 </div>
             </div>
-            {{ $products->links() }}
+            {{ $products->appends(['tu-khoa'=>$keyword])->links()  }}
         </div>
     </section>
 @endsection

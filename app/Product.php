@@ -12,4 +12,10 @@ class Product extends Model
     {
         return $this->belongsTo('App\Category');
     }
+
+    // DN quan he dl
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

@@ -71,8 +71,8 @@
                             </div>
                         </td>
                         <td class="cart-total">
-                    <span class="price">{{ number_format($product['qty'] * $product['item']->sale ,0,",",".") }}
-                        đ</span>
+                        <span class="price">
+                            {{ number_format($product['qty'] * $product['item']->sale ,0,",",".") }}đ</span>
                         </td>
                         <td class="cart-delete text-center">
                             <a data-id="{{ $product['item']->id }}" href="javascript:void(0)"
@@ -134,12 +134,12 @@
             //$('.item-qty').change(function () {
             $(document).on("change", '.item-qty', function () {
                 var product_id = $(this).attr('data-id');
-                var before_qty = $(this).attr('data-num');
+                var before_qty = $(this).attr('data-num'); // số lượng trước khi thay đổi
                 var qty = $(this).val();
 
-                if (qty == 0) {
+                if (qty <= 0) {
                     alert('Nhập số lượng phải lớn hơn 0');
-                    $(this).val(before_qty);
+                    $(this).val(before_qty); // set lại giá trị
                     return false;
                 }
 
