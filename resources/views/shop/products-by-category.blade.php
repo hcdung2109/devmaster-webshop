@@ -36,11 +36,7 @@
                                             <input class="filter_category" data-text="{{ $child->slug }}" type="checkbox" name="category_id" value="{{ $child->id }}"/>
                                             <span></span>
                                         </label>
-<<<<<<< HEAD
                                         <a href="javascript:void(0)">{{ $child->name }}</a>
-=======
-                                        <a href="#">{{ $child->name }}</a>
->>>>>>> b1d38c6e131a9a2c0b3939f8682c435b7ba8d114
                                     </li>
                                 @endforeach
                             </ul>
