@@ -61,6 +61,7 @@ class ShopController extends GeneralController
         ]);
     }
 
+
     // lấy san pham theo danh mục
     public function getProductsByCategoryOld($slug)
     {
@@ -101,11 +102,13 @@ class ShopController extends GeneralController
         }
     }
 
+
+    // lấy san phan theo danh mục
     public function getProductsByCategory(Request $request, $slug)
     {
 
-        $filter_brands = $request->query('thuong-hieu'); // param url : apple,xiaomi,dell,oppo
-        $filter_price = $request->query('gia'); // string 2000000-4000000
+        $filter_brands = $request->query('thuong-hieu');
+        $filter_price = $request->query('gia');
         $filter_sort = $request->query('sap-sep');
 
         $branch_ids = [];
@@ -174,6 +177,7 @@ class ShopController extends GeneralController
                     $query->orderBy('is_hot', 'DESC');
                 } elseif ($filter_sort == 'ban-chay-nhat') {
                     // tinh don dat hang
+
                 } elseif ($filter_sort == 'gia-thap-den-cao') {
                     $query->orderBy('sale', 'ASC');
                 } elseif ($filter_sort == 'gia-cao-den-thap') {
@@ -246,12 +250,13 @@ class ShopController extends GeneralController
 
         $slug = str_slug($keyword);
 
-        $sql = "SELECT * FROM products WHERE is_active = 1 AND slug LIKE '%$slug%' ";
+        //$sql = "SELECT * FROM products WHERE is_active = 1 AND slug like '%$keyword%'";
 
         $products = Product::where([
-                ['slug', 'LIKE', '%' . $slug . '%'],
+                ['slug', 'like', '%' . $slug . '%'],
                 ['is_active', '=', 1]
-            ])->paginate(4);
+            ])->paginate(20);
+
 
         $totalResult = $products->total(); // số lượng kết quả tìm kiếm
 

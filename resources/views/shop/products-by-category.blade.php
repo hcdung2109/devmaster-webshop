@@ -36,7 +36,11 @@
                                             <input class="filter_category" data-text="{{ $child->slug }}" type="checkbox" name="category_id" value="{{ $child->id }}"/>
                                             <span></span>
                                         </label>
+<<<<<<< HEAD
                                         <a href="javascript:void(0)">{{ $child->name }}</a>
+=======
+                                        <a href="#">{{ $child->name }}</a>
+>>>>>>> b1d38c6e131a9a2c0b3939f8682c435b7ba8d114
                                     </li>
                                 @endforeach
                             </ul>
@@ -186,14 +190,13 @@
                 if(str_slug && str_slug.slice(-1) === ',') {
                     var indexPath = str_slug.lastIndexOf(',');
                     str_slug = str_slug.substring(0, indexPath);
-                } // xiaomi,dell
+                }
 
                 urlParams.set('thuong-hieu', str_slug);
             }
 
             // chuyển hướng trang
             window.location.href = pathname + "?" + decodeURIComponent(urlParams.toString());
-
         });
 
         $(document).on('click', '.filter-price', function () {
